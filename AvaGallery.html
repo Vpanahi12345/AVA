@@ -794,7 +794,7 @@ body:has(#hotkeyBar.on) .alertPop{bottom:72px}
 <script>
 try{var _us=null;try{_us=localStorage.getItem('avaGalleryUpdateStaged')}catch(e){}
 if(_us){var _uo=JSON.parse(_us);
-if(_uo&&_uo.html&&_uo.ver&&_uo.ver!=='6.8.8')window.__applyStagedVer=_uo.ver}
+if(_uo&&_uo.html&&_uo.ver&&_uo.ver!=='6.9.0')window.__applyStagedVer=_uo.ver}
 }catch(e){}</script>
 <script>
 try{var _d=JSON.parse(localStorage.getItem('avaGalleryDB_v1')||'null');
@@ -813,7 +813,7 @@ if(_d&&_d.console&&_d.console.brand&&_d.console.brand.mode==='day')document.docu
     <button id="lgBtn" class="btn gold w100">ورود به سیستم ✨</button>
     <div id="lgErr" class="lerr"></div>
     <div id="lgHint" class="lhint"></div>
-    <div class="loginVer">نسخهٔ <span class="num">6.8.8</span></div>
+    <div class="loginVer">نسخهٔ <span class="num">6.9.0</span></div>
   </div>
 </div>
 
@@ -823,7 +823,7 @@ if(_d&&_d.console&&_d.console.brand&&_d.console.brand.mode==='day')document.docu
     <div class="slogo"><span class="slogoIc">🎨</span><div><b>گالری هنری آوا</b><small>مدیریت هوشمند انبار</small></div></div>
     <div class="navSearch"><input id="navSearch" class="inp" type="search" placeholder="🔍 جستجوی منوها…" autocomplete="off"></div>
     <nav id="nav"></nav>
-    <div class="verBadge">نسخهٔ <span class="num">6.8.8</span></div>
+    <div class="verBadge">نسخهٔ <span class="num">6.9.0</span></div>
     <div class="suser" id="sideUser"></div>
   </aside>
   <div id="main">
@@ -1732,6 +1732,77 @@ function cmpVer(a,b){function p(v){return String(v==null?'':v).trim().split('.')
   var A=p(a),B=p(b),n=Math.max(A.length,B.length);
   for(var k=0;k<n;k++){var x=A[k]||0,y=B[k]||0;if(x>y)return 1;if(x<y)return -1}
   return 0}
+/* ---------- v6.8.9: آدرس پیش‌فرض به‌روزرسانی — مخزن گیت‌هاب پروژه ----------
+   وقتی کادر آدرس خالی باشد همین آدرس در آن درج می‌شود و دکمهٔ
+   «🔗 آدرس پیش‌فرض (گیت‌هاب)» هم هر لحظه آن را برمی‌گرداند. */
+var UPD_DEFAULT_URL='https://raw.githubusercontent.com/Vpanahi12345/AVA/refs/heads/main/AvaGallery.html';
+
+/* ---------- v6.9.0: اطلاع‌رسانی خودکار نسخهٔ جدید ----------
+   هر ۳۰ دقیقه یک تیک می‌خورد؛ واقعاً فقط هر ۶ ساعت یک‌بار از اینترنت
+   می‌پرسد (در نبود اینترنت بی‌صدا رد می‌شود و زودتر دوباره تلاش می‌کند).
+   اگر نسخهٔ جدیدتری منتشر شده باشد، بنر اطلاع‌رسانی بالای برنامه برای
+   همهٔ کاربران نشان داده می‌شود؛ مدیر دکمهٔ «📥 دریافت و نصب» بنر را دارد
+   که مستقیم بخش «به‌روزرسانی برنامه» پیشخوان را باز می‌کند. بستن بنر (✕)
+   تا ۳ روز اذیت نمی‌کند و بعد دوباره یادآوری می‌شود. */
+var UPD_CHECK_INTERVAL_MS=30*60000,UPD_MIN_GAP_MS=6*3600000,UPD_DISMISS_COOLDOWN_MS=3*86400000;
+function updCurVer(){return String(APP_VERSION).split('—')[0].trim()}
+function updUrl(){try{return (DB&&DB.console&&DB.console.updateUrl)||UPD_DEFAULT_URL}catch(e){return UPD_DEFAULT_URL}}
+function updFetchTimeout(url,ms){var c=new AbortController();var t=setTimeout(function(){try{c.abort()}catch(e){}},ms||12000);
+  return fetch(url,{cache:'no-store',signal:c.signal}).then(function(r){clearTimeout(t);return r},
+  function(e){clearTimeout(t);throw e})}
+function updParseVer(txt){ /* خروجی: {ver,notes,url} یا null — مانیفست JSON یا خود فایل برنامه */
+  var s=String(txt==null?'':txt).replace(/^\uFEFF/,'').trim();
+  if(s.charAt(0)==='{'){try{var j=JSON.parse(s);
+    if(j&&j.ver)return{ver:String(j.ver),notes:j.notes?String(j.notes):'',url:j.url?String(j.url):''}}catch(e){}return null}
+  var m=s.match(/APP_VERSION\s*=\s*'([\d.]+)/);
+  return m?{ver:m[1],notes:'',url:''}:null}
+function updSilentTick(){ /* کاملاً بی‌صدا — هیچ پیام خطایی به کاربر نمی‌دهد */
+  try{
+    if(!window.CUR||!CUR.username||!window.DB)return;
+    var st=null;try{st=JSON.parse(localStorage.getItem('avaUpdAvailable')||'null')}catch(e){}
+    if(st&&st.ver&&cmpVer(st.ver,updCurVer())>0)updMaybeShowBanner(st);
+    else{try{localStorage.removeItem('avaUpdAvailable')}catch(e){}updHideBanner()}
+    var last=Number(localStorage.getItem('avaUpdLastCheck')||0);
+    if(Date.now()-last<UPD_MIN_GAP_MS)return;
+    updFetchTimeout(updUrl()).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.text()})
+      .then(function(txt){try{localStorage.setItem('avaUpdLastCheck',String(Date.now()))}catch(e){}
+        var info=updParseVer(txt);
+        if(info&&cmpVer(info.ver,updCurVer())>0){
+          try{localStorage.setItem('avaUpdAvailable',JSON.stringify({ver:info.ver,notes:info.notes,url:info.url||updUrl()}))}catch(e){}
+          updMaybeShowBanner(info)}
+        else{try{localStorage.removeItem('avaUpdAvailable')}catch(e){}updHideBanner()}})
+      .catch(function(){}) /* آفلاین/خطا: lastCheck به‌روز نشده — تیک بعدی دوباره تلاش می‌کند */
+  }catch(e){}}
+function updMaybeShowBanner(info){
+  try{
+    var dv=localStorage.getItem('avaUpdDismissedVal')||'';
+    var dt=Number(localStorage.getItem('avaUpdDismissedVer')||0);
+    if(dv===info.ver&&Date.now()-dt<UPD_DISMISS_COOLDOWN_MS)return;
+    updShowBanner(info)}catch(e){updShowBanner(info)}}
+function updShowBanner(info){
+  try{
+    updHideBanner();
+    var isAdm=false;try{isAdm=CUR&&CUR.role==='admin'}catch(e){}
+    document.body.appendChild(h('div',{id:'updBanner',style:'position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:99990;'+
+      'max-width:min(680px,94vw);background:var(--bg2);border:1.5px solid var(--gold);border-radius:14px;'+
+      'box-shadow:0 10px 30px rgba(0,0,0,.35);padding:10px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap'},
+      h('span',{style:'font-size:20px'},'🔄'),
+      h('div',{style:'flex:1;min-width:180px'},
+        h('div',{class:'b',style:'font-size:13.5px'},'نسخهٔ جدید '+toFa(info.ver)+' منتشر شده است — برنامه را به‌روزرسانی کنید'),
+        info.notes?h('div',{class:'mut',style:'font-size:11.5px;line-height:1.8;margin-top:2px'},String(info.notes).slice(0,120)):null),
+      isAdm?h('button',{class:'btn gold',style:'padding:6px 14px;font-size:12.5px',onclick:function(){
+          try{window.__updGotoUpdate=true;openConsole()}catch(e){toast('از پیشخوان مدیریت ← بخش «به‌روزرسانی برنامه» استفاده کنید','info')}
+          updHideBanner()}},'📥 دریافت و نصب'):null,
+      h('button',{class:'btn ghost',style:'padding:6px 10px;font-size:12px',title:'بستن — ۳ روز دیگر دوباره یادآوری می‌شود',onclick:function(){
+        try{localStorage.setItem('avaUpdDismissedVer',String(Date.now()));localStorage.setItem('avaUpdDismissedVal',String(info.ver))}catch(e){}
+        updHideBanner()}},'✕')))}catch(e){}}
+function updHideBanner(){try{var b=document.getElementById('updBanner');if(b)b.remove()}catch(e){}}
+/* تیک‌ها: ۸ ثانیه بعد از باز شدن + هر ۳۰ دقیقه + به‌محض ورود کاربر */
+try{setTimeout(updSilentTick,8000);
+setInterval(updSilentTick,UPD_CHECK_INTERVAL_MS);
+var _updLoginPoll=setInterval(function(){
+  if(window.CUR&&CUR&&CUR.username){clearInterval(_updLoginPoll);updSilentTick()}},2500)}catch(e){}
+
 
 /* ---------- form helpers ---------- */
 function fld(label,el,hint,req){var f=h('div',{class:'frow'},h('label',{},label,req?h('span',{class:'req'},' *'):null),el,hint?h('div',{class:'fhint'},hint):null);
@@ -4797,7 +4868,7 @@ function pdfBtn(title,fn){return h('button',{class:'btn',type:'button',title:'ذ
    ریست رمز کاربران (از جمله مدیر اصلی)، تغییر ظاهر و برند، پشتیبان‌گیری.
    همه‌ی تنظیمات داخل DB.console ذخیره می‌شود و با پشتیبان‌گیری جابجا می‌شود. */
 
-var APP_VERSION='6.8.8 — سه بهبود: (۱) رفع باگ «ویرایش گروهی تعرفه‌های مصوب»: اگر برای یک محصول/قالب/مجسمه در یک روز چند نرخ مصوب شود (اصلاح نرخ با «اختصاص گروهی»)، قبلاً همیشه اولین ثبتِ همان روز ملاک بود و نرخ جدید در ثبت عملکرد و انبار نادیده گرفته می‌شد — حالا آخرین نرخِ ثبت‌شده ملاک است؛ (۲) فیلدهای «ساعت ثبت» و «ساعت تحویل» سفارش‌ها دکمهٔ «🕐 ساعت جاری» دارند که با یک کلیک ساعت جاری سیستم را درج می‌کند (تایپ دستی مثل قبل)؛ (۳) بخش جدید «⬆️ به‌روزرسانی برنامه» در پیشخوان مدیریت: آدرس فایل نسخهٔ جدید یا فایل update.json را روی سایت خودتان ثبت می‌کنید، برنامه نسخه را بررسی و مقایسه می‌کند، تازه‌ها را نشان می‌دهد و با «دریافت و نصب» (پس از گرفتن پشتیبان خودکار) یا نسخه را روی خود فایل AvaGallery.html می‌نویسد (Edge/Chrome) یا در حافظهٔ برنامه اعمال می‌کند که با هر باز شدن اجرا می‌شود — با دکمهٔ بازگشت به نسخهٔ دیسک | نسخهٔ قبلی 6.8.7 — دو بهبود: (۱) پنجره‌های «📋 رکوردها» و «📋 ریز همهٔ رکوردها» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان دکمهٔ «⛶ تمام‌صفحه» در سرصفحه دارند — با یک کلیک کل صفحه را می‌گیرند تا جدول رکوردها بدون اسکرولِ پنجره‌های کوچک دیده شود و با کلیک دوباره به حالت عادی برمی‌گردد؛ (۲) رفع کامل پشتیبان‌گیری خودکار: از این نسخه حتی بدون انتخاب پوشه یا وقتی مرورگر اجازهٔ نوشتن ندهد (یا مرورگر File System Access نداشته باشد)، ۵ نسخهٔ آخر به‌صورت «پشتیبان داخلی» داخل خود برنامه ذخیره می‌شود و از بخش پشتیبان‌گیری با دکمهٔ «♻️ بازیابی» برمی‌گردد؛ دکمهٔ «🔑 اجازهٔ دسترسی» برای اجازهٔ دوبارهٔ پوشه اضافه شد، فعال‌کردن تیک پشتیبان‌گیری خودکار بدون پوشه همان لحظه پنجرهٔ انتخاب پوشه را باز می‌کند، پشتیبان هنگام خروج حالا واقعاً نوشته می‌شود، و وضعیت پشتیبان‌گیری با زمان آخرین نسخه در خود کارت نمایش داده می‌شود | نسخهٔ قبلی 6.8.6 — کادر «🔍 جستجوی محصول» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان: در هر دو پنجرهٔ «📋 رکوردهای هر نقاش» و «📋 ریز همهٔ رکوردها» می‌توانید بر اساس نام محصول (و کد رکورد، نام نقاش یا توضیح) جستجو کنید؛ پس از جستجو دکمهٔ «✔ انتخاب نتایج جستجو» همهٔ نتایج را یکجا تیک می‌زند و با «✏️ ویرایش گروهی انتخاب‌شده‌ها» تغییرات (نفر، قلم، تعداد، نرخ، تاریخ، توضیح) یکجا روی همهٔ نتایج اعمال می‌شود — فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود | نسخهٔ قبلی 6.8.5 — دو رفع اشکال: (۱) عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان حالا قابل ویرایش است — دکمهٔ ✏️ ویرایش هر رکورد (نفر، قلم، تعداد، نرخ، تاریخ، توضیح، شریک‌کاری) + ویرایش گروهی: تیک زدن چند رکورد در «ریز همهٔ رکوردها» و اعمال یکجای تغییرات، فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود؛ (۲) منوهای منتقل‌شده به پیشخوان حالا داخل خود پیشخوان مدیریت باز می‌شوند — فهرست «📌 منوهای منتقل‌شده» در ستون پیشخوان + کلیک روی کاشی «نمای کلی» همان صفحه را داخل پیشخوان باز می‌کند تا از طریق پیشخوان کار شود (با دکمهٔ ↗ بازشدن در برنامهٔ اصلی هم هست) | نسخهٔ قبلی 6.8.4 — رفع مشکل انتقال منو: حالا «انتقال به پیشخوان» واقعاً منو را از منوی صفحهٔ اصلی حذف می‌کند و فقط از «نمای کلی» پیشخوان مدیریت باز می‌شود؛ با «↩️ لغو انتقال» منو به منوی صفحهٔ اصلی برمی‌گردد + برچسب «منتقل به پیشخوان» در بخش منو و ماژول‌ها + بازنشانی پیش‌فرض، منوهای منتقل‌شده را هم به منوی اصلی برمی‌گرداند | 6.8.3 — انتقال «🎮 سرگرمی» و «📞 تماس با طراح» به داخل پیشخوان مدیریت + بخش «📌 انتقال منو به پیشخوان» + جستجوی عمیق منوها و فیلدها + رفع قفل پنجرهٔ تأیید + pin تب داشبورد + ضربدر پاک‌کردن متن + تماس ۰۹۱۲ ۷۴۱ ۹۸۰۸ + بازی فیبوناچی';
+var APP_VERSION='6.9.0 — قابلیت جدید «اطلاع‌رسانی خودکار به‌روزرسانی»: برنامه هر ۶ ساعت یک‌بار بی‌صدا آدرس به‌روزرسانی (پیش‌فرض: مخزن گیت‌هاب) را بررسی می‌کند و اگر نسخهٔ جدیدی منتشر شده باشد، بنر «🔄 نسخهٔ جدید منتشر شده است» بالای برنامه برای همهٔ کاربران نشان می‌دهد — مدیر با دکمهٔ «📥 دریافت و نصب» روی بنر، مستقیم به بخش به‌روزرسانی می‌رود؛ بنر با ✕ بسته می‌شود و ۳ روز بعد دوباره یادآوری می‌شود؛ در نبود اینترنت بی‌صدا رد می‌شود و هیچ خطایی نشان داده نمی‌شود | نسخهٔ قبلی 6.8.9 — بهبود بخش «⬆️ به‌روزرسانی برنامه»: آدرس پیش‌فرضِ مخزن گیت‌هاب پروژه حالا خودکار در کادر آدرس درج می‌شود (خالی گذاشتن کادر هم به آدرس پیش‌فرض برمی‌گردد) و دکمهٔ جدید «🔗 آدرس پیش‌فرض (گیت‌هاب)» کنار «بررسی نسخهٔ جدید» آن را یکجا برمی‌گرداند — آدرس سفارشی (سایت خودتان یا فایل update.json) مثل قبل کار می‌کند | نسخهٔ قبلی 6.8.8 — سه بهبود: (۱) رفع باگ «ویرایش گروهی تعرفه‌های مصوب»: اگر برای یک محصول/قالب/مجسمه در یک روز چند نرخ مصوب شود (اصلاح نرخ با «اختصاص گروهی»)، قبلاً همیشه اولین ثبتِ همان روز ملاک بود و نرخ جدید در ثبت عملکرد و انبار نادیده گرفته می‌شد — حالا آخرین نرخِ ثبت‌شده ملاک است؛ (۲) فیلدهای «ساعت ثبت» و «ساعت تحویل» سفارش‌ها دکمهٔ «🕐 ساعت جاری» دارند که با یک کلیک ساعت جاری سیستم را درج می‌کند (تایپ دستی مثل قبل)؛ (۳) بخش جدید «⬆️ به‌روزرسانی برنامه» در پیشخوان مدیریت: آدرس فایل نسخهٔ جدید یا فایل update.json را روی سایت خودتان ثبت می‌کنید، برنامه نسخه را بررسی و مقایسه می‌کند، تازه‌ها را نشان می‌دهد و با «دریافت و نصب» (پس از گرفتن پشتیبان خودکار) یا نسخه را روی خود فایل AvaGallery.html می‌نویسد (Edge/Chrome) یا در حافظهٔ برنامه اعمال می‌کند که با هر باز شدن اجرا می‌شود — با دکمهٔ بازگشت به نسخهٔ دیسک | نسخهٔ قبلی 6.8.7 — دو بهبود: (۱) پنجره‌های «📋 رکوردها» و «📋 ریز همهٔ رکوردها» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان دکمهٔ «⛶ تمام‌صفحه» در سرصفحه دارند — با یک کلیک کل صفحه را می‌گیرند تا جدول رکوردها بدون اسکرولِ پنجره‌های کوچک دیده شود و با کلیک دوباره به حالت عادی برمی‌گردد؛ (۲) رفع کامل پشتیبان‌گیری خودکار: از این نسخه حتی بدون انتخاب پوشه یا وقتی مرورگر اجازهٔ نوشتن ندهد (یا مرورگر File System Access نداشته باشد)، ۵ نسخهٔ آخر به‌صورت «پشتیبان داخلی» داخل خود برنامه ذخیره می‌شود و از بخش پشتیبان‌گیری با دکمهٔ «♻️ بازیابی» برمی‌گردد؛ دکمهٔ «🔑 اجازهٔ دسترسی» برای اجازهٔ دوبارهٔ پوشه اضافه شد، فعال‌کردن تیک پشتیبان‌گیری خودکار بدون پوشه همان لحظه پنجرهٔ انتخاب پوشه را باز می‌کند، پشتیبان هنگام خروج حالا واقعاً نوشته می‌شود، و وضعیت پشتیبان‌گیری با زمان آخرین نسخه در خود کارت نمایش داده می‌شود | نسخهٔ قبلی 6.8.6 — کادر «🔍 جستجوی محصول» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان: در هر دو پنجرهٔ «📋 رکوردهای هر نقاش» و «📋 ریز همهٔ رکوردها» می‌توانید بر اساس نام محصول (و کد رکورد، نام نقاش یا توضیح) جستجو کنید؛ پس از جستجو دکمهٔ «✔ انتخاب نتایج جستجو» همهٔ نتایج را یکجا تیک می‌زند و با «✏️ ویرایش گروهی انتخاب‌شده‌ها» تغییرات (نفر، قلم، تعداد، نرخ، تاریخ، توضیح) یکجا روی همهٔ نتایج اعمال می‌شود — فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود | نسخهٔ قبلی 6.8.5 — دو رفع اشکال: (۱) عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان حالا قابل ویرایش است — دکمهٔ ✏️ ویرایش هر رکورد (نفر، قلم، تعداد، نرخ، تاریخ، توضیح، شریک‌کاری) + ویرایش گروهی: تیک زدن چند رکورد در «ریز همهٔ رکوردها» و اعمال یکجای تغییرات، فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود؛ (۲) منوهای منتقل‌شده به پیشخوان حالا داخل خود پیشخوان مدیریت باز می‌شوند — فهرست «📌 منوهای منتقل‌شده» در ستون پیشخوان + کلیک روی کاشی «نمای کلی» همان صفحه را داخل پیشخوان باز می‌کند تا از طریق پیشخوان کار شود (با دکمهٔ ↗ بازشدن در برنامهٔ اصلی هم هست) | نسخهٔ قبلی 6.8.4 — رفع مشکل انتقال منو: حالا «انتقال به پیشخوان» واقعاً منو را از منوی صفحهٔ اصلی حذف می‌کند و فقط از «نمای کلی» پیشخوان مدیریت باز می‌شود؛ با «↩️ لغو انتقال» منو به منوی صفحهٔ اصلی برمی‌گردد + برچسب «منتقل به پیشخوان» در بخش منو و ماژول‌ها + بازنشانی پیش‌فرض، منوهای منتقل‌شده را هم به منوی اصلی برمی‌گرداند | 6.8.3 — انتقال «🎮 سرگرمی» و «📞 تماس با طراح» به داخل پیشخوان مدیریت + بخش «📌 انتقال منو به پیشخوان» + جستجوی عمیق منوها و فیلدها + رفع قفل پنجرهٔ تأیید + pin تب داشبورد + ضربدر پاک‌کردن متن + تماس ۰۹۱۲ ۷۴۱ ۹۸۰۸ + بازی فیبوناچی';
 
 /* ---------- استایل مخصوص پیشخوان (تزریق در صفحه) ---------- */
 (function(){
@@ -5903,6 +5974,9 @@ function openConsole(){
         h('br'),'۲) آدرس آن را همین‌جا ثبت کنید و «بررسی نسخهٔ جدید» را بزنید؛ برنامه نسخه را می‌خواند و با نسخهٔ فعلی مقایسه می‌کند.',
         h('br'),'۳) اگر نسخهٔ جدیدتر باشد، دکمهٔ «📥 دریافت و نصب» می‌آید؛ پیش از نصب یک پشتیبان خودکار گرفته می‌شود و همهٔ داده‌ها و تنظیمات دست‌نخورده می‌مانند.',
         h('br'),h('b',{},'دو راه ثبت آدرس:'),
+        h('br'),'• پیش‌فرض — مخزن گیت‌هاب پروژه (خودکار در کادر درج می‌شود): ',
+        h('span',{class:'num',style:'direction:ltr;display:inline-block;font-size:11.5px'},UPD_DEFAULT_URL),
+        ' — کافیست فایل نسخهٔ جدید را با همان نام AvaGallery.html در مخزن جایگزین کنید؛',
         h('br'),'• مستقیم — آدرس خود فایل AvaGallery.html روی سایت (مثل https://example.com/ava/AvaGallery.html)',
         h('br'),'• مانیفست (پیشنهادی) — یک فایل متنی کنارش بگذارید با این ساختار تا «تازه‌ها» هم قبل از دانلود نمایش داده شود:',
         h('div',{class:'num',style:'background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:8px;padding:8px;margin:7px 0;direction:ltr;text-align:left;font-size:12px'},
@@ -5912,7 +5986,7 @@ function openConsole(){
         h('span',{class:'num',style:'direction:ltr;display:inline-block'},'Header set Access-Control-Allow-Origin "*"'),
         ' — در GitHub Pages و بیشتر هاست‌ها خودکار است. آدرس باید https باشد.')));
     /* فرم آدرس + بررسی */
-    var uUrl=inp({value:DB.console.updateUrl,ph:'https://example.com/ava/AvaGallery.html یا https://example.com/ava/update.json'});
+    var uUrl=inp({value:DB.console.updateUrl||UPD_DEFAULT_URL,ph:'آدرس فایل AvaGallery.html یا فایل update.json — خالی بماند = آدرس پیش‌فرض گیت‌هاب'});
     uUrl.style.direction='ltr';uUrl.style.textAlign='left';
     var uStat=h('div',{class:'mut small',style:'line-height:2.2;min-height:22px'},
       DB.console.updateLastCheck?h('span',{class:'mut'},'آخرین بررسی: '+new Date(DB.console.updateLastCheck).toLocaleString('fa-IR')+' — '):null,
@@ -5987,9 +6061,12 @@ function openConsole(){
       toast('نسخهٔ '+toFa(ver)+' در حافظهٔ برنامه اعمال شد — برنامه بازآوری می‌شود ✅');
       setTimeout(function(){location.reload()},700)}
     main.appendChild(h('div',{class:'card mb8'},h('div',{class:'b mb8'},'🔗 آدرس به‌روزرسانی'),
-      h('div',{},fld('آدرس فایل AvaGallery.html یا فایل update.json روی سایت شما',uUrl,null,1)),
+      h('div',{},fld('آدرس فایل AvaGallery.html یا فایل update.json — پیش‌فرض: مخزن گیت‌هاب',uUrl,null,1)),
       h('div',{class:'row gap6 wrap',style:'margin-top:4px'},
         h('button',{class:'btn gold',type:'button',onclick:check},'🔄 بررسی نسخهٔ جدید'),
+        h('button',{class:'btn ghost',type:'button',title:'درج آدرس پیش‌فرض گیت‌هاب در کادر',onclick:function(){
+          uUrl.value=UPD_DEFAULT_URL;DB.console.updateUrl=UPD_DEFAULT_URL;saveDB();
+          toast('آدرس پیش‌فرض (گیت‌هاب) در کادر درج شد','info')}},'🔗 آدرس پیش‌فرض (گیت‌هاب)'),
         h('button',{class:'btn ghost',type:'button',onclick:function(){
           confirmBox('آدرس به‌روزرسانی پاک شود؟',{ok:'پاک کن'}).then(function(ok){if(!ok)return;
             uUrl.value='';DB.console.updateUrl='';DB.console.updateLastCheck=0;saveDB();
@@ -6017,7 +6094,7 @@ function openConsole(){
         '۱) یک ماژول «نصاب‌ها» با فیلدهای نام/تلفن/مبلغ بسازید. ۲) نام ماژول «ورود اطلاعات از فایل» را کوتاه‌تر کنید. ۳) رنگ برند را فیروزه‌ای کنید. ۴) برای خودتان یک کاربر عادی بسازید و دسترسی‌هایش را محدود کنید. اگر پشیمان شدید، از «منو و ماژول‌ها» بازنشانی پیش‌فرض بزنید.')))}
   root.appendChild(side);root.appendChild(main);
   document.body.appendChild(root);
-  go('ov')}
+  go(window.__updGotoUpdate?'update':'ov');window.__updGotoUpdate=false}
 
 
 /* ===== v6.8.0 — سرگرمی: بازی گرافیکی فیبوناچی + منوی تماس با طراح و برنامه‌نویس =====
