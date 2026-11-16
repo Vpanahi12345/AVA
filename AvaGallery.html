@@ -793,8 +793,12 @@ body:has(#hotkeyBar.on) .alertPop{bottom:72px}
 </style>
 <script>
 try{var _us=null;try{_us=localStorage.getItem('avaGalleryUpdateStaged')}catch(e){}
+var _ui=null;try{_ui=localStorage.getItem('avaGalleryUpdateStagedIdb')}catch(e){}
 if(_us){var _uo=JSON.parse(_us);
-if(_uo&&_uo.html&&_uo.ver&&_uo.ver!=='6.9.0')window.__applyStagedVer=_uo.ver}
+if(_uo&&_uo.html&&_uo.ver&&_uo.ver!=='6.9.1')window.__applyStagedVer=_uo.ver;
+else if(_uo&&_uo.ver&&_uo.ver==='6.9.1')try{localStorage.removeItem('avaGalleryUpdateStaged')}catch(e){}}
+if(_ui&&_ui!=='6.9.1')window.__applyStagedVer=_ui;
+else if(_ui&&_ui==='6.9.1')try{localStorage.removeItem('avaGalleryUpdateStagedIdb')}catch(e){}
 }catch(e){}</script>
 <script>
 try{var _d=JSON.parse(localStorage.getItem('avaGalleryDB_v1')||'null');
@@ -813,7 +817,7 @@ if(_d&&_d.console&&_d.console.brand&&_d.console.brand.mode==='day')document.docu
     <button id="lgBtn" class="btn gold w100">ورود به سیستم ✨</button>
     <div id="lgErr" class="lerr"></div>
     <div id="lgHint" class="lhint"></div>
-    <div class="loginVer">نسخهٔ <span class="num">6.9.0</span></div>
+    <div class="loginVer">نسخهٔ <span class="num">6.9.1</span></div>
   </div>
 </div>
 
@@ -823,7 +827,7 @@ if(_d&&_d.console&&_d.console.brand&&_d.console.brand.mode==='day')document.docu
     <div class="slogo"><span class="slogoIc">🎨</span><div><b>گالری هنری آوا</b><small>مدیریت هوشمند انبار</small></div></div>
     <div class="navSearch"><input id="navSearch" class="inp" type="search" placeholder="🔍 جستجوی منوها…" autocomplete="off"></div>
     <nav id="nav"></nav>
-    <div class="verBadge">نسخهٔ <span class="num">6.9.0</span></div>
+    <div class="verBadge">نسخهٔ <span class="num">6.9.1</span></div>
     <div class="suser" id="sideUser"></div>
   </aside>
   <div id="main">
@@ -4868,7 +4872,7 @@ function pdfBtn(title,fn){return h('button',{class:'btn',type:'button',title:'ذ
    ریست رمز کاربران (از جمله مدیر اصلی)، تغییر ظاهر و برند، پشتیبان‌گیری.
    همه‌ی تنظیمات داخل DB.console ذخیره می‌شود و با پشتیبان‌گیری جابجا می‌شود. */
 
-var APP_VERSION='6.9.0 — قابلیت جدید «اطلاع‌رسانی خودکار به‌روزرسانی»: برنامه هر ۶ ساعت یک‌بار بی‌صدا آدرس به‌روزرسانی (پیش‌فرض: مخزن گیت‌هاب) را بررسی می‌کند و اگر نسخهٔ جدیدی منتشر شده باشد، بنر «🔄 نسخهٔ جدید منتشر شده است» بالای برنامه برای همهٔ کاربران نشان می‌دهد — مدیر با دکمهٔ «📥 دریافت و نصب» روی بنر، مستقیم به بخش به‌روزرسانی می‌رود؛ بنر با ✕ بسته می‌شود و ۳ روز بعد دوباره یادآوری می‌شود؛ در نبود اینترنت بی‌صدا رد می‌شود و هیچ خطایی نشان داده نمی‌شود | نسخهٔ قبلی 6.8.9 — بهبود بخش «⬆️ به‌روزرسانی برنامه»: آدرس پیش‌فرضِ مخزن گیت‌هاب پروژه حالا خودکار در کادر آدرس درج می‌شود (خالی گذاشتن کادر هم به آدرس پیش‌فرض برمی‌گردد) و دکمهٔ جدید «🔗 آدرس پیش‌فرض (گیت‌هاب)» کنار «بررسی نسخهٔ جدید» آن را یکجا برمی‌گرداند — آدرس سفارشی (سایت خودتان یا فایل update.json) مثل قبل کار می‌کند | نسخهٔ قبلی 6.8.8 — سه بهبود: (۱) رفع باگ «ویرایش گروهی تعرفه‌های مصوب»: اگر برای یک محصول/قالب/مجسمه در یک روز چند نرخ مصوب شود (اصلاح نرخ با «اختصاص گروهی»)، قبلاً همیشه اولین ثبتِ همان روز ملاک بود و نرخ جدید در ثبت عملکرد و انبار نادیده گرفته می‌شد — حالا آخرین نرخِ ثبت‌شده ملاک است؛ (۲) فیلدهای «ساعت ثبت» و «ساعت تحویل» سفارش‌ها دکمهٔ «🕐 ساعت جاری» دارند که با یک کلیک ساعت جاری سیستم را درج می‌کند (تایپ دستی مثل قبل)؛ (۳) بخش جدید «⬆️ به‌روزرسانی برنامه» در پیشخوان مدیریت: آدرس فایل نسخهٔ جدید یا فایل update.json را روی سایت خودتان ثبت می‌کنید، برنامه نسخه را بررسی و مقایسه می‌کند، تازه‌ها را نشان می‌دهد و با «دریافت و نصب» (پس از گرفتن پشتیبان خودکار) یا نسخه را روی خود فایل AvaGallery.html می‌نویسد (Edge/Chrome) یا در حافظهٔ برنامه اعمال می‌کند که با هر باز شدن اجرا می‌شود — با دکمهٔ بازگشت به نسخهٔ دیسک | نسخهٔ قبلی 6.8.7 — دو بهبود: (۱) پنجره‌های «📋 رکوردها» و «📋 ریز همهٔ رکوردها» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان دکمهٔ «⛶ تمام‌صفحه» در سرصفحه دارند — با یک کلیک کل صفحه را می‌گیرند تا جدول رکوردها بدون اسکرولِ پنجره‌های کوچک دیده شود و با کلیک دوباره به حالت عادی برمی‌گردد؛ (۲) رفع کامل پشتیبان‌گیری خودکار: از این نسخه حتی بدون انتخاب پوشه یا وقتی مرورگر اجازهٔ نوشتن ندهد (یا مرورگر File System Access نداشته باشد)، ۵ نسخهٔ آخر به‌صورت «پشتیبان داخلی» داخل خود برنامه ذخیره می‌شود و از بخش پشتیبان‌گیری با دکمهٔ «♻️ بازیابی» برمی‌گردد؛ دکمهٔ «🔑 اجازهٔ دسترسی» برای اجازهٔ دوبارهٔ پوشه اضافه شد، فعال‌کردن تیک پشتیبان‌گیری خودکار بدون پوشه همان لحظه پنجرهٔ انتخاب پوشه را باز می‌کند، پشتیبان هنگام خروج حالا واقعاً نوشته می‌شود، و وضعیت پشتیبان‌گیری با زمان آخرین نسخه در خود کارت نمایش داده می‌شود | نسخهٔ قبلی 6.8.6 — کادر «🔍 جستجوی محصول» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان: در هر دو پنجرهٔ «📋 رکوردهای هر نقاش» و «📋 ریز همهٔ رکوردها» می‌توانید بر اساس نام محصول (و کد رکورد، نام نقاش یا توضیح) جستجو کنید؛ پس از جستجو دکمهٔ «✔ انتخاب نتایج جستجو» همهٔ نتایج را یکجا تیک می‌زند و با «✏️ ویرایش گروهی انتخاب‌شده‌ها» تغییرات (نفر، قلم، تعداد، نرخ، تاریخ، توضیح) یکجا روی همهٔ نتایج اعمال می‌شود — فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود | نسخهٔ قبلی 6.8.5 — دو رفع اشکال: (۱) عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان حالا قابل ویرایش است — دکمهٔ ✏️ ویرایش هر رکورد (نفر، قلم، تعداد، نرخ، تاریخ، توضیح، شریک‌کاری) + ویرایش گروهی: تیک زدن چند رکورد در «ریز همهٔ رکوردها» و اعمال یکجای تغییرات، فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود؛ (۲) منوهای منتقل‌شده به پیشخوان حالا داخل خود پیشخوان مدیریت باز می‌شوند — فهرست «📌 منوهای منتقل‌شده» در ستون پیشخوان + کلیک روی کاشی «نمای کلی» همان صفحه را داخل پیشخوان باز می‌کند تا از طریق پیشخوان کار شود (با دکمهٔ ↗ بازشدن در برنامهٔ اصلی هم هست) | نسخهٔ قبلی 6.8.4 — رفع مشکل انتقال منو: حالا «انتقال به پیشخوان» واقعاً منو را از منوی صفحهٔ اصلی حذف می‌کند و فقط از «نمای کلی» پیشخوان مدیریت باز می‌شود؛ با «↩️ لغو انتقال» منو به منوی صفحهٔ اصلی برمی‌گردد + برچسب «منتقل به پیشخوان» در بخش منو و ماژول‌ها + بازنشانی پیش‌فرض، منوهای منتقل‌شده را هم به منوی اصلی برمی‌گرداند | 6.8.3 — انتقال «🎮 سرگرمی» و «📞 تماس با طراح» به داخل پیشخوان مدیریت + بخش «📌 انتقال منو به پیشخوان» + جستجوی عمیق منوها و فیلدها + رفع قفل پنجرهٔ تأیید + pin تب داشبورد + ضربدر پاک‌کردن متن + تماس ۰۹۱۲ ۷۴۱ ۹۸۰۸ + بازی فیبوناچی';
+var APP_VERSION='6.9.1 — استحکام مسیر نصب به‌روزرسانی: اگر حافظهٔ مرورگر برای ذخیرهٔ نسخهٔ جدید پر باشد، نسخه به‌جای حافظهٔ عادی در IndexedDB ذخیره می‌شود و نصب دیگر به‌دلیل کمبود حافظه ناتمام نمی‌ماند؛ دریافت فایل نسخهٔ جدید زمان‌بندی ۳۰ ثانیه‌ای دارد؛ پس از نوشتن فایل روی دیسک (Edge/Chrome)، نسخه در حافظهٔ برنامه هم ثبت و برنامه بازآوری می‌شود تا حتی اگر پنجرهٔ ذخیره در مسیر دیگری ذخیره کرده باشد، نسخهٔ جدید با باز شدن بعدی اجرا شود؛ اعمال نسخهٔ ذخیره‌شده فقط وقتی واقعاً جدیدتر از نسخهٔ دیسک است انجام می‌شود و دادهٔ خراب یا قدیمی خودبه‌خود پاک می‌شود | قابلیت‌های 6.9.0 — قابلیت جدید «اطلاع‌رسانی خودکار به‌روزرسانی»: برنامه هر ۶ ساعت یک‌بار بی‌صدا آدرس به‌روزرسانی (پیش‌فرض: مخزن گیت‌هاب) را بررسی می‌کند و اگر نسخهٔ جدیدی منتشر شده باشد، بنر «🔄 نسخهٔ جدید منتشر شده است» بالای برنامه برای همهٔ کاربران نشان می‌دهد — مدیر با دکمهٔ «📥 دریافت و نصب» روی بنر، مستقیم به بخش به‌روزرسانی می‌رود؛ بنر با ✕ بسته می‌شود و ۳ روز بعد دوباره یادآوری می‌شود؛ در نبود اینترنت بی‌صدا رد می‌شود و هیچ خطایی نشان داده نمی‌شود | نسخهٔ قبلی 6.8.9 — بهبود بخش «⬆️ به‌روزرسانی برنامه»: آدرس پیش‌فرضِ مخزن گیت‌هاب پروژه حالا خودکار در کادر آدرس درج می‌شود (خالی گذاشتن کادر هم به آدرس پیش‌فرض برمی‌گردد) و دکمهٔ جدید «🔗 آدرس پیش‌فرض (گیت‌هاب)» کنار «بررسی نسخهٔ جدید» آن را یکجا برمی‌گرداند — آدرس سفارشی (سایت خودتان یا فایل update.json) مثل قبل کار می‌کند | نسخهٔ قبلی 6.8.8 — سه بهبود: (۱) رفع باگ «ویرایش گروهی تعرفه‌های مصوب»: اگر برای یک محصول/قالب/مجسمه در یک روز چند نرخ مصوب شود (اصلاح نرخ با «اختصاص گروهی»)، قبلاً همیشه اولین ثبتِ همان روز ملاک بود و نرخ جدید در ثبت عملکرد و انبار نادیده گرفته می‌شد — حالا آخرین نرخِ ثبت‌شده ملاک است؛ (۲) فیلدهای «ساعت ثبت» و «ساعت تحویل» سفارش‌ها دکمهٔ «🕐 ساعت جاری» دارند که با یک کلیک ساعت جاری سیستم را درج می‌کند (تایپ دستی مثل قبل)؛ (۳) بخش جدید «⬆️ به‌روزرسانی برنامه» در پیشخوان مدیریت: آدرس فایل نسخهٔ جدید یا فایل update.json را روی سایت خودتان ثبت می‌کنید، برنامه نسخه را بررسی و مقایسه می‌کند، تازه‌ها را نشان می‌دهد و با «دریافت و نصب» (پس از گرفتن پشتیبان خودکار) یا نسخه را روی خود فایل AvaGallery.html می‌نویسد (Edge/Chrome) یا در حافظهٔ برنامه اعمال می‌کند که با هر باز شدن اجرا می‌شود — با دکمهٔ بازگشت به نسخهٔ دیسک | نسخهٔ قبلی 6.8.7 — دو بهبود: (۱) پنجره‌های «📋 رکوردها» و «📋 ریز همهٔ رکوردها» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان دکمهٔ «⛶ تمام‌صفحه» در سرصفحه دارند — با یک کلیک کل صفحه را می‌گیرند تا جدول رکوردها بدون اسکرولِ پنجره‌های کوچک دیده شود و با کلیک دوباره به حالت عادی برمی‌گردد؛ (۲) رفع کامل پشتیبان‌گیری خودکار: از این نسخه حتی بدون انتخاب پوشه یا وقتی مرورگر اجازهٔ نوشتن ندهد (یا مرورگر File System Access نداشته باشد)، ۵ نسخهٔ آخر به‌صورت «پشتیبان داخلی» داخل خود برنامه ذخیره می‌شود و از بخش پشتیبان‌گیری با دکمهٔ «♻️ بازیابی» برمی‌گردد؛ دکمهٔ «🔑 اجازهٔ دسترسی» برای اجازهٔ دوبارهٔ پوشه اضافه شد، فعال‌کردن تیک پشتیبان‌گیری خودکار بدون پوشه همان لحظه پنجرهٔ انتخاب پوشه را باز می‌کند، پشتیبان هنگام خروج حالا واقعاً نوشته می‌شود، و وضعیت پشتیبان‌گیری با زمان آخرین نسخه در خود کارت نمایش داده می‌شود | نسخهٔ قبلی 6.8.6 — کادر «🔍 جستجوی محصول» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان: در هر دو پنجرهٔ «📋 رکوردهای هر نقاش» و «📋 ریز همهٔ رکوردها» می‌توانید بر اساس نام محصول (و کد رکورد، نام نقاش یا توضیح) جستجو کنید؛ پس از جستجو دکمهٔ «✔ انتخاب نتایج جستجو» همهٔ نتایج را یکجا تیک می‌زند و با «✏️ ویرایش گروهی انتخاب‌شده‌ها» تغییرات (نفر، قلم، تعداد، نرخ، تاریخ، توضیح) یکجا روی همهٔ نتایج اعمال می‌شود — فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود | نسخهٔ قبلی 6.8.5 — دو رفع اشکال: (۱) عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان حالا قابل ویرایش است — دکمهٔ ✏️ ویرایش هر رکورد (نفر، قلم، تعداد، نرخ، تاریخ، توضیح، شریک‌کاری) + ویرایش گروهی: تیک زدن چند رکورد در «ریز همهٔ رکوردها» و اعمال یکجای تغییرات، فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود؛ (۲) منوهای منتقل‌شده به پیشخوان حالا داخل خود پیشخوان مدیریت باز می‌شوند — فهرست «📌 منوهای منتقل‌شده» در ستون پیشخوان + کلیک روی کاشی «نمای کلی» همان صفحه را داخل پیشخوان باز می‌کند تا از طریق پیشخوان کار شود (با دکمهٔ ↗ بازشدن در برنامهٔ اصلی هم هست) | نسخهٔ قبلی 6.8.4 — رفع مشکل انتقال منو: حالا «انتقال به پیشخوان» واقعاً منو را از منوی صفحهٔ اصلی حذف می‌کند و فقط از «نمای کلی» پیشخوان مدیریت باز می‌شود؛ با «↩️ لغو انتقال» منو به منوی صفحهٔ اصلی برمی‌گردد + برچسب «منتقل به پیشخوان» در بخش منو و ماژول‌ها + بازنشانی پیش‌فرض، منوهای منتقل‌شده را هم به منوی اصلی برمی‌گرداند | 6.8.3 — انتقال «🎮 سرگرمی» و «📞 تماس با طراح» به داخل پیشخوان مدیریت + بخش «📌 انتقال منو به پیشخوان» + جستجوی عمیق منوها و فیلدها + رفع قفل پنجرهٔ تأیید + pin تب داشبورد + ضربدر پاک‌کردن متن + تماس ۰۹۱۲ ۷۴۱ ۹۸۰۸ + بازی فیبوناچی';
 
 /* ---------- استایل مخصوص پیشخوان (تزریق در صفحه) ---------- */
 (function(){
@@ -5995,8 +5999,10 @@ function openConsole(){
     function errHint(e){return h('div',{class:'mut small',style:'margin-top:6px;line-height:2'},
       '⚠️ جزئیات: '+esc(String((e&&e.message)||e)),
       h('br'),'اگر خطای CORS/دسترسی است: هدر Access-Control-Allow-Origin: * را روی سرور فعال کنید یا از GitHub Pages استفاده کنید؛ آدرس باید https و در دسترس باشد.')}
-    function fetchTxt(url){return fetch(url,{cache:'no-store'}).then(function(r){
-      if(!r.ok)throw new Error('پاسخ سرور: HTTP '+r.status);return r.text()})}
+    function fetchTxt(url){var c=new AbortController();var to=setTimeout(function(){try{c.abort()}catch(e){}},30000);
+      return fetch(url,{cache:'no-store',signal:c.signal}).then(function(r){clearTimeout(to);
+        if(!r.ok)throw new Error('پاسخ سرور: HTTP '+r.status);return r.text()},
+        function(e){clearTimeout(to);throw e&&e.name==='AbortError'?new Error('دریافت نسخه بیش از ۳۰ ثانیه طول کشید — اتصال اینترنت را بررسی کنید'):e})}
     function parseTarget(txt){
       var man=null;try{man=JSON.parse(txt)}catch(e){}
       if(man&&man.ver&&man.url)return{ver:String(man.ver),notes:String(man.notes||''),html:null,htmlUrl:String(man.url)};
@@ -6034,7 +6040,7 @@ function openConsole(){
         if(!validHtml(html))throw new Error('فایل دریافتی کامل یا معتبر نیست');
         confirmBox('نسخهٔ '+toFa(t.ver)+' نصب شود؟ پیش از نصب، پشتیبان خودکار گرفته می‌شود؛ داده‌ها و تنظیمات دست‌نخورده می‌مانند.',{})
         .then(function(ok){if(!ok)return;
-          try{writeAutoBackup('manual',true)}catch(e){}
+          try{var _bp=writeAutoBackup('manual',true);if(_bp&&_bp.then)_bp.then(function(ok2){if(!ok2)toast('پشتیبان خودکار گرفته نشد — اما به‌روزرسانی، داده‌ها را تغییر نمی‌دهد','info')})}catch(e){}
           uRes.innerHTML='';
           /* مسیر ۱: نوشتن روی خود فایل برنامه (Edge/Chrome — به‌روزرسانی دائمی فایل) */
           if(window.showSaveFilePicker)fileInstall(html,t.ver);
@@ -6047,19 +6053,43 @@ function openConsole(){
       window.showSaveFilePicker({suggestedName:'AvaGallery.html',
         types:[{description:'AvaGallery HTML',accept:{'text/html':['.html']}}]})
       .then(function(fh){return fh.createWritable().then(function(w){return w.write(html).then(function(){return w.close()})})
-        .then(function(){try{localStorage.removeItem('avaGalleryUpdateStaged')}catch(e){}
-          toast('فایل برنامه به نسخهٔ '+toFa(ver)+' به‌روزرسانی شد ✅');
+        .then(function(){stageQuiet(html,ver);
+          toast('فایل نسخهٔ '+toFa(ver)+' ذخیره شد ✅ — برنامه بازآوری می‌شود');
           uRes.appendChild(h('div',{class:'card',style:'border-color:rgba(52,211,153,.5)'},
-            h('div',{class:'b'},'✅ فایل AvaGallery.html روی دیسک به‌روزرسانی شد'),
-            h('div',{class:'mut small',style:'margin-top:6px;line-height:2'},'برنامه را ببندید و دوباره باز کنید تا نسخهٔ جدید اجرا شود. داده‌ها سر جایشان هستند.')))})})
+            h('div',{class:'b'},'✅ فایل نسخهٔ جدید ذخیره شد'),
+            h('div',{class:'mut small',style:'margin-top:6px;line-height:2'},
+              'اگر پنجرهٔ ذخیره را روی همان پوشهٔ برنامه و جایگزینی فایل AvaGallery.html انجام داده‌اید، کاری لازم نیست؛ برنامه چند ثانیه دیگر خودش بازآوری می‌شود.',
+              h('br'),'اگر در جای دیگری (مثلاً Downloads) ذخیره شده، فایل ذخیره‌شده را روی فایل قدیمیِ برنامه کپی و جایگزین کنید — داده‌ها سر جایشان هستند.',
+              h('br'),'تا آن موقع، باز شدن بعدیِ برنامه نسخهٔ جدید را از حافظهٔ برنامه اجرا می‌کند.')));
+          setTimeout(function(){location.reload()},1600)})})
       .catch(function(e){if(e&&e.name==='AbortError'){uRes.innerHTML='';return}
         toast('نوشتن روی فایل ممکن نشد — به‌جای آن نسخه در حافظهٔ برنامه اعمال می‌شود','info');
         stageInstall(html,ver)})}
+    function updIdbPut(obj){ /* ذخیرهٔ نسخه در IndexedDB — وقتی حافظهٔ مرورگر (localStorage) پر است */
+      return new Promise(function(res,rej){
+        var r=indexedDB.open('avaGalleryUpd',1);
+        r.onupgradeneeded=function(){try{r.result.createObjectStore('staged')}catch(e){}};
+        r.onerror=function(){rej(r.error||new Error('IDB ناموفق'))};
+        r.onsuccess=function(){var db=r.result,tx;
+          try{tx=db.transaction('staged','readwrite')}catch(e){try{db.close()}catch(e2){}rej(e);return}
+          tx.objectStore('staged').put(obj,'upd');
+          tx.oncomplete=function(){try{db.close()}catch(e){}res()};
+          tx.onerror=function(){try{db.close()}catch(e){}rej(tx.error||new Error('IDB ناموفق'))}}})}
+    function stagePersist(html,ver,then){
+      try{localStorage.setItem('avaGalleryUpdateStaged',JSON.stringify({ver:ver,html:html,t:Date.now()}));then('ls');return}
+      catch(e){}
+      /* حافظهٔ مرورگر پر بود → IndexedDB (سهمیهٔ بزرگ — نصب دیگر به‌خاطر حافظه ناتمام نمی‌ماند) */
+      updIdbPut({ver:ver,html:html,t:Date.now()}).then(function(){
+        try{localStorage.removeItem('avaGalleryUpdateStaged')}catch(e){}
+        try{localStorage.setItem('avaGalleryUpdateStagedIdb',ver)}catch(e){}
+        then('idb')}).catch(function(){
+        toast('حافظهٔ مرورگر پر است — نسخه اعمال نشد؛ فایل AvaGallery.html را دستی جایگزین کنید','err')})}
     function stageInstall(html,ver){
-      try{localStorage.setItem('avaGalleryUpdateStaged',JSON.stringify({ver:ver,html:html,t:Date.now()}))}
-      catch(e){toast('حافظهٔ مرورگر پر است — نسخه اعمال نشد؛ فایل را دستی جایگزین کنید','err');return}
-      toast('نسخهٔ '+toFa(ver)+' در حافظهٔ برنامه اعمال شد — برنامه بازآوری می‌شود ✅');
-      setTimeout(function(){location.reload()},700)}
+      stagePersist(html,ver,function(how){
+        toast('نسخهٔ '+toFa(ver)+' در حافظهٔ برنامه اعمال شد'+(how==='idb'?' (حافظهٔ IndexedDB)':'')+' — برنامه بازآوری می‌شود ✅');
+        setTimeout(function(){location.reload()},700)})}
+    function stageQuiet(html,ver){ /* ثبت بدون بازآوری — پس از نوشتن موفق فایل روی دیسک */
+      stagePersist(html,ver,function(){})}
     main.appendChild(h('div',{class:'card mb8'},h('div',{class:'b mb8'},'🔗 آدرس به‌روزرسانی'),
       h('div',{},fld('آدرس فایل AvaGallery.html یا فایل update.json — پیش‌فرض: مخزن گیت‌هاب',uUrl,null,1)),
       h('div',{class:'row gap6 wrap',style:'margin-top:4px'},
@@ -6560,15 +6590,40 @@ function autoBakCard(){var cfg=autoBakCfg();
 <script>
 /* v6.8.8: اعمال نسخهٔ به‌روزرسانی‌شدهٔ حافظه — بعد از بار شدن کامل صفحه، سند با
    نسخهٔ ذخیره‌شده جایگزین می‌شود؛ URL همان فایل می‌ماند و Refresh همیشه درست کار می‌کند */
-try{window.__applyStagedSwap=function(){
-  var _s=null;try{_s=localStorage.getItem('avaGalleryUpdateStaged')}catch(e){}
-  var _o=_s?JSON.parse(_s):null;
-  if(_o&&_o.html&&_o.ver&&_o.ver!==APP_VERSION.split('—')[0].trim()){
-    window.__applyStagedVer=false;
-    document.open();document.write(_o.html);document.close()}}
-if(window.__applyStagedVer){
-  if(document.readyState==='complete')setTimeout(window.__applyStagedSwap,30);
-  else window.addEventListener('load',function(){setTimeout(window.__applyStagedSwap,30)})}
+try{
+  window.__applyStagedSwap=function(_o){
+    if(!_o||!_o.html||!_o.ver)return;
+    var cur=String(APP_VERSION).split('—')[0].trim();
+    var okHtml=_o.html.length>50000&&_o.html.indexOf('گالری هنری آوا')>=0&&/APP_VERSION\s*=\s*'[\d.]+/.test(_o.html);
+    if(!okHtml){try{localStorage.removeItem('avaGalleryUpdateStaged');localStorage.removeItem('avaGalleryUpdateStagedIdb')}catch(e){}return}
+    var newer=window.cmpVer?cmpVer(_o.ver,cur)>0:(_o.ver!==cur);
+    if(newer){window.__applyStagedVer=false;
+      document.open();document.write(_o.html);document.close()}
+    else if(window.cmpVer&&cmpVer(_o.ver,cur)<0){try{localStorage.removeItem('avaGalleryUpdateStaged');localStorage.removeItem('avaGalleryUpdateStagedIdb')}catch(e){}}
+  };
+  window.__updSwapGo=function(){
+    var _s=null;try{_s=localStorage.getItem('avaGalleryUpdateStaged')}catch(e){}
+    if(_s){var _o=null;try{_o=JSON.parse(_s)}catch(e){}
+      if(_o){window.__applyStagedSwap(_o);return}
+      try{localStorage.removeItem('avaGalleryUpdateStaged')}catch(e){}
+      return}
+    var _iv=null;try{_iv=localStorage.getItem('avaGalleryUpdateStagedIdb')}catch(e){}
+    if(_iv&&window.indexedDB){
+      var rq=indexedDB.open('avaGalleryUpd',1);
+      rq.onerror=function(){};
+      rq.onsuccess=function(){var db=rq.result,tx;
+        try{tx=db.transaction('staged','readonly')}catch(e){try{db.close()}catch(e2){}return}
+        var g=tx.objectStore('staged').get('upd');
+        g.onsuccess=function(){try{db.close()}catch(e){}
+          var o=g.result;window.__applyStagedSwap(o&&typeof o==='object'?o:null)};
+        g.onerror=function(){try{db.close()}catch(e){}}
+      }
+    }
+  };
+  if(window.__applyStagedVer){
+    if(document.readyState==='complete')setTimeout(window.__updSwapGo,30);
+    else window.addEventListener('load',function(){setTimeout(window.__updSwapGo,30)})
+  }
 }catch(e){}</script>
 </body>
 </html>
