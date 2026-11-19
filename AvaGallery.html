@@ -790,19 +790,41 @@ body:has(#hotkeyBar.on) .alertPop{bottom:72px}
 .pinTile:active{transform:translateY(0) scale(.98)}
 
 
+
+/* ===== v7.0 — اسکن بارکد، تقویم موعدها، برچسب‌ها، پیوست ===== */
+.scanBox{border:1.5px solid var(--gold)!important;background:rgba(240,180,41,.08);font-weight:600}
+.calGrid7{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.calCw{min-height:66px;border:1px solid var(--bd);border-radius:9px;padding:5px 7px;background:rgba(255,255,255,.02);cursor:pointer;position:relative;overflow:hidden}
+.calCw:hover{border-color:var(--gold)}
+.calCw.today{border-color:var(--gold);box-shadow:0 0 0 1.5px var(--gold) inset}
+.calCw.off{opacity:.2;cursor:default}
+.calCw .dnum{font-weight:700;font-size:12.5px}
+.calCw .evs{display:flex;gap:3px;flex-wrap:wrap;margin-top:3px}
+.calEv{font-size:9.5px;padding:1.5px 5px;border-radius:7px;background:var(--gold);color:#1e2740;font-weight:700;white-space:nowrap;overflow:hidden;max-width:100%;text-overflow:ellipsis}
+.calEv.chq{background:#fb7185;color:#fff}
+.calEv.neseh{background:#2dd4bf;color:#12343b}
+.calFoot2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.lblPreview{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:8px}
+.lblCard{border:1px dashed var(--bd2);border-radius:10px;padding:8px;display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.02)}
+.lblTxt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.lblTxt b{font-size:12px;line-height:1.6;word-break:break-word}
 </style>
 <script>
 try{var _us=null;try{_us=localStorage.getItem('avaGalleryUpdateStaged')}catch(e){}
 var _ui=null;try{_ui=localStorage.getItem('avaGalleryUpdateStagedIdb')}catch(e){}
 if(_us){var _uo=JSON.parse(_us);
-if(_uo&&_uo.html&&_uo.ver&&_uo.ver!=='6.9.2')window.__applyStagedVer=_uo.ver;
-else if(_uo&&_uo.ver&&_uo.ver==='6.9.2')try{localStorage.removeItem('avaGalleryUpdateStaged')}catch(e){}}
-if(_ui&&_ui!=='6.9.2')window.__applyStagedVer=_ui;
-else if(_ui&&_ui==='6.9.2')try{localStorage.removeItem('avaGalleryUpdateStagedIdb')}catch(e){}
+if(_uo&&_uo.html&&_uo.ver&&_uo.ver!=='6.10.0')window.__applyStagedVer=_uo.ver;
+else if(_uo&&_uo.ver&&_uo.ver==='6.10.0')try{localStorage.removeItem('avaGalleryUpdateStaged')}catch(e){}}
+if(_ui&&_ui!=='6.10.0')window.__applyStagedVer=_ui;
+else if(_ui&&_ui==='6.10.0')try{localStorage.removeItem('avaGalleryUpdateStagedIdb')}catch(e){}
 }catch(e){}</script>
 <script>
 try{var _d=JSON.parse(localStorage.getItem('avaGalleryDB_v1')||'null');
 if(_d&&_d.console&&_d.console.brand&&_d.console.brand.mode==='day')document.documentElement.classList.add('day')}catch(e){}
+</script>
+<script>
+/* qrcode-generator 1.4.4 — Kazuhiko Arase — MIT License (embbeded for offline QR labels) */
+var qrcode=function(){function i(t,r){function a(t,r){g=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(l=4*u+17),e(0,0),e(l-7,0),e(0,l-7),i(),o(),v(t,r),7<=u&&h(t),null==n&&(n=w(u,f,c)),d(n,r)}var u=t,f=y[r],g=null,l=0,n=null,c=[],s={},e=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||l<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||l<=r+n||(g[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},o=function(){for(var t=8;t<l-8;t+=1)null==g[t][6]&&(g[t][6]=t%2==0);for(var r=8;r<l-8;r+=1)null==g[6][r]&&(g[6][r]=r%2==0)},i=function(){for(var t=B.getPatternPosition(u),r=0;r<t.length;r+=1)for(var e=0;e<t.length;e+=1){var n=t[r],o=t[e];if(null==g[n][o])for(var i=-2;i<=2;i+=1)for(var a=-2;a<=2;a+=1)g[n+i][o+a]=-2==i||2==i||-2==a||2==a||0==i&&0==a}},h=function(t){for(var r=B.getBCHTypeNumber(u),e=0;e<18;e+=1){var n=!t&&1==(r>>e&1);g[Math.floor(e/3)][e%3+l-8-3]=n}for(e=0;e<18;e+=1){n=!t&&1==(r>>e&1);g[e%3+l-8-3][Math.floor(e/3)]=n}},v=function(t,r){for(var e=f<<3|r,n=B.getBCHTypeInfo(e),o=0;o<15;o+=1){var i=!t&&1==(n>>o&1);o<6?g[o][8]=i:o<8?g[o+1][8]=i:g[l-15+o][8]=i}for(o=0;o<15;o+=1){i=!t&&1==(n>>o&1);o<8?g[8][l-o-1]=i:o<9?g[8][15-o-1+1]=i:g[8][15-o-1]=i}g[l-8][8]=!t},d=function(t,r){for(var e=-1,n=l-1,o=7,i=0,a=B.getMaskFunction(r),u=l-1;0<u;u-=2)for(6==u&&(u-=1);;){for(var f=0;f<2;f+=1)if(null==g[n][u-f]){var c=!1;i<t.length&&(c=1==(t[i]>>>o&1)),a(n,u-f)&&(c=!c),g[n][u-f]=c,-1==(o-=1)&&(i+=1,o=7)}if((n+=e)<0||l<=n){n-=e,e=-e;break}}},w=function(t,r,e){for(var n=b.getRSBlocks(t,r),o=M(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=C(i[u],l.getLength()-1).mod(l);a[u]=new Array(l.getLength()-1);for(g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=0<=s?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};s.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=x(t);break;case"Alphanumeric":e=m(t);break;case"Byte":e=L(t);break;case"Kanji":e=D(t);break;default:throw"mode:"+r}c.push(e),n=null},s.isDark=function(t,r){if(t<0||l<=t||r<0||l<=r)throw t+","+r;return g[t][r]},s.getModuleCount=function(){return l},s.make=function(){if(u<1){for(var t=1;t<40;t++){for(var r=b.getRSBlocks(t,f),e=M(),n=0;n<c.length;n++){var o=c[n];e.put(o.getMode(),4),e.put(o.getLength(),B.getLengthInBits(o.getMode(),t)),o.write(e)}var i=0;for(n=0;n<r.length;n++)i+=r[n].dataCount;if(e.getLengthInBits()<=8*i)break}u=t}a(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){a(!0,e);var n=B.getLostPoint(s);(0==e||n<t)&&(t=n,r=e)}return r}())},s.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<s.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<s.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=s.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},s.createSvgTag=function(t,r,e,n){var o={};"object"==typeof t&&(t=(o=t).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,f,c=s.getModuleCount()*t+2*r,g="";for(f="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",g+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',g+=o.scalable?"":' width="'+c+'px" height="'+c+'px"',g+=' viewBox="0 0 '+c+" "+c+'" ',g+=' preserveAspectRatio="xMinYMin meet"',g+=n.text||e.text?' role="img" aria-labelledby="'+p([n.id,e.id].join(" ").trim())+'"':"",g+=">",g+=n.text?'<title id="'+p(n.id)+'">'+p(n.text)+"</title>":"",g+=e.text?'<description id="'+p(e.id)+'">'+p(e.text)+"</description>":"",g+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',g+='<path d="',a=0;a<s.getModuleCount();a+=1)for(u=a*t+r,i=0;i<s.getModuleCount();i+=1)s.isDark(a,i)&&(g+="M"+(i*t+r)+","+u+f);return g+='" stroke="transparent" fill="black"/>',g+="</svg>"},s.createDataURL=function(o,t){o=o||2,t=void 0===t?4*o:t;var r=s.getModuleCount()*o+2*t,i=t,a=r-t;return I(r,r,function(t,r){if(i<=t&&t<a&&i<=r&&r<a){var e=Math.floor((t-i)/o),n=Math.floor((r-i)/o);return s.isDark(n,e)?0:1}return 1})},s.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=s.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=s.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=p(e),o+='"'),o+="/>"};var p=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return s.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*s.getModuleCount()+2*t,u=t,f=a-t,c={"██":"█","█ ":"▀"," █":"▄","  ":" "},g={"██":"▀","█ ":"▀"," █":" ","  ":" "},l="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<f&&u<=r&&r<f&&s.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<f&&u<=r+1&&r+1<f&&s.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",l+=t<1&&f<=r+1?g[i]:c[i];l+="\n"}return a%2&&0<t?l.substring(0,l.length-a-1)+Array(1+a).join("▀"):l.substring(0,l.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=s.getModuleCount()*t+2*r,u=r,f=a-r,c=Array(t+1).join("██"),g=Array(t+1).join("  "),l="",h="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),h="",n=0;n<a;n+=1)i=1,u<=n&&n<f&&u<=e&&e<f&&s.isDark(o,Math.floor((n-u)/t))&&(i=0),h+=i?c:g;for(o=0;o<t;o+=1)l+=h+"\n"}return l.substring(0,l.length-1)},s.renderTo2dContext=function(t,r){r=r||2;for(var e=s.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=s.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},s}i.stringToBytes=(i.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,i.createStringToBytes=function(u,f){var i=function(){function t(){var t=r.read();if(-1==t)throw"eof";return t}for(var r=S(u),e=0,n={};;){var o=r.read();if(-1==o)break;var i=t(),a=t()<<8|t();n[String.fromCharCode(o<<8|i)]=a,e+=1}if(e!=f)throw e+" != "+f;return n}(),a="?".charCodeAt(0);return function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);if(n<128)r.push(n);else{var o=i[t.charAt(e)];"number"==typeof o?(255&o)==o?r.push(o):(r.push(o>>>8),r.push(255&o)):r.push(a)}}return r}};var r,t,a=1,u=2,o=4,f=8,y={L:1,M:0,Q:3,H:2},e=0,n=1,c=2,g=3,l=4,h=5,s=6,v=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],(t={}).getBCHTypeInfo=function(t){for(var r=t<<10;0<=d(r)-d(1335);)r^=1335<<d(r)-d(1335);return 21522^(t<<10|r)},t.getBCHTypeNumber=function(t){for(var r=t<<12;0<=d(r)-d(7973);)r^=7973<<d(r)-d(7973);return t<<12|r},t.getPatternPosition=function(t){return r[t-1]},t.getMaskFunction=function(t){switch(t){case e:return function(t,r){return(t+r)%2==0};case n:return function(t,r){return t%2==0};case c:return function(t,r){return r%3==0};case g:return function(t,r){return(t+r)%3==0};case l:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case h:return function(t,r){return t*r%2+t*r%3==0};case s:return function(t,r){return(t*r%2+t*r%3)%2==0};case v:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},t.getErrorCorrectPolynomial=function(t){for(var r=C([1],0),e=0;e<t;e+=1)r=r.multiply(C([1,w.gexp(e)],0));return r},t.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case o:case f:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case o:return 16;case f:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case o:return 16;case f:return 12;default:throw"mode:"+t}}},t.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);5<i&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},t);function d(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r}var w=function(){for(var r=new Array(256),e=new Array(256),t=0;t<8;t+=1)r[t]=1<<t;for(t=8;t<256;t+=1)r[t]=r[t-4]^r[t-5]^r[t-6]^r[t-8];for(t=0;t<255;t+=1)e[r[t]]=t;var n={glog:function(t){if(t<1)throw"glog("+t+")";return e[t]},gexp:function(t){for(;t<0;)t+=255;for(;256<=t;)t-=255;return r[t]}};return n}();function C(n,o){if(void 0===n.length)throw n.length+"/"+o;var r=function(){for(var t=0;t<n.length&&0==n[t];)t+=1;for(var r=new Array(n.length-t+o),e=0;e<n.length-t;e+=1)r[e]=n[e+t];return r}(),i={getAt:function(t){return r[t]},getLength:function(){return r.length},multiply:function(t){for(var r=new Array(i.getLength()+t.getLength()-1),e=0;e<i.getLength();e+=1)for(var n=0;n<t.getLength();n+=1)r[e+n]^=w.gexp(w.glog(i.getAt(e))+w.glog(t.getAt(n)));return C(r,0)},mod:function(t){if(i.getLength()-t.getLength()<0)return i;for(var r=w.glog(i.getAt(0))-w.glog(t.getAt(0)),e=new Array(i.getLength()),n=0;n<i.getLength();n+=1)e[n]=i.getAt(n);for(n=0;n<t.getLength();n+=1)e[n]^=w.gexp(w.glog(t.getAt(n))+r);return C(e,0).mod(t)}};return i}function p(){var e=[],o={writeByte:function(t){e.push(255&t)},writeShort:function(t){o.writeByte(t),o.writeByte(t>>>8)},writeBytes:function(t,r,e){r=r||0,e=e||t.length;for(var n=0;n<e;n+=1)o.writeByte(t[n+r])},writeString:function(t){for(var r=0;r<t.length;r+=1)o.writeByte(t.charCodeAt(r))},toByteArray:function(){return e},toString:function(){var t="";t+="[";for(var r=0;r<e.length;r+=1)0<r&&(t+=","),t+=e[r];return t+="]"}};return o}var k,A,b=(k=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],(A={}).getRSBlocks=function(t,r){var e=function(t,r){switch(r){case y.L:return k[4*(t-1)+0];case y.M:return k[4*(t-1)+1];case y.Q:return k[4*(t-1)+2];case y.H:return k[4*(t-1)+3];default:return}}(t,r);if(void 0===e)throw"bad rs block @ typeNumber:"+t+"/errorCorrectionLevel:"+r;for(var n,o,i=e.length/3,a=[],u=0;u<i;u+=1)for(var f=e[3*u+0],c=e[3*u+1],g=e[3*u+2],l=0;l<f;l+=1)a.push((n=g,o=void 0,(o={}).totalCount=c,o.dataCount=n,o));return a},A),M=function(){var e=[],n=0,o={getBuffer:function(){return e},getAt:function(t){var r=Math.floor(t/8);return 1==(e[r]>>>7-t%8&1)},put:function(t,r){for(var e=0;e<r;e+=1)o.putBit(1==(t>>>r-e-1&1))},getLengthInBits:function(){return n},putBit:function(t){var r=Math.floor(n/8);e.length<=r&&e.push(0),t&&(e[r]|=128>>>n%8),n+=1}};return o},x=function(t){var r=a,n=t,e={getMode:function(){return r},getLength:function(t){return n.length},write:function(t){for(var r=n,e=0;e+2<r.length;)t.put(o(r.substring(e,e+3)),10),e+=3;e<r.length&&(r.length-e==1?t.put(o(r.substring(e,e+1)),4):r.length-e==2&&t.put(o(r.substring(e,e+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return e},m=function(t){var r=u,n=t,e={getMode:function(){return r},getLength:function(t){return n.length},write:function(t){for(var r=n,e=0;e+1<r.length;)t.put(45*o(r.charAt(e))+o(r.charAt(e+1)),11),e+=2;e<r.length&&t.put(o(r.charAt(e)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return e},L=function(t){var r=o,e=i.stringToBytes(t),n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=0;r<e.length;r+=1)t.put(e[r],8)}};return n},D=function(t){var r=f,e=i.stringToBytesFuncs.SJIS;if(!e)throw"sjis not supported.";!function(){var t=e("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=e(t),n={getMode:function(){return r},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return n},S=function(t){var e=t,n=0,o=0,i=0,r={read:function(){for(;i<8;){if(n>=e.length){if(0==i)return-1;throw"unexpected end of file./"+i}var t=e.charAt(n);if(n+=1,"="==t)return i=0,-1;t.match(/^\s$/)||(o=o<<6|a(t.charCodeAt(0)),i+=6)}var r=o>>>i-8&255;return i-=8,r}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return r},I=function(t,r,e){for(var n=function(t,r){var n=t,o=r,l=new Array(t*r),e={setPixel:function(t,r,e){l[r*n+t]=e},write:function(t){t.writeString("GIF87a"),t.writeShort(n),t.writeShort(o),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(n),t.writeShort(o),t.writeByte(0);var r=i(2);t.writeByte(2);for(var e=0;255<r.length-e;)t.writeByte(255),t.writeBytes(r,e,255),e+=255;t.writeByte(r.length-e),t.writeBytes(r,e,r.length-e),t.writeByte(0),t.writeString(";")}},i=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,o=h(),i=0;i<r;i+=1)o.add(String.fromCharCode(i));o.add(String.fromCharCode(r)),o.add(String.fromCharCode(e));var a=p(),u=function(t){var e=t,n=0,o=0,r={write:function(t,r){if(t>>>r!=0)throw"length over";for(;8<=n+r;)e.writeByte(255&(t<<n|o)),r-=8-n,t>>>=8-n,n=o=0;o|=t<<n,n+=r},flush:function(){0<n&&e.writeByte(o)}};return r}(a);u.write(r,n);var f=0,c=String.fromCharCode(l[f]);for(f+=1;f<l.length;){var g=String.fromCharCode(l[f]);f+=1,o.contains(c+g)?c+=g:(u.write(o.indexOf(c),n),o.size()<4095&&(o.size()==1<<n&&(n+=1),o.add(c+g)),c=g)}return u.write(o.indexOf(c),n),u.write(e,n),u.flush(),a.toByteArray()},h=function(){var r={},e=0,n={add:function(t){if(n.contains(t))throw"dup key:"+t;r[t]=e,e+=1},size:function(){return e},indexOf:function(t){return r[t]},contains:function(t){return void 0!==r[t]}};return n};return e}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=p();n.write(a);for(var u=function(){function e(t){a+=String.fromCharCode(r(63&t))}var n=0,o=0,i=0,a="",t={},r=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return t.writeByte=function(t){for(n=n<<8|255&t,o+=8,i+=1;6<=o;)e(n>>>o-6),o-=6},t.flush=function(){if(0<o&&(e(n<<6-o),o=n=0),i%3!=0)for(var t=3-i%3,r=0;r<t;r+=1)a+="="},t.toString=function(){return a},t}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return i}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||57344<=n?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});
 </script>
 </head>
 <body>
@@ -817,7 +839,7 @@ if(_d&&_d.console&&_d.console.brand&&_d.console.brand.mode==='day')document.docu
     <button id="lgBtn" class="btn gold w100">ورود به سیستم ✨</button>
     <div id="lgErr" class="lerr"></div>
     <div id="lgHint" class="lhint"></div>
-    <div class="loginVer">نسخهٔ <span class="num">6.9.2</span></div>
+    <div class="loginVer">نسخهٔ <span class="num">6.10.0</span></div>
   </div>
 </div>
 
@@ -827,7 +849,7 @@ if(_d&&_d.console&&_d.console.brand&&_d.console.brand.mode==='day')document.docu
     <div class="slogo"><span class="slogoIc">🎨</span><div><b>گالری هنری آوا</b><small>مدیریت هوشمند انبار</small></div></div>
     <div class="navSearch"><input id="navSearch" class="inp" type="search" placeholder="🔍 جستجوی منوها…" autocomplete="off"></div>
     <nav id="nav"></nav>
-    <div class="verBadge">نسخهٔ <span class="num">6.9.2</span></div>
+    <div class="verBadge">نسخهٔ <span class="num">6.10.0</span></div>
     <div class="suser" id="sideUser"></div>
   </aside>
   <div id="main">
@@ -1125,7 +1147,7 @@ function newDB(){return{v:1,meta:{created:Date.now(),lastBackup:0,updated:0},seq
   users:[{id:'u_admin',username:'admin',pass:'admin123',fullName:'مدیر سیستم',role:'admin',perms:{}}],
   customFieldDefs:[],
   painters:[],moldmakers:[],sculptors:[],molds:[],sculptures:[],products:[],shops:[],accounts:[],tariff:[],
-  warehouseIn:[],transfers:[],sales:[],painterPerf:[],moldPerf:[],sculptPerf:[],expenses:[],orders:[],neseh:[],nesehPay:[]}}
+  warehouseIn:[],transfers:[],sales:[],painterPerf:[],moldPerf:[],sculptPerf:[],expenses:[],orders:[],neseh:[],nesehPay:[],customers:[],orderPay:[],staffPay:[],actLog:[]}}
 /* ---------- v6.0: ذخیره‌سازی فشردهٔ خودکار ----------
    داده‌های حجیم (ده‌ها هزار ردیف به بالا) قبل از نوشتن در حافظهٔ مرورگر
    با deflate فشرده می‌شوند — ظرفیت ذخیره‌سازی چند برابر می‌شود؛
@@ -1192,9 +1214,15 @@ var MODULES=[
   {id:'expenses',t:'هزینه‌های متفرقه',ic:'💳',admin:false,perm:true},
   {id:'cheques',t:'چک‌ها و بدهی‌ها',ic:'📑',admin:false,perm:true},
   {id:'neseh',t:'نسیه کارگاه',ic:'🧾',admin:false,perm:true},
+  {id:'staffSettle',t:'تسویهٔ نیروها',ic:'🧮',admin:false,perm:true},
+  {id:'customers',t:'دفتر مشتریان',ic:'👥',admin:false,perm:true},
+  {id:'dueCal',t:'تقویم موعدها',ic:'📅',admin:false,perm:true},
+  {id:'profit',t:'سود محصولات',ic:'📈',admin:false,perm:true},
+  {id:'labels',t:'برچسب بارکد',ic:'🏷️',admin:false,perm:true},
   {id:'reports',t:'گزارش‌های حرفه‌ای',ic:'📊',admin:false,perm:true},
   {id:'advSearch',t:'جستجوی پیشرفته',ic:'🔍',admin:false,perm:true},
   {id:'import',t:'ورود اطلاعات از فایل',ic:'📥',admin:false,perm:true},
+  {id:'actLog',t:'سابقهٔ فعالیت',ic:'📜',admin:true,perm:false},
   {id:'admin',t:'مدیریت سیستم',ic:'⚙️',admin:true,perm:false}];
 var PAGES={};
 /* v6.4 (درخواست ۱۵): گروه‌بندی منو — سه عملکرد (نقاشان، قالب‌ریزان، مجسمه‌سازان)
@@ -1497,14 +1525,14 @@ function closeTab(id){
 var _statsHooks={};
 function setStatsHook(id,f){_statsHooks[id]=f}
 function refreshStats(){Object.keys(_statsHooks).forEach(function(k){try{_statsHooks[k]()}catch(e){}})}
-function doLogout(){var fin=false;var done=function(){if(fin)return;fin=true;
+function doLogout(){actLog('logout','خروج کاربر '+(CUR?CUR.username:''));saveDB();var fin=false;var done=function(){if(fin)return;fin=true;
     sessionStorage.removeItem(SESSKEY);CUR=null;window.__allowExit=true;location.reload()};
   try{var cfg=DB&&DB.settings&&autoBakCfg();
     if(cfg&&cfg.enabled&&cfg.folderName){toast('در حال ذخیرهٔ پشتیبان خروج…','info');
       writeAutoBackup('exit',true).then(done,done);setTimeout(done,3000)}
     else done()}catch(e){done()}}
 function login(u,p){var usr=DB.users.find(function(x){return x.username.toLowerCase()===norm(u).toLowerCase()});
-  if(!usr||usr.pass!==p)return null;CUR=usr;sessionStorage.setItem(SESSKEY,usr.id);return usr}
+  if(!usr||usr.pass!==p)return null;CUR=usr;actLog('login','ورود کاربر '+usr.username);sessionStorage.setItem(SESSKEY,usr.id);return usr}
 
 /* ---------- print engine ---------- */
 var PRINT_CSS='*{box-sizing:border-box}body{font-family:"Vazirmatn","Segoe UI",Tahoma,sans-serif;color:#1a1a1a;background:#fff;margin:0;padding:22px 26px;direction:rtl;font-size:12.5px}'+
@@ -2167,6 +2195,11 @@ function migrateDB(){
   /* v6.9.2: نسیه کارگاه — خروج نسیهٔ محصولات و پرداخت‌های بعدی */
   if(!Array.isArray(DB.neseh))DB.neseh=[];
   if(!Array.isArray(DB.nesehPay))DB.nesehPay=[];
+  /* v7.0: دفتر مشتریان، پرداخت‌های سفارش‌ها، تسویهٔ نیروها و لاگ فعالیت */
+  if(!Array.isArray(DB.customers))DB.customers=[];
+  if(!Array.isArray(DB.orderPay))DB.orderPay=[];
+  if(!Array.isArray(DB.staffPay))DB.staffPay=[];
+  if(!Array.isArray(DB.actLog))DB.actLog=[];
   if(!DB.settings.statusLabels)DB.settings.statusLabels={};
   if(!DB.settings.payLabels)DB.settings.payLabels={};
   if(!DB.settings.acks)DB.settings.acks={};
@@ -2319,6 +2352,7 @@ function crudPanel(cfg){var root=h('div',{});
     confirmBox(fmtN(ids.length)+' مورد انتخاب‌شده حذف شود؟ سوابق قبلی این موارد در گزارش‌ها حفظ می‌شود اما دیگر قابل انتخاب نیستند.',{danger:true,ok:'حذف کن'})
       .then(function(ok){if(!ok)return;
         DB[cfg.key]=DB[cfg.key].filter(function(x){return sel[x.id]!==true});
+        actLog('delete','حذف گروهی '+fmtN(ids.length)+' '+cfg.title);
         sel={};saveDB();draw();refreshStats();toast(fmtN(ids.length)+' مورد حذف شد ✅')})}
   function rows(){var q=norm(searchIn.value);
     var list=DB[cfg.key].slice();
@@ -2351,7 +2385,7 @@ function crudPanel(cfg){var root=h('div',{});
         th.style.minWidth='30px';th.appendChild(sa)}}
     tblBox.appendChild(tw);drawBulk()}
   function del(r){confirmBox('«'+r.name+'» حذف شود؟ اگر در گزارش‌های قبلی استفاده شده باشد، سوابق قبلی حفظ می‌شود اما دیگر قابل انتخاب نیست.',{danger:true,ok:'حذف کن'})
-    .then(function(ok){if(!ok)return;DB[cfg.key]=DB[cfg.key].filter(function(x){return x.id!==r.id});saveDB();draw();refreshStats();toast('حذف شد')})}
+    .then(function(ok){if(!ok)return;DB[cfg.key]=DB[cfg.key].filter(function(x){return x.id!==r.id});actLog('delete',cfg.title+' «'+r.name+'»');saveDB();draw();refreshStats();toast('حذف شد')})}
   function openForm(r){var fs=typeof cfg.fields==='function'?cfg.fields(r):cfg.fields;
     var collect=null;var body=buildForm(fs,r,function(c){collect=c});
     var foot=h('div',{},h('button',{class:'btn gold',onclick:save},'💾 ذخیره'));
@@ -2364,7 +2398,7 @@ function crudPanel(cfg){var root=h('div',{});
         var _dup=DB[cfg.key].find(function(x){return x!==r&&nameKey(x.name)===_k});
         if(_dup){toast('نام «'+o.name+'» از قبل ثبت شده است — هر '+cfg.title+' فقط یک بار ثبت می‌شود','err');return false}}
       if(r)Object.assign(r,o);else{Object.assign(o,{id:uid(cfg.key.slice(0,3))});if(cfg.onNew)cfg.onNew(o);DB[cfg.key].push(o)}
-      saveDB();md.close();draw();refreshStats();toast(r?'ویرایش ذخیره شد':'ثبت شد');if(cfg.afterSave)cfg.afterSave(o,r);
+      actLog(r?'edit':'new',cfg.title+' «'+(o.name||o.bankName||'')+'»');saveDB();md.close();draw();refreshStats();toast(r?'ویرایش ذخیره شد':'ثبت شد');if(cfg.afterSave)cfg.afterSave(o,r);
       return true}
     if(cfg.onOpen)cfg.onOpen(body,r,ctrlsOf(body))}
   /* v6.4 (درخواست ۱۶): کلیدهای میانبر این بخش — صفحهٔ «اطلاعات پایه» استفاده می‌کند */
@@ -2449,8 +2483,8 @@ PAGES.base={render:function(pg){
       searchKeys:['name','code','type'],
       fields:function(r){return [{k:'name',label:'نام محصول',req:1,ph:'مثال: بشقاب لعابی طرح اسلیمی'},{k:'code',label:'کد محصول',ph:'خودکار'},
         optField('productType','نوع محصول',r?r.type:null,{optional:true,emptyLabel:'— بدون نوع —'}),
-        {k:'price',label:'قیمت پایه (تومان)',type:'money'}]},
-      columns:[{t:'کد',g:function(r){return r.code||'—'}},{t:'نام محصول',g:function(r){return h('b',{},r.name)}},{t:'نوع',g:function(r){return r.type||'—'}},{t:'قیمت پایه',g:function(r){return r.price?fmtM(r.price):'—'}}],
+        {k:'price',label:'قیمت پایه (تومان)',type:'money'},{k:'minStock',label:'حد هشدار موجودی (عدد — صفر یعنی خاموش)'}]},
+      columns:[{t:'کد',g:function(r){return r.code||'—'}},{t:'نام محصول',g:function(r){return h('b',{},r.name)}},{t:'نوع',g:function(r){return r.type||'—'}},{t:'قیمت پایه',g:function(r){return r.price?fmtM(r.price):'—'}},{t:'حد هشدار',g:function(r){return toNum(r.minStock)>0?fmtN(toNum(r.minStock)):'—'}}],
       onNew:function(o){o.code=o.code||nextCode('PRD')}},
     shops:{key:'shops',title:'فروشگاه',emoji:'🏪',bulk:1,
       desc:'اطلاعات کامل و استاندارد فروشگاه‌های همکار. هنگام خروج کالا از انبار، مقصد از همین لیست انتخاب می‌شود.',
@@ -2612,6 +2646,10 @@ PAGES.warehouse={render:function(pg){
     body.appendChild(h('div',{class:'spread wrap mb8'},h('div',{class:'mut small'},'موجودی = کل ورودی منهای خروجی به فروشگاه‌ها'),
       h('div',{class:'row gap6 wrap'},h('label',{class:'chkRow',style:'margin:0;background:var(--card2);border:1px solid var(--bd);border-radius:10px;padding:7px 12px'},
         hideZero,h('span',{},'🙈 پنهان‌کردن محصولات با موجودی صفر')),q)));
+    body.appendChild(h('div',{class:'row gap6',style:'margin:0 2px 10px'},
+      scanBox('🏷 اسکن بارکد/QR برای پیدا کردن محصول در جدول موجودی…',function(p){
+        q.value=p.code||p.name;draw();
+        toast('محصول «'+p.name+'» — موجودی: '+fmtN(stockOf(p.id))+(toNum(p.minStock)>0?(' — حد هشدار: '+fmtN(toNum(p.minStock))):''))})));
     body.appendChild(box);
     var sel={}; /* v6.4: انتخاب چندتایی نتایج جستجو */
     var _lastRows=[]; /* v6.4: نتایج فعلی جستجو برای «انتخاب همه» */
@@ -2648,7 +2686,9 @@ PAGES.warehouse={render:function(pg){
         cb.addEventListener('change',function(){if(cb.checked)sel[r.p.id]=true;else delete sel[r.p.id];draw()});return cb}},
         {t:'کد',g:function(r){return r.p.code||'—'}},{t:'نام محصول',g:function(r){return h('b',{},r.p.name)}},
         {t:'نوع',g:function(r){return r.p.type||'—'}},
-        {t:'موجودی',g:function(r){return h('b',{class:r.st>0?'greenTx':'redTx'},fmtN(r.st))}},
+        {t:'موجودی',g:function(r){return h('span',{},h('b',{class:r.st>0?'greenTx':'redTx'},fmtN(r.st)),
+          (toNum(r.p.minStock)>0&&r.st<=toNum(r.p.minStock))?h('span',{class:'badge bg-red',style:'font-size:10.5px;margin-inline-start:5px'},'⚠️ زیر حد'):null)}},
+        {t:'حد هشدار',g:function(r){return toNum(r.p.minStock)>0?fmtN(toNum(r.p.minStock)):'—'}},
         {t:'میانگین قیمت خرید',g:function(r){return fmtM(r.avg)}},
         {t:'ارزش موجودی',g:function(r){return h('b',{class:'goldTx'},fmtM(Math.max(0,r.st)*r.avg))}}];
       box.appendChild(table(cols,rows,{emoji:'📦',pager:'stockList',
@@ -2682,10 +2722,11 @@ PAGES.warehouse={render:function(pg){
       if(qty<=0){toast('تعداد باید مثبت باشد','err');return}
       var d=getJVal(fD);if(!d){toast('تاریخ را انتخاب کنید','err');return}
       DB.warehouseIn.push({id:uid('wh'),code:nextCode('WH'),productId:fP.value,qty:qty,price:pr,total:qty*pr,date:d,note:norm(fN.value)});
+      actLog('new','ورود کالا — '+nameOfById(DB.products,fP.value)+' ×'+qty+' ('+fmtM(qty*pr)+')');
       saveDB();fQ.value='';fN.value='';focusInpOf(fQ);drawList();drawStrip();refreshStats();toast('ورود کالا ثبت شد ✅')}
     function newInForm(){fQ.value='';fN.value='';focusInpOf(fP);toast('فرم ورود کالا برای ثبت جدید آماده شد','info')}
     card.appendChild(h('div',{},h('button',{class:'btn gold',onclick:saveIn},'✅ ثبت ورود (F1)')));
-    body.appendChild(card);body.appendChild(h('div',{class:'b mb8'},'🕐 آخرین ورودی‌ها'));body.appendChild(list);
+    body.appendChild(card);body.appendChild(h('div',{class:'spread wrap mb8'},h('div',{class:'b'},'🕐 آخرین ورودی‌ها'),h('div',{class:'row gap6'},csvBtn('خروجی CSV ورودی‌های انبار',[{t:'کد',k:'code'},{t:'تاریخ',f:function(r){return jStrLatin(r.date)}},{t:'محصول',f:function(r){return nameOfById(DB.products,r.productId)}},{t:'تعداد',k:'qty'},{t:'قیمت واحد',k:'price'},{t:'جمع',k:'total'},{t:'توضیح',k:'note'}],function(){return DB.warehouseIn.slice()}))));body.appendChild(list);
     setHotkeys(pg,[{key:'F1',label:'ثبت ورود کالا',fn:saveIn},
       {key:'F2',label:'فرم جدید',fn:newInForm},
       {key:'F3',label:'انتخاب محصول',fn:function(){focusInpOf(fP)}}]);
@@ -2697,8 +2738,11 @@ PAGES.warehouse={render:function(pg){
         DB.warehouseIn.slice().sort(function(a,b){return jCmp(b.date,a.date)}),
         {pager:'whInList',
           sorts:[{label:'تاریخ',cmp:function(a,b){return jCmp(a.date,b.date)}},{label:'محصول',cmp:function(a,b){var x=norm(nameOfById(DB.products,a.productId)),y=norm(nameOfById(DB.products,b.productId));return x<y?-1:x>y?1:0}}],
-        actions:function(r){return delBtn('این ورودی حذف شود؟ موجودی اصلاح می‌شود.',function(){
-          DB.warehouseIn=DB.warehouseIn.filter(function(x){return x.id!==r.id});saveDB();drawList();drawStrip();refreshStats()})},
+        actions:function(r){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
+          h('button',{class:'btn ghost sm',type:'button',title:'چاپ رسید ورود کالا',onclick:function(){printWhIn(r)}},'🖨️'),
+          delBtn('این ورودی حذف شود؟ موجودی اصلاح می‌شود.',function(){
+          actLog('delete','حذف ورود انبار '+r.code);
+          DB.warehouseIn=DB.warehouseIn.filter(function(x){return x.id!==r.id});saveDB();drawList();drawStrip();refreshStats()}))},
           emoji:'📥'}))}
     drawList()}
   function showOut(){var card=h('div',{class:'card mb8'}),list=h('div',{});
@@ -2711,6 +2755,10 @@ PAGES.warehouse={render:function(pg){
       if(p&&p.price){fPr.value=p.price;fPr._sync()}}
     fP.addEventListener('change',sync);sync();
     card.appendChild(h('div',{class:'b mb8'},'📤 خروج کالا و انتقال به فروشگاه'));
+    card.appendChild(h('div',{class:'row gap6',style:'margin:0 2px 10px'},
+      scanBox('🏷 اسکن بارکد/QR محصول برای پرکردن سریع فرم خروج…',function(p){
+        fP.value=p.id;sync();focusInpOf(fQ);
+        toast('محصول «'+p.name+'» انتخاب شد — موجودی: '+fmtN(stockOf(p.id)))})));
     card.appendChild(h('div',{class:'f2'},fld('محصول',fP,null,1),fld('فروشگاه مقصد',fS,'موجودی فروشگاه به‌صورت خودکار افزایش می‌یابد',1),
       fld('تعداد',fQ,null,1),fld('قیمت واحد (تومان)',fPr,null,1),fld('تاریخ',fD,null,1),fld('وضعیت موجودی',hint)));
     /* v6.4 (درخواست ۱۶): ثبت خروج با F1، فرم جدید با F2، انتخاب محصول با F3 */
@@ -2721,10 +2769,11 @@ PAGES.warehouse={render:function(pg){
       var st=stockOf(fP.value);if(qty>st){toast('موجودی انبار کافی نیست (موجودی: '+fmtN(st)+')','err');return}
       var d=getJVal(fD)||todayJ();
       DB.transfers.push({id:uid('tr'),code:nextCode('TR'),productId:fP.value,shopId:fS.value,qty:qty,price:pr,total:qty*pr,date:d});
+      actLog('new','خروج/انتقال — '+nameOfById(DB.products,fP.value)+' به '+nameOfById(DB.shops,fS.value)+' ×'+qty);
       saveDB();fQ.value='';sync();drawList();drawStrip();refreshStats();toast('خروج به فروشگاه ثبت شد ✅')}
     function newOutForm(){fQ.value='';focusInpOf(fP);toast('فرم خروج کالا برای ثبت جدید آماده شد','info')}
     card.appendChild(h('div',{},h('button',{class:'btn gold',onclick:saveOut},'✅ ثبت خروج و انتقال (F1)')));
-    body.appendChild(card);body.appendChild(h('div',{class:'b mb8'},'🕐 آخرین خروجی‌ها'));body.appendChild(list);
+    body.appendChild(card);body.appendChild(h('div',{class:'spread wrap mb8'},h('div',{class:'b'},'🕐 آخرین خروجی‌ها'),h('div',{class:'row gap6'},csvBtn('خروجی CSV خروجی‌های انبار',[{t:'کد',k:'code'},{t:'تاریخ',f:function(r){return jStrLatin(r.date)}},{t:'محصول',f:function(r){return nameOfById(DB.products,r.productId)}},{t:'تعداد',k:'qty'},{t:'مقصد',f:function(r){return nameOfById(DB.shops,r.shopId)}},{t:'جمع',k:'total'}],function(){return DB.transfers.slice()}))));body.appendChild(list);
     setHotkeys(pg,[{key:'F1',label:'ثبت خروج و انتقال',fn:saveOut},
       {key:'F2',label:'فرم جدید',fn:newOutForm},
       {key:'F3',label:'انتخاب محصول',fn:function(){focusInpOf(fP)}}]);
@@ -2736,8 +2785,11 @@ PAGES.warehouse={render:function(pg){
         DB.transfers.slice().sort(function(a,b){return jCmp(b.date,a.date)}),
         {pager:'whOutList',
           sorts:[{label:'تاریخ',cmp:function(a,b){return jCmp(a.date,b.date)}},{label:'محصول',cmp:function(a,b){var x=norm(nameOfById(DB.products,a.productId)),y=norm(nameOfById(DB.products,b.productId));return x<y?-1:x>y?1:0}},{label:'فروشگاه',cmp:function(a,b){var x=norm(nameOfById(DB.shops,a.shopId)),y=norm(nameOfById(DB.shops,b.shopId));return x<y?-1:x>y?1:0}}],
-        actions:function(r){return delBtn('این خروجی حذف شود؟ موجودی انبار و فروشگاه اصلاح می‌شود.',function(){
-          DB.transfers=DB.transfers.filter(function(x){return x.id!==r.id});saveDB();drawList();drawStrip();refreshStats()})},
+        actions:function(r){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
+          h('button',{class:'btn ghost sm',type:'button',title:'چاپ حوالهٔ خروج',onclick:function(){printWhOut(r)}},'🖨️'),
+          delBtn('این خروجی حذف شود؟ موجودی انبار و فروشگاه اصلاح می‌شود.',function(){
+          actLog('delete','حذف خروج انبار '+r.code);
+          DB.transfers=DB.transfers.filter(function(x){return x.id!==r.id});saveDB();drawList();drawStrip();refreshStats()}))},
           emoji:'📤'}))}
     drawList()}
   function showShop(){var fS=selSearch(function(){return DB.shops.map(function(s){return{value:s.id,label:s.name+(s.city?' — '+s.city:'')}})},null);
@@ -2760,7 +2812,7 @@ PAGES.warehouse={render:function(pg){
         {t:'قیمت',g:function(r){return fmtM(r.price)}},{t:'جمع',g:function(r){return h('b',{class:'goldTx'},fmtM(r.total))}}],
         DB.sales.filter(function(s){return s.shopId===fS.value}).sort(function(a,b){return jCmp(b.date,a.date)}),
         {pager:'shopSalesList',actions:function(r){return delBtn('این فروش حذف شود؟',function(){
-          DB.sales=DB.sales.filter(function(x){return x.id!==r.id});saveDB();draw();refreshStats()})},
+          DB.sales=DB.sales.filter(function(x){return x.id!==r.id});actLog('delete','حذف فروش '+r.code);saveDB();draw();refreshStats()})},
           emoji:'🧾',emptyMsg:'فروشی ثبت نشده است'}));
       area.appendChild(slCard)}
     function saleModal(r){var stock=r.q;
@@ -2772,6 +2824,7 @@ PAGES.warehouse={render:function(pg){
           var qty=toNum(fQ.value),pr=toNum(fPr.value);
           if(qty<=0||qty>stock){toast('تعداد نامعتبر است (موجودی: '+fmtN(stock)+')','err');return}
           DB.sales.push({id:uid('sl'),code:nextCode('SL'),shopId:fS.value,productId:r.p.id,qty:qty,price:pr,total:qty*pr,date:getJVal(fD)||todayJ()});
+          actLog('new','فروش فروشگاهی — '+nameOfById(DB.products,r.p.id)+' در '+nameOfById(DB.shops,fS.value)+' ('+fmtM(qty*pr)+')');
           saveDB();md.close();draw();refreshStats();toast('فروش ثبت شد ✅')}},'✅ ثبت فروش'))})}
     fS.addEventListener('change',draw);draw();
     /* v6.4 (درخواست ۱۶): انتخاب فروشگاه با کلید F3 */
@@ -2854,6 +2907,7 @@ function perfModule(cfg){
       if(cfg.partner){
         if(fPt.value){r.partnerId=fPt.value;r.partnerShare=shareVal}
         else{delete r.partnerId;delete r.partnerShare}}
+      actLog('edit','ویرایش رکورد عملکرد '+r.code+' — '+nameOfById(DB[cfg.listKey],r.personId));
       saveDB();md.close();if(after)after();
       toast('رکورد '+r.code+' ویرایش شد ✅')}}
   /* ---------- v6.8.6: ویرایش گروهی عمومی رکوردهای عملکرد ----------
@@ -3061,7 +3115,7 @@ function perfModule(cfg){
             {pager:cfg.perfKey+'Recs_'+g.pid,actions:function(r){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
               h('button',{class:'btn ghost sm',title:'ویرایش رکورد',onclick:function(){editModal(r,function(){draw();drawList()})}},'✏️'),
               delBtn('این رکورد حذف شود؟',function(){
-                DB[cfg.perfKey]=DB[cfg.perfKey].filter(function(x){return x.id!==r.id});delete sel[r.id];saveDB();drawList();draw()}))},emoji:cfg.emoji}))}
+                DB[cfg.perfKey]=DB[cfg.perfKey].filter(function(x){return x.id!==r.id});delete sel[r.id];actLog('delete','حذف رکورد عملکرد '+r.code);saveDB();drawList();draw()}))},emoji:cfg.emoji}))}
         function bulkEdit(){bulkEditIds(Object.keys(sel),function(){sel={};draw();drawList()})}
         draw();
         md=modal({title:'📋 رکوردهای '+cfg.personT+' — '+esc(p?p.name:''),size:'wide',fullBtn:true,body:h('div',{},
@@ -3124,7 +3178,7 @@ function perfModule(cfg){
             {pager:cfg.perfKey+'List',actions:function(r){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
               h('button',{class:'btn ghost sm',title:'ویرایش رکورد',onclick:function(){editModal(r,function(){draw();drawList()})}},'✏️'),
               delBtn('این رکورد حذف شود؟',function(){
-                DB[cfg.perfKey]=DB[cfg.perfKey].filter(function(x){return x.id!==r.id});delete sel[r.id];saveDB();drawList();draw()}))},emoji:cfg.emoji}))}
+                DB[cfg.perfKey]=DB[cfg.perfKey].filter(function(x){return x.id!==r.id});delete sel[r.id];actLog('delete','حذف رکورد عملکرد '+r.code);saveDB();drawList();draw()}))},emoji:cfg.emoji}))}
         function bulkEdit(){bulkEditIds(Object.keys(sel),function(){sel={};draw();drawList()})}
         draw();
         modal({title:'📋 ریز همهٔ رکوردهای عملکرد — '+cfg.title,size:'wide',fullBtn:true,body:h('div',{},
@@ -3345,7 +3399,7 @@ PAGES.orders={render:function(pg){
       draw()}},'✔ انتخاب نتایج');
   pg.appendChild(h('div',{class:'spread wrap',style:'margin-bottom:11px'},h('div',{class:'mut small'},
     'ویرایش مبلغ تخفیف فقط توسط مدیر سیستم امکان‌پذیر است'),
-    h('div',{class:'row gap6 wrap'},q,selBtn,add)));
+    h('div',{class:'row gap6 wrap'},q,selBtn,csvBtn('خروجی CSV سفارش‌ها',[{t:'شماره فاکتور',k:'code'},{t:'مشتری',k:'customer'},{t:'تماس',k:'phone'},{t:'تاریخ سفارش',f:function(r){return jStrLatin(r.orderDate)}},{t:'موعد تحویل',f:function(r){return jStrLatin(r.deliveryDate)}},{t:'وضعیت',f:function(r){return stInfo(r.status).t}},{t:'قابل پرداخت',f:function(r){return orderCalc(r).net}},{t:'پرداخت‌شده',f:function(r){return orderPaid(r.id)}},{t:'مانده',f:function(r){return orderRemain(r)}}],function(){return DB.orders.slice()}),add)));
   pg.appendChild(box);
   var sel={}; /* v6.4: انتخاب گروهی برای تأیید یکجا */
   var _lastRows=[]; /* v6.4: نتایج فعلی جستجو برای «انتخاب همه» */
@@ -3355,7 +3409,41 @@ PAGES.orders={render:function(pg){
     confirmBox('همهٔ '+fmtN(ids.length)+' سفارش انتخاب‌شده تایید شوند؟',{ok:'✅ تایید همه'})
       .then(function(ok){if(!ok)return;
         var n=0;DB.orders.forEach(function(o){if(sel[o.id]===true&&o.status!=='done'&&o.status!=='canceled'){o.status='approved';n++}});
+        actLog('approve','تایید گروهی '+n+' سفارش');
         sel={};saveDB();draw();refreshStats();toast(fmtN(n)+' سفارش تایید شد ✅')})}
+  /* v7.0: پنجرهٔ پرداخت‌های سفارش — پیش‌پرداخت و اقساط با حذف اشتباهی */
+  function payOrderModal(r,after){
+    var rem=orderRemain(r);
+    var fA=moneyInp({value:rem});var fD=jDateInp(todayJ());var fN=inp({ph:'توضیح (اختیاری)'});
+    var listEl=h('div',{});
+    function drawList(){var pays=DB.orderPay.filter(function(p){return p.orderId===r.id});
+      listEl.innerHTML='';
+      listEl.appendChild(h('div',{class:'b',style:'margin-top:12px'},'💵 پرداخت‌های همین سفارش — '+fmtN(pays.length)+' مورد'));
+      if(!pays.length){listEl.appendChild(emptyBox('هنوز پرداختی برای این سفارش ثبت نشده','💵'));return}
+      listEl.appendChild(table([{t:'کد',g:function(p){return p.code}},{t:'تاریخ',g:function(p){return jStr(p.date)}},
+        {t:'مبلغ',g:function(p){return h('b',{class:'greenTx'},fmtM(toNum(p.amount)))}},
+        {t:'توضیح',g:function(p){return p.note||'—'}}],
+        pays.slice().sort(function(a,b){return jCmp(b.date,a.date)}),
+        {pager:'ordPay_'+r.id,emoji:'💵',actions:function(p){return delBtn('این پرداخت حذف شود؟',function(){
+          DB.orderPay=DB.orderPay.filter(function(x){return x.id!==p.id});
+          actLog('delete','حذف پرداخت سفارش '+r.code);
+          saveDB();drawList();draw()})}}));
+    }
+    drawList();
+    var md=modal({title:'💵 پرداخت‌های سفارش — '+toFa(r.code)+' ('+r.customer+')',size:'wide',
+      body:h('div',{},
+        h('div',{class:'fhint mb8'},'قابل پرداخت: '+fmtM(orderCalc(r).net)+' — پرداخت‌شده: '+fmtM(orderPaid(r.id))+' — مانده: '+fmtM(rem)),
+        h('div',{class:'f2'},fld('مبلغ پرداخت جدید (تومان)',fA),fld('تاریخ',fD,null,1)),
+        fld('توضیحات',fN),
+        listEl),
+      footer:h('div',{},h('button',{class:'btn gold',type:'button',onclick:save},'✅ ثبت پرداخت'))});
+    function save(){var a=toNum(fA.value);
+      if(!(a>0)){toast('مبلغ پرداخت را وارد کنید','err');return}
+      DB.orderPay.push({id:uid('op'),code:nextCode('OP'),orderId:r.id,date:getJVal(fD)||todayJ(),amount:a,note:norm(fN.value)});
+      actLog('pay','پرداخت سفارش '+r.code+' — '+fmtM(a));
+      saveDB();md.close();draw();if(after)after();
+      toast('پرداخت '+fmtM(a)+' ثبت شد — ماندهٔ '+toFa(r.code)+': '+fmtM(orderRemain(r))+(orderRemain(r)===0?' (تسویه شد 🎉)':'')+' ✅')}
+    return md}
   function draw(){box.innerHTML='';
     var qq=norm(q.value);
     var rows=DB.orders.filter(function(r){return !qq||matchWild(qq,r.customer)||matchWild(qq,r.code||'')||matchWild(qq,r.phone||'')||matchWild(qq,r.note||'')})
@@ -3370,11 +3458,13 @@ PAGES.orders={render:function(pg){
       cb.checked=!!sel[r.id];
       cb.addEventListener('change',function(){if(cb.checked)sel[r.id]=true;else delete sel[r.id];draw()});return cb}},
       {t:'شماره فاکتور',g:function(r){return h('b',{class:'goldTx'},toFa(r.code))}},
-      {t:'مشتری',g:function(r){return h('b',{},r.customer)}},{t:'تماس',g:function(r){return r.phone?toFa(r.phone):'—'}},
+      {t:'مشتری',g:function(r){return h('b',{},r.customer)}},{t:'عکس',g:function(r){return phThumb(r,'photo',r.customer)}},{t:'تماس',g:function(r){return r.phone?toFa(r.phone):'—'}},
       {t:'اقلام',g:function(r){return fmtN(r.items.length)+' قلم'}},
       {t:'مبلغ کل',g:function(r){return fmtM(orderCalc(r).gross)}},
       {t:'تخفیف',g:function(r){return r.discount?h('span',{class:'redTx'},fmtM(r.discount)):'—'}},
       {t:'قابل پرداخت',g:function(r){return h('b',{class:'greenTx'},fmtM(orderCalc(r).net))}},
+      {t:'پرداخت‌شده',g:function(r){return fmtM(orderPaid(r.id))}},
+      {t:'مانده',g:function(r){var rm=orderRemain(r);return h('b',{style:rm>0?'color:var(--rose)':'color:var(--green)'},fmtM(rm))}},
       {t:'تاریخ سفارش',g:function(r){return jStr(r.orderDate)+(r.orderTime?' '+toFa(r.orderTime):'')}},
       {t:'موعد تحویل',g:function(r){return h('span',{class:jCmp(r.deliveryDate,todayJ())<0&&r.status!=='done'&&r.status!=='canceled'?'redTx b':''},jStr(r.deliveryDate))}},
       {t:'وضعیت',g:function(r){var s=stInfo(r.status);return h('span',{class:'badge '+s.cls},s.t)}}];
@@ -3385,10 +3475,11 @@ PAGES.orders={render:function(pg){
         {label:'موعد تحویل',cmp:function(a,b){return jCmp(a.deliveryDate,b.deliveryDate)}}],
       actions:function(r){return h('div',{},
         (r.status!=='done'&&r.status!=='canceled'&&r.status!=='approved')?h('button',{class:'btn green sm',title:'تایید سفارش',onclick:function(){approve(r)}},'✅'):null,
+        h('button',{class:'btn sm',type:'button',title:'ثبت پرداخت / دیدن پرداخت‌ها',onclick:function(){payOrderModal(r)}},'💵'),
         h('button',{class:'btn ghost sm',title:'چاپ فاکتور',onclick:function(){printInvoice(r)}},'🖨️'),
         h('button',{class:'btn ghost sm',title:'ذخیرهٔ فاکتور به‌صورت PDF',onclick:function(){pdfSave('فاکتور فروش '+toFa(r.code),function(){printInvoice(r)})}},'📄'),
         h('button',{class:'btn ghost sm',title:'ویرایش',onclick:function(){openO(r)}},'✏️'),
-        delBtn('فاکتور «'+r.code+'» حذف شود؟',function(){DB.orders=DB.orders.filter(function(x){return x.id!==r.id});saveDB();draw();refreshStats()}))},
+        delBtn('فاکتور «'+r.code+'» حذف شود؟',function(){actLog('delete','حذف سفارش '+r.code+' — '+r.customer);DB.orders=DB.orders.filter(function(x){return x.id!==r.id});saveDB();draw();refreshStats()}))},
       emoji:'🧾',emptyMsg:qq?'سفارشی مطابق جستجو پیدا نشد':'هنوز سفارشی ثبت نشده است'}))}
   function openO(r){var isNew=!r;
     var o=r||{items:[{productId:'',qty:1,price:0}],discount:0,paid:0};
@@ -3399,6 +3490,7 @@ PAGES.orders={render:function(pg){
     var fD2=jDateInp(r?r.deliveryDate:todayJ()),fT2=timeInp({value:r?r.deliveryTime||'':''});
     var fSt=selEl(ORD_STATUSES.map(function(s){return{value:s.id,label:s.t}}),r?r.status:'new');
     var fNote=inp({value:r?r.note||'':'',ph:'توضیحات سفارش'});
+    var fPhoto=photoField(r?r.photo||null:null);
     var isAdmin=CUR.role==='admin';
     var fDisc=moneyInp({value:o.discount||0});if(!isAdmin)fDisc.disabled=true;
     var itemsBox=h('div',{});
@@ -3444,7 +3536,7 @@ PAGES.orders={render:function(pg){
       isAdmin?h('div',{class:'fhint mb8'},'✍️ = وارد کردن دستی محصول خارج از پایگاه داده (مخصوص مدیر) — 💾 = درج همان محصول در پایگاه داده'):null,
       itemsBox,totLine,
       h('div',{class:'f2'},fld('تخفیف (تومان)'+(isAdmin?'':' — فقط مدیر'),fDisc),fld('وضعیت',fSt)),
-      fld('توضیحات',fNote));
+      fld('توضیحات',fNote),fld('عکس سفارش — نمونهٔ طرح یا رسید',fPhoto));
     var foot=h('div',{},h('button',{class:'btn gold',onclick:function(){save(false)}},'💾 ذخیره سفارش'),
       h('button',{class:'btn green',onclick:function(){save(true)}},'💾 ذخیره و چاپ فاکتور'));
     var md=modal({title:isNew?'ثبت سفارش خاص جدید':'ویرایش سفارش '+r.code,body:body,footer:foot,size:'xwide',onSave:function(){return save(false)}});
@@ -3455,9 +3547,10 @@ PAGES.orders={render:function(pg){
       if(!items.length){toast('حداقل یک قلم با تعداد معتبر اضافه کنید','err');return false}
       var obj={customer:customer,phone:norm(fPh.value),address:norm(fAd.value),
         orderDate:d1,orderTime:norm(fT1.value),deliveryDate:d2,deliveryTime:norm(fT2.value),
-        items:items,discount:isAdmin?toNum(fDisc.value):(r?r.discount||0:0),status:fSt.value,note:norm(fNote.value)};
+        items:items,discount:isAdmin?toNum(fDisc.value):(r?r.discount||0:0),status:fSt.value,note:norm(fNote.value),photo:fPhoto.dataset.v||''};
       if(r)Object.assign(r,obj);
       else{obj.id=uid('ord');obj.code=nextCode('INV');obj.created=Date.now();DB.orders.push(obj)}
+      actLog(r?'edit':'new','سفارش/فاکتور '+obj.code+' — '+obj.customer+' ('+fmtM(orderCalc(obj).net)+')');
       saveDB();md.close();draw();refreshStats();
       /* v6.5.1: اگر موعد تحویل تا ۳ روز آینده است، همان لحظه کاربر باخبر شود که هشدار ثبت شد */
       var dd=jDayDiff(d2,todayJ());
@@ -3477,8 +3570,10 @@ PAGES.orders={render:function(pg){
       ' — زمان تحویل: <b>'+jStr(r.deliveryDate)+' ساعت '+esc(toFa(r.deliveryTime||'—'))+'</b></div>'+
       (r.note?'<div class="smallT">توضیحات: '+esc(r.note)+'</div>':'')+
       '<div class="invTotal"><span>مبلغ کل: '+fmtM(c.gross)+'</span><span>تخفیف: '+fmtM(r.discount||0)+'</span><span>قابل پرداخت: '+fmtM(c.net)+'</span></div>'+
+      '<div class="smallT" style="margin-top:6px">پرداخت‌شده: <b>'+fmtM(orderPaid(r.id))+'</b> — مانده: <b>'+fmtM(orderRemain(r))+'</b></div>'+
       '<div class="smallT" style="margin-top:8px">وضعیت سفارش: <b>'+stInfo(r.status).t+'</b> — این فاکتور در سامانه «'+esc(DB.settings.gallery)+'» صادر شده است.</div></div>';
     printDoc({title:'فاکتور فروش '+toFa(r.code),sub:'مشتری: '+r.customer,body:body})}
+  window._printInvoice=printInvoice;
   draw();
   /* v6.4 (درخواست ۱۶): کلیدهای میانبر سفارش‌ها — F2 سفارش جدید، F3 جستجو، F4 تأیید گروهی */
   setHotkeys(pg,[{key:'F2',label:'سفارش جدید و صدور فاکتور',fn:function(){openO(null)}},
@@ -3503,6 +3598,8 @@ function nesehOpenForm(id,after){
   var r=id?DB.neseh.find(function(x){return x.id===id}):null;
   var fP=inp({value:r?r.person:'',ph:'نام فروشگاه/شخصی که کالا را برده…'});
   var fD=jDateInp(r?r.date:todayJ());
+  var fDue=jDateInp(r?r.due||null:null);
+  var fPhoto=photoField(r?r.photo||null:null);
   var rows=(r&&r.items&&r.items.length)?JSON.parse(JSON.stringify(r.items)):[{desc:'',qty:1,price:0}];
   var fN=inp({value:r?(r.note||''):'',ph:'توضیح (اختیاری)'});
   var itemsBox=h('div',{});
@@ -3546,10 +3643,13 @@ function nesehOpenForm(id,after){
     var items=rows.filter(function(it){return norm(it.desc)&&toNum(it.qty)>0});
     if(!items.length){toast('حداقل یک ردیف کالا با شرح و تعداد وارد کنید','err');return}
     var tot=items.reduce(function(s,it){return s+toNum(it.qty)*toNum(it.price)},0);
-    if(!r){DB.neseh.push({id:uid('ns'),code:nextCode('NE'),person:person,date:getJVal(fD)||todayJ(),
-      items:items,total:tot,note:norm(fN.value)});
+    var due=getJVal(fDue);
+    if(!r){DB.neseh.push({id:uid('ns'),code:nextCode('NE'),person:person,date:getJVal(fD)||todayJ(),due:due,
+      items:items,total:tot,note:norm(fN.value),photo:fPhoto.dataset.v||''});
+      actLog('new','نسیه '+fmtM(tot)+' — '+person);
       toast('نسیهٔ '+fmtM(tot)+' برای «'+person+'» ثبت شد ✅')}
-    else{r.person=person;r.date=getJVal(fD)||r.date;r.items=items;r.total=tot;r.note=norm(fN.value);
+    else{r.person=person;r.date=getJVal(fD)||r.date;r.due=due;r.items=items;r.total=tot;r.note=norm(fN.value);r.photo=fPhoto.dataset.v||'';
+      actLog('edit','ویرایش نسیه '+r.code+' — '+person);
       toast('نسیهٔ '+r.code+' ویرایش شد ✅')}
     saveDB();md.close();if(after)after();
   }
@@ -3557,11 +3657,11 @@ function nesehOpenForm(id,after){
     body:
       h('div',{},
         h('div',{class:'fhint mb8'},'کالا با توافق «نسیه» (بدون پرداخت آنی) از کارگاه خارج می‌شود؛ پرداخت‌های بعدی را از دکمهٔ 💵 همین لیست ثبت کنید. اگر نام شخص را دوباره استفاده کنید، بدهی‌ها در گزارش بدهکاران جمع می‌شوند.'),
-        h('div',{class:'f2'},fld('فروشگاه / شخص',fP,null,1),fld('تاریخ خروج',fD,null,1)),
+        h('div',{class:'f2'},fld('فروشگاه / شخص',fP,null,1),fld('تاریخ خروج',fD,null,1),fld('موعد تسویه (اختیاری)',fDue)),
         h('div',{class:'b mb8',style:'margin-top:6px'},'🧺 اقلام خروجی'),
         itemsBox,
         totBar,
-        h('div',{style:'margin-top:9px'},fld('توضیحات',fN))),
+        h('div',{style:'margin-top:9px'},fld('توضیحات',fN),fld('عکس کالا / رسید (اختیاری)',fPhoto))),
     footer:h('div',{},h('button',{class:'btn gold',onclick:save},'💾 ثبت نسیه'))});
   return md}
 
@@ -3572,13 +3672,14 @@ function nesehPayModal(rec,after){
   function save(){var a=toNum(fA.value);
     if(!(a>0)){toast('مبلغ پرداخت را وارد کنید','err');return}
     DB.nesehPay.push({id:uid('np'),code:nextCode('NP'),nesehId:rec.id,date:getJVal(fD)||todayJ(),amount:a,note:norm(fN.value)});
+    actLog('pay','پرداخت نسیه '+rec.code+' — '+rec.person+' ('+fmtM(a)+')');
     saveDB();md.close();if(after)after();
     toast('پرداخت '+fmtM(a)+' ثبت شد — ماندهٔ '+rec.code+': '+fmtM(nesehRemain(rec))+(nesehRemain(rec)===0?' (تسویه شد 🎉)':'')+' ✅');
   }
   var md=modal({title:'💵 ثبت پرداخت — '+rec.code+' ('+(rec.person||'')+')',
     body:
       h('div',{},
-        h('div',{class:'fhint mb8'},'جمع نسیه: '+fmtM(rec.total)+' — پرداخت‌شده: '+fmtM(nesehPaid(rec.id))+' — مانده: '+fmtM(rem)),
+        h('div',{class:'fhint mb8'},'جمع نسیه: '+fmtM(rec.total)+' — پرداخت‌شده: '+fmtM(nesehPaid(rec.id))+' — مانده: '+fmtM(rem)+(rec.due?(' — موعد تسویه: '+jStr(rec.due)):'')),
         h('div',{class:'f2'},fld('مبلغ پرداخت (تومان)',fA),fld('تاریخ',fD,null,1)),
         fld('توضیحات',fN)),
     footer:h('div',{},h('button',{class:'btn gold',onclick:save},'✅ ثبت پرداخت'))});
@@ -3628,7 +3729,7 @@ PAGES.neseh={render:function(pg){
           h('div',{class:'row gap6 wrap'},
             h('div',{style:'min-width:190px'},fld('فیلتر',fFilter)),
             q),
-          addB));
+          h('div',{class:'row gap6'},csvBtn('خروجی CSV نسیه‌ها',[{t:'کد',k:'code'},{t:'تاریخ',f:function(r){return jStrLatin(r.date)}},{t:'شخص',k:'person'},{t:'اقلام',f:function(r){return nesehItemsBrief(r)}},{t:'جمع',f:function(r){return toNum(r.total)}},{t:'پرداخت‌شده',f:function(r){return nesehPaid(r.id)}},{t:'مانده',f:function(r){return nesehRemain(r)}},{t:'موعد',f:function(r){return r.due?jStrLatin(r.due):''}}],function(){return DB.neseh.slice()}),addB)));
       var qq=norm(q.value);
       var rows=DB.neseh.filter(function(r){
         if(fFilter.value==='open'&&nesehRemain(r)<=0)return false;
@@ -3645,6 +3746,7 @@ PAGES.neseh={render:function(pg){
         delBtn('این نسیه و پرداخت‌های ثبت‌شده‌اش حذف شوند؟',function(){
           DB.neseh=DB.neseh.filter(function(x){return x.id!==r.id});
           DB.nesehPay=DB.nesehPay.filter(function(p){return p.nesehId!==r.id});
+          actLog('delete','حذف نسیه '+r.code+' — '+r.person);
           saveDB();draw()}));
       };
       box.appendChild(table([
@@ -3652,10 +3754,12 @@ PAGES.neseh={render:function(pg){
         {t:'تاریخ',g:function(r){return jStr(r.date)}},
         {t:'فروشگاه / شخص',g:function(r){return h('b',{},r.person||'—')}},
         {t:'اقلام',g:function(r){return h('span',{class:'mut small'},nesehItemsBrief(r))}},
+        {t:'پیوست',g:function(r){return phThumb(r,'photo',r.person)}},
         {t:'جمع نسیه',g:function(r){return fmtM(r.total)}},
         {t:'پرداخت‌شده',g:function(r){return fmtM(nesehPaid(r.id))}},
         {t:'مانده',g:function(r){var rm=nesehRemain(r);
           return h('b',{style:rm>0?'color:var(--rose)':'color:var(--green)'},fmtM(rm))}},
+        {t:'موعد',g:function(r){return nesehDueBadge(r)||'—'}},
         {t:'وضعیت',g:function(r){return nesehRemain(r)>0?h('span',{class:'badge bg-gold'},'در جریان'):h('span',{class:'badge bg-green'},'تسویه شد')}},
         {t:'توضیح',g:function(r){return r.note||'—'}}],
         rows,{pager:'nesehList',emoji:'🧾',actions:act}));
@@ -3791,6 +3895,1010 @@ PAGES.neseh={render:function(pg){
   }
   show()}};
 
+/* ================= v7.0 helpers — لاگ فعالیت، CSV، اسکن بارکد، QR، پیوست عکس ================= */
+
+/* ---------- 📜 لاگ فعالیت (سابقهٔ کاربران) ----------
+   در عملیات‌های مهم برنامه صدا زده می‌شود: ورود، ثبت/ویرایش/حذف رکوردها،
+   پرداخت‌ها، پشتیبان‌گیری و بازیابی. تا ۸۰۰ مورد نگه داشته می‌شود. */
+function actLog(act,detail){try{
+  if(!DB)return;
+  if(!Array.isArray(DB.actLog))DB.actLog=[];
+  DB.actLog.push({id:uid('lg'),at:Date.now(),
+    who:CUR?((CUR.fullName||CUR.username||'—')):'—',
+    act:String(act||''),detail:String(detail||'').slice(0,180)});
+  if(DB.actLog.length>800)DB.actLog=DB.actLog.slice(-600)}catch(e){}}
+function actLogLabel(a){return{login:'🔓 ورود',logout:'🚪 خروج',new:'➕ ثبت',edit:'✏️ ویرایش',
+  delete:'🗑️ حذف',pay:'💵 پرداخت',backup:'💾 پشتیبان',restore:'♻️ بازیابی',approve:'✅ تایید',
+  settle:'🧮 تسویه',print:'🖨️ چاپ'}[a]||a}
+
+/* ---------- 📄 خروجی CSV عمومی همهٔ لیست‌ها ----------
+   مقادیر داخل گیومه با حفظ کاما، خنثی‌سازی فرمول‌های اکسل (= و + و - ابتدای متن)
+   و BOM یونیکد برای نمایش درست فارسی در اکسل */
+function csvCell(v){var s=String(v==null?'':v);
+  if(/^[=+\-@]/.test(s))s='\''+s;
+  return '"'+s.replace(/"/g,'""')+'"'}
+function csvDownload(name,cols,rows){var lines=[cols.map(function(c){return csvCell(c.t)}).join(',')];
+  (rows||[]).forEach(function(r){lines.push(cols.map(function(c){return csvCell(c.f?c.f(r):r[c.k])}).join(','))});
+  download(name,'\uFEFF'+lines.join('\r\n'),'text/csv;charset=utf-8');
+  toast('خروجی CSV '+fmtN((rows||[]).length)+' ردیف دانلود شد 💾')}
+function csvBtn(title,cols,rowsFn){return h('button',{class:'btn sm',type:'button',title:title+' — ذخیره با فرمت اکسل (CSV)',
+  onclick:function(){var rows=null;try{rows=rowsFn()}catch(e){}
+    if(!rows||!rows.length){toast('ردیفی برای خروجی نیست','err');return}
+    csvDownload(title+'-'+jStrLatin(todayJ()).replace(/\//g,'-')+'.csv',cols,rows)}},'📄 CSV')}
+
+/* ---------- 🏷 اسکن بارکد/QR ----------
+   اسکنرهای USB مثل کیبورد عمل می‌کنند: کد را تایپ و Enter می‌زنند.
+   محتوای QR برچسب‌های این برنامه به شکل «AVG1|کد|نام» است؛ کد محصول خام هم پذیرفته می‌شود. */
+function scanLookup(raw){raw=fromFa(String(raw||'')).trim();if(!raw)return null;
+  var code=raw;
+  if(/^AVG1\|/i.test(raw)){var parts=raw.split('|');code=parts[1]||parts[0].slice(5)}
+  code=norm(code);if(!code)return null;
+  var p=DB.products.find(function(x){return norm(x.code||'')===code||norm(x.name||'')===code});
+  if(!p&&code.length>=3){var k=code.toLowerCase();
+    p=DB.products.find(function(x){return norm(x.name||'').toLowerCase().indexOf(k)>=0})}
+  return p||null}
+function scanBox(ph,onHit){var i=h('input',{class:'inp scanBox',type:'text',autocomplete:'off',
+    placeholder:ph||'🏷 اسکن بارکد/QR یا تایپ کد محصول + Enter…'});
+  i.addEventListener('keydown',function(e){if(e.key!=='Enter')return;
+    e.preventDefault();
+    var p=scanLookup(i.value);
+    if(!p){toast('محصولی مطابق «'+i.value+'» پیدا نشد — کد را چک کنید','err');return}
+    var v=i.value;i.value='';onHit(p,v)});
+  return i}
+
+/* ---------- 🖼 پیوست عکس — دیدن نمای بزرگ ---------- */
+function photoView(src,title){var md=modal({title:'🖼 '+(title||'پیوست'),
+  body:h('div',{style:'text-align:center'},h('img',{src:src,
+    style:'max-width:100%;max-height:65vh;border-radius:12px;border:1.5px solid var(--bd2)'})),
+  footer:h('div',{},h('button',{class:'btn ghost',type:'button',onclick:function(){md.close()}},'بستن'))})}
+function phThumb(r,f,title){var src=r&&r[f];if(!src)return h('span',{class:'mut small'},'—');
+  return h('img',{class:'thumb',src:src,title:'دیدن پیوست'+(title?(' — '+title):''),style:'cursor:zoom-in',
+  onclick:function(){photoView(src,title)}})}
+
+/* ---------- 📈 QR و پرداخت‌های سفارش ---------- */
+function qrDataUrl(text,cell,margin){try{
+  var qr=qrcode(0,'M');qr.addData(String(text));qr.make();
+  return qr.createDataURL(cell||4,margin==null?2:margin)}catch(e){return ''}}
+function orderPaid(id){return (DB.orderPay||[]).filter(function(p){return p.orderId===id})
+  .reduce(function(s,p){return s+toNum(p.amount)},0)}
+function orderRemain(r){return Math.max(0,orderCalc(r).net-orderPaid(r.id))}
+
+/* ---------- 🧾 موعد تسویهٔ نسیه ---------- */
+function nesehDueInfo(r){if(!r.due||nesehRemain(r)<=0)return null;
+  var d=jDayDiff(r.due,todayJ());if(d==null)return null;
+  return{days:d}}
+function nesehDueBadge(r){var inf=nesehDueInfo(r);if(!inf)return null;
+  var d=inf.days;
+  if(d<0)return h('span',{class:'badge bg-red'},'⏰ '+toFa(-d)+' روز از موعد گذشته');
+  if(d===0)return h('span',{class:'badge bg-red'},'موعد تسویه امروز');
+  if(d<=3)return h('span',{class:'badge bg-gold'},toFa(d)+' روز تا موعد');
+  return h('span',{class:'badge bg-gray'},'موعد: '+jStr(r.due))}
+
+/* ---------- 📦 کمبود موجودی ---------- */
+function stockLowList(){var out=[];
+  (DB.products||[]).forEach(function(p){var mn=toNum(p.minStock);if(!(mn>0))return;
+    var st=stockOf(p.id);if(st<=mn)out.push({p:p,st:st,mn:mn})});
+  return out}
+
+/* ---------- 🔔 هشدارهای جدید برای موتور هشدارها (alerts.js) ---------- */
+function nesehDueItems(){var t=todayJ(),out=[];
+  (DB.neseh||[]).forEach(function(r){
+    if(!r.due||nesehRemain(r)<=0)return;
+    var d=jDayDiff(r.due,t);if(d==null||d<-14||d>3)return;
+    out.push({key:'neseh',id:r.id,page:'neseh',ic:'🧾',
+      title:'نسیهٔ '+(r.person||'')+' — '+toFa(r.code),
+      sub:'جمع: '+fmtM(toNum(r.total))+' — مانده: '+fmtM(nesehRemain(r))+' — موعد: '+jStr(r.due),
+      days:Math.max(0,d),
+      dayLabel:d<0?('⏰ '+toFa(-d)+' روز از موعد گذشته'):(d===0?'⏳ موعد امروز':(d===1?'فردا — ۱ روز مانده':'⏳ '+toFa(d)+' روز مانده'))})});
+  return out}
+function stockLowItems(){var out=[];
+  stockLowList().forEach(function(x){
+    out.push({key:'stock',id:x.p.id,page:'warehouse',ic:'📦',
+      title:x.p.name+(x.p.code?' ('+x.p.code+')':''),
+      sub:'موجودی فعلی: '+fmtN(x.st)+' — حد هشدار: '+fmtN(x.mn),
+      days:0,dayLabel:'⚠️ باید وارد انبار شود'})});
+  return out}
+var ALERT_TITLES={delivery:'⏰ موعد تحویل نزدیک است',cheque:'📑 سررسید چک نزدیک است',
+  neseh:'🧾 موعد تسویهٔ نسیه',stock:'📦 کمبود موجودی انبار'};
+function alertLabelOf(x){return x.dayLabel||daysLeftLabel(x.days)}
+
+/* ---------- 🖨️ چاپ رسید ورود و حوالهٔ خروج انبار ---------- */
+function printWhIn(r){printDoc({title:'رسید ورود کالا به انبار — '+toFa(r.code),sub:DB.settings.gallery,
+  body:'<div class="psum"><div><b>'+esc(nameOfById(DB.products,r.productId))+'</b>محصول</div>'+
+    '<div><b>'+fmtN(r.qty)+'</b>تعداد</div><div><b>'+fmtM(r.total)+'</b>جمع کل</div></div>'+
+    printTable([{t:'کد رسید',k:'c'},{t:'تاریخ',k:'d'},{t:'محصول',k:'p'},{t:'تعداد',k:'q'},
+      {t:'قیمت واحد',k:'pr'},{t:'جمع کل',k:'t'},{t:'توضیح',k:'n'}],
+      [{c:toFa(r.code),d:jStr(r.date),p:nameOfById(DB.products,r.productId),q:fmtN(r.qty),
+        pr:fmtM(r.price),t:fmtM(r.total),n:r.note||'—'}])})}
+function printWhOut(r){printDoc({title:'حوالهٔ خروج کالا به فروشگاه — '+toFa(r.code),sub:DB.settings.gallery,
+  body:'<div class="psum"><div><b>'+esc(nameOfById(DB.products,r.productId))+'</b>محصول</div>'+
+    '<div><b>'+fmtN(r.qty)+'</b>تعداد</div><div><b>'+esc(nameOfById(DB.shops,r.shopId))+'</b>مقصد</div></div>'+
+    printTable([{t:'کد حواله',k:'c'},{t:'تاریخ',k:'d'},{t:'محصول',k:'p'},{t:'تعداد',k:'q'},
+      {t:'قیمت واحد',k:'pr'},{t:'جمع',k:'t'},{t:'فروشگاه مقصد',k:'s'}],
+      [{c:toFa(r.code),d:jStr(r.date),p:nameOfById(DB.products,r.productId),q:fmtN(r.qty),
+        pr:fmtM(r.price),t:fmtM(r.total),s:nameOfById(DB.shops,r.shopId)}])})}
+
+/* ---------- 🏷️ چاپ برگهٔ برچسب‌های QR محصولات ---------- */
+function labelSheetPrint(items,cfg){cfg=cfg||{};
+  var cols=cfg.cols||4,showPrice=!!cfg.price,cell=cfg.qrCell||3;
+  var lbls=[];(items||[]).forEach(function(it){var n=Math.max(1,Math.min(20,it.copies||1));
+    for(var i=0;i<n;i++)lbls.push(it.p)});
+  if(!lbls.length)return;
+  var html='<div class="lblGrid">'+lbls.map(function(p){
+    var qr=qrDataUrl('AVG1|'+(p.code||'')+'|'+(p.name||''),cell,1);
+    return '<div class="lbl"><div class="lblR"><b>'+esc(p.name||'')+'</b>'+
+      '<span>'+esc(p.code||'')+(showPrice&&p.price?(' — '+fmtM(p.price)):'')+'</span></div>'+
+      (qr?('<img class="lblQr" src="'+qr+'">'):'')+'</div>'}).join('')+'</div>';
+  printDoc({title:'برچسب بارکد محصولات ('+fmtN(lbls.length)+' برچسب)',sub:DB.settings.gallery,body:html,
+    extraCss:'.lblGrid{display:grid;grid-template-columns:repeat('+cols+',1fr);gap:3mm}'+
+      '.lbl{border:1px dashed #999;border-radius:2mm;padding:1.5mm;display:flex;gap:2mm;align-items:center;height:24mm;box-sizing:border-box;overflow:hidden}'+
+      '.lblR{flex:1;min-width:0;display:flex;flex-direction:column;gap:1mm;overflow:hidden}'+
+      '.lblR b{font-size:10.5px;line-height:1.5}'+
+      '.lblR span{font-size:9.5px;color:#555}'+
+      '.lblQr{width:20mm;height:20mm;flex:0 0 auto}'})}
+
+/* ================= v7.0 pages 1 — تسویهٔ نیروها + دفتر مشتریان ================= */
+
+/* ---------- 🧮 صفحهٔ تسویهٔ نیروها (قرینهٔ نسیه برای بدهی ما به نیروها) ---------- */
+var STAFF_TYPES=[
+  {id:'painter',t:'نقاش',ic:'🎨',list:'painters',perf:'painterPerf'},
+  {id:'moldmaker',t:'قالب‌ریز',ic:'🧱',list:'moldmakers',perf:'moldPerf'},
+  {id:'sculptor',t:'مجسمه‌ساز',ic:'🗿',list:'sculptors',perf:'sculptPerf'}];
+function staffTypeOf(id){return STAFF_TYPES.find(function(s){return s.id===id})}
+function staffTypeName(id){var s=staffTypeOf(id);return s?(s.ic+' '+s.t):'—'}
+function staffNameOf(pType,personId){var s=staffTypeOf(pType);if(!s)return '—';
+  var p=DB[s.list].find(function(x){return x.id===personId});return p?p.name:'—'}
+/* جمع عملکرد هر نیرو: عملکرد دو نفرهٔ نقاشان طبق نسبت ثبت‌شده بین دو نفر تقسیم می‌شود */
+function staffEarnRows(){var map={},order=[];
+  function bucket(pType,personId){var k=pType+'_'+personId;
+    if(!map[k]){var s=staffTypeOf(pType);
+      var p=s?DB[s.list].find(function(x){return x.id===personId}):null;
+      map[k]={pType:pType,personId:personId,p:p,name:p?p.name:'—',code:p?(p.code||''):'',
+        earn:0,recs:0,last:null};order.push(k)}
+    return map[k]}
+  DB.painterPerf.forEach(function(r){
+    var ps=(r.partnerShare==null?0.5:r.partnerShare);
+    var b1=bucket('painter',r.personId);
+    b1.earn+=r.total*(1-ps);b1.recs++;
+    if(!b1.last||jCmp(r.date,b1.last)>0)b1.last=r.date;
+    if(r.partnerId&&r.partnerId!==r.personId){
+      var b2=bucket('painter',r.partnerId);
+      b2.earn+=r.total*ps;b2.recs++;
+      if(!b2.last||jCmp(r.date,b2.last)>0)b2.last=r.date}});
+  DB.moldPerf.forEach(function(r){var b=bucket('moldmaker',r.personId);
+    b.earn+=r.total;b.recs++;
+    if(!b.last||jCmp(r.date,b.last)>0)b.last=r.date});
+  DB.sculptPerf.forEach(function(r){var b=bucket('sculptor',r.personId);
+    b.earn+=r.total;b.recs++;
+    if(!b.last||jCmp(r.date,b.last)>0)b.last=r.date});
+  return order.map(function(k){return map[k]})}
+function staffPaidOf(pType,personId){return DB.staffPay.filter(function(p){
+    return p.pType===pType&&p.personId===personId})
+  .reduce(function(s,p){return s+toNum(p.amount)},0)}
+/* عملکرد و پرداخت هر نیرو در یک ماه مشخص (jm از ۱ تا ۱۲؛ null یعنی همهٔ ماه‌های سال) */
+function staffMonthRows(jy,jm){var rows=staffEarnRows();
+  function inMonth(d){if(!d||d.jy!==jy)return false;return jm==null?true:d.jm===jm}
+  var out=rows.map(function(b){
+    var s=staffTypeOf(b.pType);
+    var earn=0,recs=[];
+    if(s)DB[s.perf].forEach(function(r){
+      var mine=(r.personId===b.personId);
+      if(s.id==='painter'&&r.partnerId){
+        var ps=(r.partnerShare==null?0.5:r.partnerShare);
+        if(r.personId===b.personId){mine=true}
+        else if(r.partnerId===b.personId){mine=true}
+        else mine=false}
+      if(!mine)return;
+      if(!inMonth(r.date))return;
+      var sh=1;
+      if(s.id==='painter'&&r.partnerId){
+        var ps2=(r.partnerShare==null?0.5:r.partnerShare);
+        sh=(r.personId===b.personId)?(1-ps2):ps2}
+      earn+=r.total*sh;recs.push(r)});
+    var pay=0;
+    DB.staffPay.forEach(function(p){
+      if(p.pType!==b.pType||p.personId!==b.personId)return;
+      if(!inMonth(p.date))return;
+      pay+=toNum(p.amount)});
+    return{b:b,earn:earn,pay:pay,recs:recs}});
+  return out}
+PAGES.staffSettle={render:function(pg){
+  pg.appendChild(pageHead('تسویهٔ نیروها','ماندهٔ بدهی کارگاه به نقاشان، قالب‌ریزان و مجسمه‌سازان (جمع عملکرد منهای پرداخت‌شده‌ها) + ثبت پرداخت و تسویهٔ ماهانه با چاپ'));
+  var cur='bal',body=h('div',{});
+  pg.appendChild(tabsEl([{id:'bal',t:'👥 ماندهٔ نیروها'},{id:'pay',t:'💵 پرداخت‌ها'},{id:'mon',t:'📅 تسویهٔ ماهانه'}],
+    cur,function(id){cur=id;show()}));
+  pg.appendChild(body);
+  /* ---------- پنجرهٔ ثبت پرداخت به نیرو (مشترک) ---------- */
+  function payStaff(def,after){def=def||{};
+    var fT=selEl(STAFF_TYPES.map(function(s){return{value:s.id,label:s.ic+' '+s.t}}),def.pType||'painter');
+    var fP=selSearch(function(){
+      var s=staffTypeOf(fT.value);var arr=s?DB[s.list]:[];
+      return uniqByName(arr).map(function(p){return{value:p.id,label:p.name+(p.code?' ('+p.code+')':'')}})},
+      def.personId||null);
+    var fA=moneyInp({value:def.amount!=null?def.amount:''});
+    var fD=jDateInp(def.date||todayJ());
+    var fM=selEl([{value:'نقدی',label:'💵 نقدی'},{value:'کارت/حساب',label:'💳 کارت / حساب'},
+      {value:'چک',label:'🧾 چک'},{value:'سایر',label:'📦 سایر'}],def.method||'نقدی');
+    var fN=inp({value:def.note||'',ph:'توضیح (اختیاری)'});
+    var hint=h('div',{class:'fhint',style:'min-height:18px'});
+    function syncHint(){var v=fP.value;if(!v){hint.textContent='';return}
+      var earn=0;
+      staffEarnRows().forEach(function(b){if(b.pType===fT.value&&b.personId===v)earn=b.earn});
+      var paid=staffPaidOf(fT.value,v);
+      hint.textContent='جمع عملکرد این نیرو تا امروز: '+fmtM(earn)+' — پرداخت‌شده: '+fmtM(paid)+
+        ' — ماندهٔ بدهی ما: '+fmtM(Math.max(0,earn-paid))}
+    fT.addEventListener('change',function(){fP.value='';fP.refresh();syncHint()});
+    fP.addEventListener('change',syncHint);syncHint();
+    var md=modal({title:'💵 ثبت پرداخت به نیرو',size:'wide',
+      body:h('div',{},
+        h('div',{class:'fhint mb8'},'مبلغی که برای عملکرد نیروها پرداخت می‌شود از ماندهٔ «تسویهٔ نیروها» کم می‌شود؛ برای تسویهٔ کامل از تب «📅 تسویهٔ ماهانه» استفاده کنید.'),
+        h('div',{class:'f2'},fld('نوع نیرو',fT,null,1),fld('نام نیرو',fP,null,1)),
+        h('div',{class:'f2'},fld('مبلغ پرداخت (تومان)',fA,null,1),fld('تاریخ پرداخت',fD,null,1)),
+        h('div',{class:'f2'},fld('روش پرداخت',fM),fld('توضیحات',fN)),
+        fld('وضعیت حساب نیرو',hint)),
+      footer:h('div',{},h('button',{class:'btn gold',type:'button',onclick:save},'✅ ثبت پرداخت'))});
+    function save(){var a=toNum(fA.value);
+      if(!fP.value){toast('نام نیرو را انتخاب کنید','err');return false}
+      if(!(a>0)){toast('مبلغ پرداخت باید بزرگ‌تر از صفر باشد','err');return false}
+      var nm=staffNameOf(fT.value,fP.value);
+      DB.staffPay.push({id:uid('sp'),code:nextCode('SP'),pType:fT.value,personId:fP.value,
+        amount:a,date:getJVal(fD)||todayJ(),method:fM.value,note:norm(fN.value)});
+      actLog('pay','پرداخت به '+staffTypeName(fT.value)+' '+nm+' — '+fmtM(a));
+      saveDB();md.close();
+      toast('پرداخت '+fmtM(a)+' به «'+nm+'» ثبت شد ✅');
+      if(after)after();
+      return true}
+    return md}
+  /* ---------- تب ۱: ماندهٔ نیروها ---------- */
+  function showBal(){
+    var sumCard=h('div',{class:'grid4 mb8'}),chartCard=h('div',{}),box=h('div',{});
+    var fT=selEl([{value:'',label:'— همهٔ نیروها —'}].concat(STAFF_TYPES.map(function(s){return{value:s.id,label:s.ic+' '+s.t}})),'');
+    var q=inp({ph:'🔍 جستجوی نام نیرو…'});q.style.maxWidth='210px';
+    q.addEventListener('input',debounce(draw,200));
+    fT.addEventListener('change',draw);
+    body.appendChild(sumCard);
+    body.appendChild(h('div',{class:'spread wrap mb8'},
+      h('div',{class:'row gap6 wrap'},h('div',{style:'min-width:170px'},fld('نوع نیرو',fT)),q),
+      h('div',{class:'row gap6'},
+        h('button',{class:'btn gold',type:'button',onclick:function(){payStaff(null,draw)}},'+ ثبت پرداخت به نیرو'),
+        csvBtn('خروجی CSV ماندهٔ نیروها',
+          [{t:'نوع',f:function(r){return staffTypeName(r.b.pType)}},{t:'نام',f:function(r){return r.b.name}},
+           {t:'کد',f:function(r){return r.b.code}},{t:'تعداد رکورد',f:function(r){return r.recs}},
+           {t:'جمع عملکرد',f:function(r){return r.earn}},{t:'پرداخت‌شده',f:function(r){return staffPaidOf(r.b.pType,r.b.personId)}},
+           {t:'مانده بدهی ما',f:function(r){return Math.max(0,r.earn-staffPaidOf(r.b.pType,r.b.personId))}},
+           {t:'آخرین عملکرد',f:function(r){return jStrLatin(r.b.last)}}],
+          function(){return rows()}))));
+    body.appendChild(chartCard);body.appendChild(box);
+    function rows(){var qv=norm(q.value);
+      return staffMonthRows(todayJ().jy,null).map(function(m){
+        m.earnTotal=m.b.earn;m.payTotal=staffPaidOf(m.b.pType,m.b.personId);m.remain=Math.max(0,m.earnTotal-m.payTotal);
+        return m}).filter(function(m){
+        if(fT.value&&m.b.pType!==fT.value)return false;
+        return !qv||matchWild(qv,m.b.name)||matchWild(qv,m.b.code||'')})}
+    function draw(){var rs=rows();
+      var totE=0,totP=0,remN=0;
+      rs.forEach(function(m){totE+=m.earnTotal;totP+=m.payTotal;if(m.remain>0)remN++});
+      sumCard.innerHTML='';
+      sumCard.appendChild(statCard('🧮',totE,'جمع عملکرد نیروها','var(--gold)'));
+      sumCard.appendChild(statCard('✅',totP,'جمع پرداخت‌شده','var(--green)'));
+      sumCard.appendChild(statCard('⏳',Math.max(0,totE-totP),'ماندهٔ بدهی ما به نیروها','var(--rose)'));
+      sumCard.appendChild(statCard('👥',remN,'نیروهای مانده‌دار','var(--blue)'));
+      chartCard.innerHTML='';
+      var tops=rs.filter(function(m){return m.remain>0}).sort(function(a,b){return b.remain-a.remain}).slice(0,6);
+      if(tops.length){var cc=h('div',{class:'card chartCard mb8'},h('div',{class:'b mb8'},'📊 بزرگ‌ترین مانده‌ها'));
+        var cv=h('canvas',{height:'230'});cc.appendChild(cv);chartCard.appendChild(cc);
+        setTimeout(function(){drawBar(cv,{labels:tops.map(function(m){return (m.b.name||'').split(' ')[0]}),
+          series:[{name:'مانده بدهی',values:tops.map(function(m){return m.remain}),color:'#fb7185'}]})},30)}
+      box.innerHTML='';
+      if(!rs.length){box.appendChild(emptyBox('هنوز عملکردی برای نیروها ثبت نشده — از بخش «عملکرد نقاشان» شروع کنید','👥'));return}
+      box.appendChild(table([
+        {t:'نوع',g:function(m){return staffTypeName(m.b.pType)}},
+        {t:'نام نیرو',g:function(m){return h('span',{},h('b',{},m.b.name),
+          m.b.code?h('span',{class:'mut',style:'font-size:11.5px'},' ('+m.b.code+')'):null)}},
+        {t:'رکورد عملکرد',g:function(m){return fmtN(m.b.recs)}},
+        {t:'جمع عملکرد',g:function(m){return fmtM(m.earnTotal)}},
+        {t:'پرداخت‌شده',g:function(m){return fmtM(m.payTotal)}},
+        {t:'ماندهٔ بدهی ما',g:function(m){return h('b',{style:m.remain>0?'color:var(--rose)':'color:var(--green)'},fmtM(m.remain))}},
+        {t:'آخرین عملکرد',g:function(m){return jStr(m.b.last)}},
+        {t:'عملیات',g:function(m){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
+          h('button',{class:'btn sm',type:'button',title:'ثبت پرداخت',onclick:function(){
+            payStaff({pType:m.b.pType,personId:m.b.personId,amount:m.remain>0?m.remain:null},draw)}},'💵'),
+          h('button',{class:'btn sm',type:'button',title:'ریز عملکرد و پرداخت‌ها',onclick:function(){detail(m)}},'📋'),
+          h('button',{class:'btn ghost sm',type:'button',title:'چاپ برگهٔ تسویه',onclick:function(){printBal(m)}},'🖨️'))}}],
+        rs.sort(function(a,b){return b.remain-a.remain}),
+        {pager:'staffBal',emoji:'👥',
+        sorts:[{label:'مانده بدهی',cmp:function(a,b){return a.remain-b.remain}},
+          {label:'نام',cmp:function(a,b){var x=norm(a.b.name),y=norm(b.b.name);return x<y?-1:x>y?1:0}}]}))}
+    /* ریز حساب یک نیرو: همهٔ رکوردهای عملکرد + همهٔ پرداخت‌ها */
+    function detail(m){var listEl=h('div',{});
+      var s=staffTypeOf(m.b.pType);
+      function drawDetail(){listEl.innerHTML='';
+        var earn=m.earnTotal,paid=m.payTotal,remain=Math.max(0,earn-paid);
+        listEl.appendChild(h('div',{class:'row gap wrap',style:'margin:0 2px 10px'},
+          h('span',{class:'badge bg-gold',style:'font-size:13px;padding:7px 13px'},'جمع عملکرد: '+fmtM(earn)),
+          h('span',{class:'badge bg-green',style:'font-size:13px;padding:7px 13px'},'پرداخت‌شده: '+fmtM(paid)),
+          h('span',{class:'badge bg-red',style:'font-size:13px;padding:7px 13px'},'ماندهٔ بدهی ما: '+fmtM(remain))));
+        listEl.appendChild(h('div',{class:'b mb8'},'🖌 رکوردهای عملکرد — '+esc(m.b.name)));
+        var perfRows=s?DB[s.perf].filter(function(r){
+          return r.personId===m.b.personId||(s.id==='painter'&&r.partnerId===m.b.personId)}):[];
+        listEl.appendChild(table([
+          {t:'کد',g:function(r){return r.code}},{t:'تاریخ',g:function(r){return jStr(r.date)}},
+          {t:'قلم',g:function(r){var arr=(s&&(s.id==='painter'?DB.products:(s.id==='moldmaker'?DB.molds:DB.sculptures)));
+            return arr?nameOfById(arr,r.itemId):'—'}},
+          {t:'تعداد',g:function(r){return fmtN(r.qty)}},
+          {t:'سهم این نیرو',g:function(r){var sh=1;
+            if(s&&s.id==='painter'&&r.partnerId){var ps=(r.partnerShare==null?0.5:r.partnerShare);
+              sh=(r.personId===m.b.personId)?(1-ps):ps}
+            return fmtM(r.total*sh)+(sh<1?h('span',{class:'badge bg-violet',style:'font-size:11px;margin-inline-start:5px'},'🤝 '+toFa(Math.round(sh*100))+'٪'):null)}},
+          {t:'توضیح',g:function(r){return r.note||'—'}}],
+          perfRows.sort(function(a,b){return jCmp(b.date,a.date)}),
+          {pager:'staffPerf_'+m.b.pType+'_'+m.b.personId,emoji:'🖌'}));
+        var pays=DB.staffPay.filter(function(p){return p.pType===m.b.pType&&p.personId===m.b.personId});
+        listEl.appendChild(h('div',{class:'b mb8',style:'margin-top:14px'},'💵 پرداخت‌های ثبت‌شده — '+fmtN(pays.length)+' مورد'));
+        if(!pays.length)listEl.appendChild(emptyBox('هنوز پرداختی برای این نیرو ثبت نشده','💵'));
+        else listEl.appendChild(table([
+          {t:'کد',g:function(p){return p.code}},{t:'تاریخ',g:function(p){return jStr(p.date)}},
+          {t:'مبلغ',g:function(p){return h('b',{class:'greenTx'},fmtM(toNum(p.amount)))}},
+          {t:'روش',g:function(p){return p.method||'—'}},
+          {t:'توضیح',g:function(p){return p.note||'—'}}],
+          pays.slice().sort(function(a,b){return jCmp(b.date,a.date)}),
+          {pager:'staffPays_'+m.b.pType+'_'+m.b.personId,emoji:'💵',
+          actions:function(p){return delBtn('این پرداخت حذف شود؟',function(){
+            DB.staffPay=DB.staffPay.filter(function(x){return x.id!==p.id});
+            actLog('delete','حذف پرداخت نیرو '+p.code);
+            saveDB();draw();drawDetail()})}}))}
+      drawDetail();
+      modal({title:'📋 ریز حساب نیرو — '+esc(m.b.name),size:'wide',fullBtn:true,
+        body:h('div',{},
+          h('div',{style:'margin:0 2px 9px'},
+            h('button',{class:'btn gold',type:'button',onclick:function(){
+              payStaff({pType:m.b.pType,personId:m.b.personId},function(){draw();drawDetail()})}},'💵 ثبت پرداخت جدید'),
+            h('button',{class:'btn ghost sm',type:'button',style:'margin-inline-start:6px',type:'button',onclick:function(){printBal(m)}},'🖨️ چاپ برگهٔ تسویه')),
+          listEl)})}
+    /* چاپ برگهٔ تسویهٔ یک نیرو */
+    function printBal(m){var earn=m.earnTotal,paid=m.payTotal,remain=Math.max(0,earn-paid);
+      var s=staffTypeOf(m.b.pType);
+      var pays=DB.staffPay.filter(function(p){return p.pType===m.b.pType&&p.personId===m.b.personId});
+      var perfRows=s?DB[s.perf].filter(function(r){
+        return r.personId===m.b.personId||(s.id==='painter'&&r.partnerId===m.b.personId)}):[];
+      printDoc({title:'برگهٔ تسویهٔ '+staffTypeName(m.b.pType)+' — '+m.b.name,sub:DB.settings.gallery,
+        body:'<div class="psum"><div><b>'+fmtM(earn)+'</b>جمع عملکرد</div><div><b>'+fmtM(paid)+'</b>پرداخت‌شده</div><div><b>'+fmtM(remain)+'</b>ماندهٔ بدهی</div></div>'+
+        '<div style="font-weight:800;margin:6px 0 2px">ریز عملکرد (سهم '+esc(m.b.name)+' در کارهای دو نفره لحاظ شده)</div>'+
+        printTable([{t:'کد',k:'c'},{t:'تاریخ',k:'d'},{t:'تعداد',k:'q'},{t:'جمع کل',k:'t'},{t:'سهم',k:'sh'},{t:'توضیح',k:'n'}],
+          perfRows.slice(0,300).map(function(r){var sh=1;
+            if(s&&s.id==='painter'&&r.partnerId){var ps=(r.partnerShare==null?0.5:r.partnerShare);
+              sh=(r.personId===m.b.personId)?(1-ps):ps}
+            return{c:r.code,d:jStr(r.date),q:fmtN(r.qty),t:fmtM(r.total),sh:fmtM(r.total*sh),n:r.note||'—'}}))+
+        '<div style="font-weight:800;margin:12px 0 2px">پرداخت‌های ثبت‌شده</div>'+
+        printTable([{t:'کد',k:'c'},{t:'تاریخ',k:'d'},{t:'مبلغ',k:'a'},{t:'روش',k:'m'},{t:'توضیح',k:'n'}],
+          pays.map(function(p){return{c:p.code,d:jStr(p.date),a:fmtM(toNum(p.amount)),m:p.method||'—',n:p.note||'—'}}))})}
+    draw()}
+  /* ---------- تب ۲: پرداخت‌ها ---------- */
+  function showPay(){
+    var sumCard=h('div',{class:'grid4 mb8'}),box=h('div',{});
+    body.appendChild(sumCard);
+    body.appendChild(h('div',{class:'spread wrap mb8'},
+      h('div',{class:'b'},'💵 همهٔ پرداخت‌های ثبت‌شده به نیروها'),
+      h('div',{class:'row gap6'},
+        h('button',{class:'btn gold',type:'button',onclick:function(){payStaff(null,draw)}},'+ پرداخت جدید'),
+        csvBtn('خروجی CSV پرداخت‌های نیروها',
+          [{t:'کد',k:'code'},{t:'تاریخ',f:function(r){return jStrLatin(r.date)}},
+           {t:'نوع نیرو',f:function(r){return staffTypeName(r.pType)}},
+           {t:'نام',f:function(r){return staffNameOf(r.pType,r.personId)}},
+           {t:'مبلغ',f:function(r){return toNum(r.amount)}},{t:'روش',k:'method'},{t:'توضیح',k:'note'}],
+          function(){return DB.staffPay.slice()}))));
+    body.appendChild(box);
+    function draw(){sumCard.innerHTML='';
+      var tot=DB.staffPay.reduce(function(s,p){return s+toNum(p.amount)},0);
+      var thisJ=todayJ();
+      var mTot=DB.staffPay.filter(function(p){return p.date.jy===thisJ.jy&&p.date.jm===thisJ.jm})
+        .reduce(function(s,p){return s+toNum(p.amount)},0);
+      sumCard.appendChild(statCard('💵',tot,'جمع همهٔ پرداخت‌ها','var(--green)'));
+      sumCard.appendChild(statCard('📅',mTot,'پرداخت‌های این ماه','var(--gold)'));
+      sumCard.appendChild(statCard('🧾',DB.staffPay.length,'تعداد رکورد پرداخت','var(--blue)'));
+      box.innerHTML='';
+      if(!DB.staffPay.length){box.appendChild(emptyBox('هنوز پرداختی ثبت نشده — با «+ پرداخت جدید» شروع کنید','💵'));return}
+      box.appendChild(table([
+        {t:'کد',g:function(r){return r.code}},{t:'تاریخ',g:function(r){return jStr(r.date)}},
+        {t:'نوع',g:function(r){return staffTypeName(r.pType)}},
+        {t:'نام نیرو',g:function(r){return h('b',{},staffNameOf(r.pType,r.personId))}},
+        {t:'مبلغ',g:function(r){return h('b',{class:'greenTx'},fmtM(toNum(r.amount)))}},
+        {t:'روش',g:function(r){return r.method||'—'}},
+        {t:'توضیح',g:function(r){return r.note||'—'}}],
+        DB.staffPay.slice().sort(function(a,b){return jCmp(b.date,a.date)}),
+        {pager:'staffPayList',emoji:'💵',
+        actions:function(r){return delBtn('این پرداخت حذف شود؟',function(){
+          DB.staffPay=DB.staffPay.filter(function(x){return x.id!==r.id});
+          actLog('delete','حذف پرداخت نیرو '+r.code);
+          saveDB();draw();refreshStats()})}}))}
+    draw()}
+  /* ---------- تب ۳: تسویهٔ ماهانه ---------- */
+  function showMon(){
+    function yearsOf(){var ys={};
+      DB.painterPerf.concat(DB.moldPerf,DB.sculptPerf,DB.staffPay).forEach(function(r){if(r.date&&r.date.jy)ys[r.date.jy]=1});
+      ys[todayJ().jy]=1;
+      return Object.keys(ys).map(Number).sort()}
+    var fY=selEl(yearsOf().map(function(y){return{value:y,label:'سال '+toFa(y)}}),todayJ().jy);
+    var fM=selEl(JMONTHS.map(function(mn,i){return{value:i+1,label:mn}}),todayJ().jm);
+    var area=h('div',{class:'mt14'});
+    body.appendChild(h('div',{class:'card mb8'},h('div',{class:'b mb8'},'📅 تسویهٔ ماهانهٔ نیروها'),
+      h('div',{class:'mut small',style:'margin-bottom:9px;line-height:2'},
+        'عملکرد همان ماه هر نیرو + پرداخت‌های همان ماه + «ماندهٔ تجمعی تا پایان ماه» (همهٔ عملکرد تا پایان این ماه منهای همهٔ پرداخت‌ها تا پایان این ماه). با دکمهٔ «✔ تسویهٔ کامل»، ماندهٔ تجمعی به‌عنوان یک پرداخت ثبت می‌شود و حساب نیرو تا پایان این ماه صفر می‌شود.'),
+      h('div',{class:'row gap6 wrap',style:'align-items:flex-end'},
+        h('div',{style:'min-width:150px'},fld('سال',fY)),h('div',{style:'min-width:150px'},fld('ماه',fM)),
+        h('div',{style:'align-self:flex-end;margin-bottom:11px'},h('div',{class:'row gap6'},
+          h('button',{class:'btn gold',type:'button',onclick:draw},'👁 نمایش'),
+          csvBtn('خروجی CSV تسویهٔ ماهانه',
+            [{t:'نوع',f:function(r){return staffTypeName(r.b.pType)}},{t:'نام',f:function(r){return r.b.name}},
+             {t:'عملکرد ماه',f:function(r){return r.earn}},{t:'پرداخت ماه',f:function(r){return r.pay}},
+             {t:'مانده تجمعی تا پایان ماه',f:function(r){return r.cum}}],
+            function(){return currentRows()})),
+          h('button',{class:'btn green',type:'button',onclick:doPrint},'🖨️ چاپ برگهٔ تسویهٔ ماه')))));
+    body.appendChild(area);
+    function endOfMonth(){var y=+fY.value,m=+fM.value;return j2d(y,m,jLen(y,m))}
+    function currentRows(){var y=+fY.value,m=+fM.value,eom=endOfMonth();
+      return staffMonthRows(y,m).map(function(r){
+        /* ماندهٔ تجمعی تا پایان ماه = همهٔ عملکرد تا پایان این ماه منهای همهٔ پرداخت‌ها تا پایان این ماه */
+        var cumE=0,cumP=0;
+        var s=staffTypeOf(r.b.pType);
+        if(s)DB[s.perf].forEach(function(pr){
+          if(!(pr.personId===r.b.personId||(s.id==='painter'&&pr.partnerId===r.b.personId)))return;
+          if(j2d(pr.date.jy,pr.date.jm,pr.date.jd)>eom)return;
+          var sh=1;
+          if(s.id==='painter'&&pr.partnerId){var ps=(pr.partnerShare==null?0.5:pr.partnerShare);
+            sh=(pr.personId===r.b.personId)?(1-ps):ps}
+          cumE+=pr.total*sh});
+        DB.staffPay.forEach(function(p){
+          if(p.pType!==r.b.pType||p.personId!==r.b.personId)return;
+          if(j2d(p.date.jy,p.date.jm,p.date.jd)>eom)return;
+          cumP+=toNum(p.amount)});
+        r.cum=Math.max(0,cumE-cumP);
+        return r})}
+    function draw(){var rows=currentRows();area.innerHTML='';
+      if(!rows.length){area.appendChild(emptyBox('عملکردی برای این ماه ثبت نشده است','📅'));return}
+      var c=h('div',{class:'card mb8'},h('div',{class:'b mb8'},JMONTHS[+fM.value-1]+' '+toFa(+fY.value)+' — به تفکیک نیرو'));
+      c.appendChild(table([
+        {t:'نوع',g:function(r){return staffTypeName(r.b.pType)}},
+        {t:'نام نیرو',g:function(r){return h('b',{},r.b.name)}},
+        {t:'عملکرد این ماه',g:function(r){return fmtM(r.earn)}},
+        {t:'پرداخت این ماه',g:function(r){return fmtM(r.pay)}},
+        {t:'ماندهٔ تجمعی تا پایان ماه',g:function(r){return h('b',{style:r.cum>0?'color:var(--rose)':'color:var(--green)'},fmtM(r.cum))}},
+        {t:'عملیات',g:function(r){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
+          (r.cum>0)?h('button',{class:'btn green sm',type:'button',title:'ثبت ماندهٔ تجمعی به‌عنوان پرداخت تا پایان این ماه',
+            onclick:function(){settleFull(r)}},'✔ تسویهٔ کامل'):h('span',{class:'badge bg-green'},'تسویه‌شده'),
+          h('button',{class:'btn ghost sm',type:'button',title:'چاپ برگهٔ تسویهٔ ماهانهٔ این نیرو',onclick:function(){printMonth(r)}},'🖨️'))}}],
+        rows.sort(function(a,b){return b.cum-a.cum}),
+        {pager:'staffMon',emoji:'📅'}));
+      area.appendChild(c)}
+    function settleFull(r){var y=+fY.value,m=+fM.value;
+      confirmBox('ماندهٔ تجمعی '+fmtM(r.cum)+' برای «'+r.b.name+'» تا پایان '+JMONTHS[m-1]+' '+toFa(y)+' ثبت شود؟',{ok:'✅ تسویه کن'})
+        .then(function(ok){if(!ok)return;
+          DB.staffPay.push({id:uid('sp'),code:nextCode('SP'),pType:r.b.pType,personId:r.b.personId,
+            amount:r.cum,date:mkJ(y,m,jLen(y,m)),method:'نقدی',note:'تسویهٔ کامل تا پایان '+JMONTHS[m-1]+' '+toFa(y)});
+          actLog('settle','تسویهٔ کامل '+r.b.name+' تا پایان '+JMONTHS[m-1]+' — '+fmtM(r.cum));
+          saveDB();draw();refreshStats();
+          toast('تسویهٔ کامل '+r.b.name+' ثبت شد ✅')})}
+    function printMonth(r){var y=+fY.value,m=+fM.value;
+      var recs=r.recs.slice().sort(function(a,b){return jCmp(a.date,b.date)});
+      printDoc({title:'برگهٔ تسویهٔ ماهانه — '+r.b.name,sub:JMONTHS[m-1]+' '+toFa(y)+' — '+DB.settings.gallery,
+        body:'<div class="psum"><div><b>'+fmtM(r.earn)+'</b>عملکرد این ماه</div><div><b>'+fmtM(r.pay)+'</b>پرداخت این ماه</div><div><b>'+fmtM(r.cum)+'</b>ماندهٔ تجمعی تا پایان ماه</div></div>'+
+        printTable([{t:'کد',k:'c'},{t:'تاریخ',k:'d'},{t:'تعداد',k:'q'},{t:'سهم',k:'sh'},{t:'توضیح',k:'n'}],
+          recs.map(function(pr){var sh=1;
+            if(pr.partnerId&&(pr.personId===r.b.personId||pr.partnerId===r.b.personId)){
+              var ps=(pr.partnerShare==null?0.5:pr.partnerShare);
+              sh=(pr.personId===r.b.personId)?(1-ps):ps}
+            return{c:pr.code,d:jStr(pr.date),q:fmtN(pr.qty),sh:fmtM(pr.total*sh),n:pr.note||'—'}}))+
+        '<div class="smallT" style="margin-top:8px">با امضای طرفین، ماندهٔ فوق پرداخت و حساب '+esc(r.b.name)+' تا پایان '+JMONTHS[m-1]+' '+toFa(y)+' تسویه می‌شود.</div>'})}
+    draw()}
+  function show(){body.innerHTML='';
+    if(cur==='bal')showBal();else if(cur==='pay')showPay();else showMon()}
+  show()}};
+
+/* ---------- 👥 صفحهٔ دفتر مشتریان ---------- */
+function waNum(ph){var s=fromFa(String(ph||'')).replace(/\D/g,'');
+  if(s.indexOf('00')===0)s=s.slice(2);
+  if(s.indexOf('0')===0&&s.length===11)s='98'+s.slice(1);
+  return s}
+/* مشتری‌ها از سفارش‌های خاص خودکار ساخته می‌شوند؛ اطلاعات دستی (تلفن/آدرس/یادداشت)
+   در DB.customers نگه داشته می‌شود و روی دادهٔ سفارش اولویت دارد */
+function customerRows(){var map={},order=[];
+  (DB.customers||[]).forEach(function(c){var k=nameKey(c.name);if(!k)return;
+    map[k]={name:c.name,phone:c.phone||'',address:c.address||'',note:c.note||'',manual:c,orders:[],tot:0,open:0,last:null};
+    order.push(k)});
+  DB.orders.forEach(function(o){var k=nameKey(o.customer||'');if(!k)return;
+    var b=map[k];
+    if(!b){b={name:o.customer,phone:'',address:'',note:'',manual:null,orders:[],tot:0,open:0,last:null};map[k]=b;order.push(k)}
+    if(o.phone&&!b.phone)b.phone=o.phone;
+    if(o.address&&!b.address)b.address=o.address;
+    b.orders.push(o);b.tot+=orderCalc(o).net;
+    if(o.status!=='done'&&o.status!=='canceled')b.open++;
+    if(o.orderDate&&(!b.last||jCmp(o.orderDate,b.last)>0))b.last=o.orderDate});
+  return order.map(function(k){return map[k]})}
+PAGES.customers={render:function(pg){
+  pg.appendChild(pageHead('دفتر مشتریان','بانک مشتری‌ها — خودکار از سفارش‌های خاص + رکورد دستی؛ تاریخچهٔ خرید، پیام آماده‌شدن سفارش (واتساپ/پیامک) و اطلاعات تماس'));
+  var sumCard=h('div',{class:'grid4 mb8'}),box=h('div',{});
+  var q=inp({ph:'🔍 جستجوی نام، تلفن، آدرس…'});q.style.maxWidth='240px';
+  q.addEventListener('input',debounce(draw,200));
+  pg.appendChild(sumCard);
+  pg.appendChild(h('div',{class:'spread wrap mb8'},
+    h('div',{class:'row gap6 wrap'},q),
+    h('div',{class:'row gap6'},
+      h('button',{class:'btn gold',type:'button',onclick:function(){openC(null)}},'+ مشتری دستی جدید'),
+      csvBtn('خروجی CSV مشتریان',
+        [{t:'نام',k:'name'},{t:'تلفن',k:'phone'},{t:'آدرس',k:'address'},{t:'تعداد سفارش',f:function(r){return r.orders.length}},
+         {t:'سفارش باز',f:function(r){return r.open}},{t:'جمع خرید',f:function(r){return Math.round(r.tot)}},
+         {t:'آخرین سفارش',f:function(r){return jStrLatin(r.last)}}],
+        function(){return rows()}))));
+  pg.appendChild(box);
+  function rows(){var qv=norm(q.value);
+    return customerRows().filter(function(b){
+      return !qv||matchWild(qv,b.name)||matchWild(qv,b.phone||'')||matchWild(qv,b.address||'')||matchWild(qv,b.note||'')})}
+  function draw(){var rs=rows();
+    var buyN=rs.filter(function(b){return b.orders.length}).length;
+    sumCard.innerHTML='';
+    sumCard.appendChild(statCard('👥',rs.length,'کل مشتری‌ها','var(--blue)'));
+    sumCard.appendChild(statCard('🛒',buyN,'مشتری‌های دارای خرید','var(--green)'));
+    sumCard.appendChild(statCard('⏳',rs.reduce(function(s,b){return s+b.open},0),'سفارش‌های باز','var(--gold)'));
+    sumCard.appendChild(statCard('💰',rs.reduce(function(s,b){return s+b.tot},0),'جمع کل خرید مشتری‌ها','var(--violet)'));
+    box.innerHTML='';
+    if(!rs.length){box.appendChild(emptyBox('هنوز مشتری‌ای ثبت نشده — با ثبت «سفارش خاص» یا «مشتری دستی» شروع کنید','👥'));return}
+    box.appendChild(table([
+      {t:'نام مشتری',g:function(b){return h('span',{},h('b',{},b.name),
+        !b.manual?h('span',{class:'badge bg-gray',style:'font-size:10.5px;margin-inline-start:6px'},'از سفارش‌ها'):null)}},
+      {t:'تماس',g:function(b){return b.phone?toFa(b.phone):'—'}},
+      {t:'آدرس',g:function(b){return h('span',{class:'mut small',style:'white-space:normal;max-width:180px;display:inline-block'},b.address||'—')}},
+      {t:'سفارش‌ها',g:function(b){return fmtN(b.orders.length)+(b.open?h('span',{class:'badge bg-gold',style:'font-size:11px;margin-inline-start:5px'},fmtN(b.open)+' باز'):null)}},
+      {t:'جمع خرید',g:function(b){return h('b',{class:'goldTx'},fmtM(b.tot))}},
+      {t:'آخرین سفارش',g:function(b){return jStr(b.last)}},
+      {t:'عملیات',g:function(b){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
+        h('button',{class:'btn sm',type:'button',title:'تاریخچهٔ سفارش‌ها',onclick:function(){historyM(b)}},'📋'),
+        h('button',{class:'btn sm',type:'button',title:'پیام آماده‌شدن سفارش',onclick:function(){msgM(b)}},'📩'),
+        h('button',{class:'btn ghost sm',type:'button',title:'ویرایش اطلاعات',onclick:function(){openC(b)}},'✏️'),
+        b.manual?delBtn('مشتری دستی «'+b.name+'» حذف شود؟ (سفارش‌هایش حذف نمی‌شوند)',function(){
+          DB.customers=DB.customers.filter(function(x){return x.id!==b.manual.id});
+          actLog('delete','حذف مشتری دستی '+b.name);
+          saveDB();draw();refreshStats()}):null)}}],
+      rs.sort(function(a,b){return b.orders.length-a.orders.length}),
+      {pager:'custList',emoji:'👥',
+      sorts:[{label:'جمع خرید',cmp:function(a,b){return a.tot-b.tot}},
+        {label:'نام',cmp:function(a,b){var x=norm(a.name),y=norm(b.name);return x<y?-1:x>y?1:0}}]}))}
+  /* تاریخچهٔ سفارش‌های مشتری */
+  function historyM(b){var listEl=h('div',{});
+    listEl.appendChild(h('div',{class:'row gap wrap',style:'margin:0 2px 10px'},
+      h('span',{class:'badge bg-blue',style:'font-size:13px;padding:7px 13px'},'سفارش‌ها: '+fmtN(b.orders.length)),
+      h('span',{class:'badge bg-gold',style:'font-size:13px;padding:7px 13px'},'جمع خرید: '+fmtM(b.tot)),
+      b.open?h('span',{class:'badge bg-teal',style:'font-size:13px;padding:7px 13px'},'باز: '+fmtN(b.open)):h('span',{class:'badge bg-green',style:'font-size:13px;padding:7px 13px'},'همهٔ سفارش‌ها بسته است')));
+    listEl.appendChild(table([
+      {t:'فاکتور',g:function(r){return h('b',{class:'goldTx'},toFa(r.code))}},
+      {t:'ثبت',g:function(r){return jStr(r.orderDate)}},
+      {t:'موعد تحویل',g:function(r){return jStr(r.deliveryDate)}},
+      {t:'مبلغ',g:function(r){return fmtM(orderCalc(r).net)}},
+      {t:'پرداخت‌شده',g:function(r){return fmtM(orderPaid(r.id))}},
+      {t:'مانده',g:function(r){var rm=orderRemain(r);return h('b',{style:rm>0?'color:var(--rose)':'color:var(--green)'},fmtM(rm))}},
+      {t:'وضعیت',g:function(r){var s=stInfo(r.status);return h('span',{class:'badge '+s.cls},s.t)}},
+      {t:'عملیات',g:function(r){return h('div',{style:'display:flex;gap:6px;justify-content:flex-end'},
+        h('button',{class:'btn ghost sm',type:'button',title:'چاپ فاکتور',
+          onclick:function(){if(window._printInvoice)window._printInvoice(r);else navTo('orders')}},'🖨️'))}}],
+      b.orders.slice().sort(function(a,b2){return jCmp(b2.orderDate,a.orderDate)}),
+      {pager:'custHist',emoji:'🧾',emptyMsg:'سفارشی ثبت نشده'}));
+    var ne=DB.neseh.filter(function(r){return nameKey(r.person||'')===nameKey(b.name)});
+    if(ne.length){listEl.appendChild(h('div',{class:'b mb8',style:'margin-top:14px'},'🧾 نسیه‌های همین شخص'));
+      listEl.appendChild(table([
+        {t:'کد',g:function(r){return r.code}},{t:'تاریخ',g:function(r){return jStr(r.date)}},
+        {t:'جمع',g:function(r){return fmtM(toNum(r.total))}},
+        {t:'مانده',g:function(r){return fmtM(nesehRemain(r))}},
+        {t:'موعد',g:function(r){return r.due?jStr(r.due):'—'}}],
+        ne.sort(function(a,b2){return jCmp(b2.date,a.date)}),
+        {pager:'custNeseh',emoji:'🧾'}))}
+    modal({title:'📋 تاریخچهٔ مشتری — '+esc(b.name),size:'wide',fullBtn:true,body:listEl})}
+  /* پیام آماده‌شدن سفارش — واتساپ / پیامک / کپی */
+  function msgM(b){
+    var open=b.orders.filter(function(r){return r.status!=='done'&&r.status!=='canceled'});
+    var fO=selSearch(function(){return open.map(function(r){
+      return{value:r.id,label:toFa(r.code)+' — '+stInfo(r.status).t+' — تحویل '+jStr(r.deliveryDate)}})},null,
+      {ph:open.length?'🔍 انتخاب سفارش برای پیام…':'🔍 سفارش بازی برای پیام نیست'});
+    var msgBox=h('div',{});
+    function buildMsg(){var o=open.find(function(r){return r.id===fO.value});
+      var tx='سلام و وقت بخیر، '+b.name+' عزیز 🙏';
+      if(o){var s=stInfo(o.status);
+        tx+='\nسفارش شما با شماره '+toFa(o.code)+' اکنون «'+s.t+'» است.';
+        if(o.status==='ready')tx+='\nسفارش شما آمادهٔ تحویل است — منتظر تشریف می‌آییم 🎁';
+        tx+='\nموعد تحویل: '+jStr(o.deliveryDate);
+        tx+='\n'+(DB.settings.gallery||'گالری هنری آوا')+(DB.settings.phone?('\nتماس: '+toFa(DB.settings.phone)):'')}
+      else tx+='\nاز شما برای همراهی صمیمانه سپاسگزاریم.';
+      return tx}
+    function drawMsg(){msgBox.innerHTML='';
+      var ta=h('textarea',{class:'inp',rows:'7',style:'width:100%'},buildMsg());
+      msgBox.appendChild(ta);
+      var row=h('div',{class:'row gap6 wrap',style:'margin-top:9px'});
+      function hasPhone(){return !!waNum(b.phone)}
+      row.appendChild(h('button',{class:'btn green',type:'button',title:'ارسال با واتساپ (نیاز به اینترنت)',
+        onclick:function(){if(!hasPhone()){toast('شماره تماس برای این مشتری ثبت نشده','err');return}
+          window.open('https://wa.me/'+waNum(b.phone)+'?text='+encodeURIComponent(ta.value),'_blank')}},'💬 واتساپ'));
+      row.appendChild(h('button',{class:'btn',type:'button',title:'ارسال پیامک با برنامهٔ پیام‌رسان گوشی',
+        onclick:function(){if(!b.phone){toast('شماره تماس برای این مشتری ثبت نشده','err');return}
+          window.open('sms:'+fromFa(b.phone).replace(/\s/g,'')+'?body='+encodeURIComponent(ta.value))}},'✉️ پیامک'));
+      row.appendChild(h('button',{class:'btn',type:'button',onclick:function(){
+        try{navigator.clipboard.writeText(ta.value).then(function(){toast('متن پیام کپی شد 📋')})}
+        catch(e){ta.select();try{document.execCommand('copy');toast('متن پیام کپی شد 📋')}catch(e2){toast('کپی نشد — متن را دستی انتخاب کنید','err')}}}},'📋 کپی متن'));
+      msgBox.appendChild(row);
+      if(!b.phone)msgBox.appendChild(h('div',{class:'fhint mt8'},'⚠️ برای این مشتری شماره تماس ثبت نشده — با ✏️ اطلاعات تماس را اضافه کنید.'))}
+    drawMsg();
+    if(fO.addEventListener)fO.addEventListener('change',drawMsg);
+    var mdMsg=modal({title:'📩 پیام به مشتری — '+esc(b.name),size:'wide',
+      body:h('div',{},
+        open.length?fld('سفارش مورد پیام',fO):h('div',{class:'fhint mb8'},'سفارش بازی برای این مشتری نیست — پیام عمومی تشکر آماده می‌شود.'),
+        msgBox),
+      footer:h('div',{},h('button',{class:'btn ghost',type:'button',onclick:function(){mdMsg.close()}},'بستن'))})}
+  /* ثبت/ویرایش اطلاعات دستی مشتری */
+  function openC(b){
+    var manual=b&&b.manual;
+    var fN=inp({value:b?b.name:'',ph:'نام مشتری'});
+    if(b&&b.orders.length)fN.readOnly=true;
+    var fP2=inp({value:b?b.phone||'':'',ph:'09…'}),
+      fAd=inp({value:b?b.address||'':'',ph:'آدرس (اختیاری)'}),
+      fNo=inp({value:b?b.note||'':'',ph:'یادداشت (سلیقه‌ها، مناسبت‌ها…)'});
+    var md=modal({title:b?'ویرایش اطلاعات مشتری':'ثبت مشتری دستی جدید',size:'wide',
+      body:h('div',{},
+        h('div',{class:'fhint mb8'},b?(b.orders.length?'این مشتری از سفارش‌هایش ساخته شده؛ نام قابل تغییر نیست ولی تلفن، آدرس و یادداشت را می‌توانید کامل کنید.':'اطلاعات تماس و یادداشت مشتری را کامل کنید.')
+          :'مشتری دستی در تاریخچهٔ سفارش‌ها خودکار به سفارش‌های هم‌نام وصل می‌شود.'),
+        fld('نام مشتری',fN,null,1),
+        h('div',{class:'f2'},fld('شماره تماس',fP2),h('div',{})),
+        fld('آدرس',fAd),
+        fld('یادداشت',fNo)),
+      footer:h('div',{},h('button',{class:'btn gold',type:'button',onclick:save},'💾 ذخیره'))});
+    function save(){var name=norm(fN.value);
+      if(!name){toast('نام مشتری را وارد کنید','err');return false}
+      var o={name:name,phone:norm(fP2.value),address:norm(fAd.value),note:norm(fNo.value)};
+      if(manual){Object.assign(manual,o)}
+      else{var k=nameKey(name);
+        var ex=(DB.customers||[]).find(function(x){return nameKey(x.name)===k});
+        if(ex)Object.assign(ex,o);
+        else{if(!Array.isArray(DB.customers))DB.customers=[];
+          DB.customers.push(Object.assign({id:uid('cus'),code:nextCode('CUS'),created:Date.now()},o))}}
+      actLog(manual?'edit':'new','مشتری «'+name+'»');
+      saveDB();md.close();draw();refreshStats();toast('اطلاعات مشتری ذخیره شد ✅');return true}}
+  draw()}};
+
+/* ================= v7.0 pages 2 — سود محصولات + تقویم موعدها + برچسب بارکد + سابقهٔ فعالیت ================= */
+
+/* ---------- 📈 صفحهٔ سود واقعی هر محصول ----------
+   بهای تمام‌شدهٔ هر واحد = میانگین قیمت ورود کالا در انبار؛
+   دستمزد واحد نقاشی = میانگین سهم نقاش از عملکرد ثبت‌شدهٔ همان محصول.
+   سود ناخالص = فروش − بهای فروخته‌ها − دستمزد فروش‌ها (با انتخاب کاربر). */
+function whAvgPrice(pid){var tq=0,tv=0;
+  DB.warehouseIn.forEach(function(e){if(e.productId===pid){tq+=e.qty;tv+=e.total}});
+  return tq?tv/tq:0}
+PAGES.profit={render:function(pg){
+  pg.appendChild(pageHead('سود محصولات','فروش منهای بهای تمام‌شده (میانگین قیمت ورود انبار) و دستمزد نقاشی — به تفکیک هر محصول و هر ماه'));
+  var fFrom=jDateInp(jFromGOffset(-90)),fTo=jDateInp(todayJ());
+  var cBuy=h('input',{type:'checkbox'});cBuy.checked=true;
+  var cWage=h('input',{type:'checkbox'});
+  var out=h('div',{class:'mt14'});
+  pg.appendChild(h('div',{class:'card mb8'},h('div',{class:'row gap6 wrap',style:'align-items:flex-end'},
+    h('div',{style:'min-width:150px'},fld('از',fFrom)),h('div',{style:'min-width:150px'},fld('تا',fTo)),
+    h('div',{style:'align-self:flex-end;margin-bottom:13px'},
+      h('label',{class:'chkRow'},cBuy,h('span',{},'کسر بهای خرید انبار')),
+      h('label',{class:'chkRow',style:'margin-inline-start:10px'},cWage,h('span',{},'کسر دستمزد نقاشی'))),
+    h('div',{style:'margin-bottom:11px'},h('div',{class:'row gap6'},
+      h('button',{class:'btn gold',type:'button',onclick:run},'👁 نمایش'),
+      h('button',{class:'btn green',type:'button',onclick:function(){if(!window._profitPrint)run();window._profitPrint()}},'🖨️ چاپ گزارش'),
+      h('button',{class:'btn',type:'button',onclick:function(){if(!window._profitPrint)run();
+        pdfSave('گزارش سود محصولات',function(){window._profitPrint()})}},'📄 ذخیره PDF'),
+      h('button',{class:'btn',type:'button',onclick:function(){repHistModal('profit',out)}},'🗂 گزارش‌های ذخیره‌شده'))))));
+  pg.appendChild(h('div',{class:'fhint mb8'},
+    'بهای فروخته‌ها = میانگین قیمت ورودِ کالا در انبار × تعداد فروش. دستمزد نقاشی = میانگین سهم نقاش از عملکرد ثبت‌شدهٔ همان محصول × تعداد فروش (برای محصولات تولیدیِ کارگاه). هر دو ستون همیشه نمایش داده می‌شوند؛ با تیک‌ها فقط در محاسبهٔ سود کسر می‌شوند.'));
+  pg.appendChild(out);
+  function compute(){var rng=rangeFromInputs(fFrom,fTo);
+    var map={},order=[];
+    function bucket(p){var k=p.id;
+      if(!map[k]){map[k]={p:p,qty:0,rev:0,wageUnit:0,buyUnit:whAvgPrice(p.id),prodQty:0};order.push(k)}
+      return map[k]}
+    DB.sales.forEach(function(s){if(!inRange(s.date.g,rng.from,rng.to))return;
+      var p=DB.products.find(function(x){return x.id===s.productId});if(!p)return;
+      var b=bucket(p);b.qty+=s.qty;b.rev+=s.total});
+    DB.painterPerf.forEach(function(r){if(!inRange(r.date.g,rng.from,rng.to))return;
+      var p=DB.products.find(function(x){return x.id===r.itemId});if(!p)return;
+      var b=bucket(p);
+      var sh=1;if(r.partnerId){var ps=(r.partnerShare==null?0.5:r.partnerShare);sh=1-ps}
+      b.prodQty+=r.qty;
+      b.wageUnit=((b.wageUnit*(b.prodQty-r.qty))+(r.total*sh))/b.prodQty});
+    return order.map(function(k){var b=map[k];
+      b.buy=b.buyUnit*b.qty;b.wage=b.wageUnit*b.qty;
+      b.profit=b.rev-(cBuy.checked?b.buy:0)-(cWage.checked?b.wage:0);
+      b.margin=b.rev?(b.profit/b.rev*100):0;
+      return b})}
+  function months(rng){var map={};
+    DB.sales.forEach(function(s){if(!inRange(s.date.g,rng.from,rng.to))return;
+      var k=s.date.jy+'_'+s.date.jm;
+      var m=map[k];if(!m){m=map[k]={jy:s.date.jy,jm:s.date.jm,rev:0,buy:0,wage:0,profit:0};}
+      m.rev+=s.total;
+      var p=DB.products.find(function(x){return x.id===s.productId});
+      if(p){m.buy+=whAvgPrice(p.id)*s.qty}});
+    DB.painterPerf.forEach(function(r){if(!inRange(r.date.g,rng.from,rng.to))return;
+      var p=DB.products.find(function(x){return x.id===r.itemId});if(!p)return;
+      var k=r.date.jy+'_'+r.date.jm;if(!map[k])return;
+      var sh=1;if(r.partnerId){var ps=(r.partnerShare==null?0.5:r.partnerShare);sh=1-ps}
+      map[k].wage+=r.total*sh});
+    return Object.keys(map).map(function(k){return map[k]})
+      .sort(function(a,b){return jCmp(mkJ(a.jy,a.jm,1),mkJ(b.jy,b.jm,1))})
+      .map(function(m){m.profit=m.rev-(cBuy.checked?m.buy:0)-(cWage.checked?m.wage:0);return m})}
+  function run(){var rs=compute(),ms=months(rangeFromInputs(fFrom,fTo));
+    out.innerHTML='';
+    var totRev=0,totBuy=0,totWage=0,totProfit=0;
+    rs.forEach(function(r){totRev+=r.rev;totBuy+=r.buy;totWage+=r.wage;totProfit+=r.profit});
+    var sold=rs.reduce(function(s,r){return s+r.qty},0);
+    out.appendChild(h('div',{class:'grid4 mb8'},
+      statCard('💰',totRev,'فروش بازه','var(--green)'),
+      statCard('📦',totBuy,'بهای فروخته‌ها (انبار)','var(--blue)'),
+      statCard('🖌️',totWage,'دستمزد نقاشی فروش‌ها','var(--violet)'),
+      statCard('📈',totProfit,'سود ناخالص بازه','var(--gold)')));
+    var ex=h('div',{class:'fhint mb8'},'تعداد فروخته‌شده در بازه: '+fmtN(sold)+' عدد — بهای فروخته‌ها: '+fmtM(totBuy)+(cWage.checked?(' + دستمزد: '+fmtM(totWage)):'')+' — سود محاسبه‌شده: '+fmtM(totProfit)+(totRev?(' (حاشیهٔ '+toFa(Math.round(totProfit/totRev*100))+'٪)'):''));
+    out.appendChild(ex);
+    if(rs.length){var c1=h('div',{class:'card chartCard mb8'},h('div',{class:'b mb8'},'📊 سود هر محصول'));
+      var cv1=h('canvas',{height:'250'});c1.appendChild(cv1);out.appendChild(c1);
+      setTimeout(function(){var tops=rs.slice().sort(function(a,b){return b.profit-a.profit}).slice(0,8);
+        drawBar(cv1,{labels:tops.map(function(r){return (r.p.name||'').split(' ')[0]}),
+          series:[{name:'سود ناخالص',values:tops.map(function(r){return Math.max(0,r.profit)}),color:'#34d399'}]})},30)}
+    if(ms.length){var c2=h('div',{class:'card chartCard mb8'},h('div',{class:'b mb8'},'📈 روند ماهانهٔ فروش، بهای تمام‌شده و سود'));
+      var cv2=h('canvas',{height:'265'});c2.appendChild(cv2);
+      c2.appendChild(legendBox([{name:'فروش',color:'#34d399'},{name:'بهای تمام‌شده',color:'#fb7185'},{name:'سود',color:'#f0b429'}]));
+      out.appendChild(c2);
+      setTimeout(function(){drawLine(cv2,{labels:ms.map(function(m){return JMONTHS_S[m.jm-1]}),
+        series:[{name:'فروش',values:ms.map(function(m){return m.rev}),color:'#34d399'},
+          {name:'بهای تمام‌شده',values:ms.map(function(m){return m.buy+(cWage.checked?m.wage:0)}),color:'#fb7185'},
+          {name:'سود',values:ms.map(function(m){return m.profit}),color:'#f0b429'}]})},30)}
+    var c3=h('div',{class:'card mb8'},h('div',{class:'b mb8'},'🧾 سود به تفکیک محصول'));
+    c3.appendChild(table([
+      {t:'محصول',g:function(r){return h('span',{},h('b',{},r.p.name),
+        r.p.code?h('span',{class:'mut',style:'font-size:11.5px'},' ('+r.p.code+')'):null)}},
+      {t:'فروش (عدد)',g:function(r){return fmtN(r.qty)}},
+      {t:'فروش (تومان)',g:function(r){return fmtM(r.rev)}},
+      {t:'بهای فروخته‌ها',g:function(r){return fmtM(r.buy)}},
+      {t:'دستمزد واحد',g:function(r){return r.prodQty?fmtM(r.wageUnit):'—'}},
+      {t:'دستمزد فروش‌ها',g:function(r){return fmtM(r.wage)}},
+      {t:'سود ناخالص',g:function(r){return h('b',{style:r.profit>=0?'color:var(--green)':'color:var(--rose)'},fmtM(r.profit))}},
+      {t:'حاشیه',g:function(r){return r.rev?toFa(Math.round(r.margin))+'٪':'—'}}],
+      rs,{pager:'profitList',emoji:'📈',emptyMsg:'فروشی در این بازه ثبت نشده است',
+      sorts:[{label:'سود',cmp:function(a,b){return a.profit-b.profit}},
+        {label:'فروش',cmp:function(a,b){return a.rev-b.rev}},
+        {label:'نام محصول',cmp:function(a,b){var x=norm(a.p.name),y=norm(b.p.name);return x<y?-1:x>y?1:0}}]}));
+    out.appendChild(c3);
+    out.appendChild(h('div',{class:'row gap6 mb8'},
+      csvBtn('خروجی CSV سود محصولات',
+        [{t:'کد',f:function(r){return r.p.code||''}},{t:'محصول',f:function(r){return r.p.name}},
+         {t:'تعداد فروش',f:function(r){return r.qty}},{t:'فروش',f:function(r){return Math.round(r.rev)}},
+         {t:'بهای فروخته‌ها',f:function(r){return Math.round(r.buy)}},
+         {t:'دستمزد واحد',f:function(r){return Math.round(r.wageUnit)}},
+         {t:'دستمزد فروش‌ها',f:function(r){return Math.round(r.wage)}},
+         {t:'سود ناخالص',f:function(r){return Math.round(r.profit)}},
+         {t:'حاشیه ٪',f:function(r){return Math.round(r.margin)}}],
+        function(){return rs})));
+    if(rs.length||ms.length)repHistSave('profit',{id:uid('rh'),at:Date.now(),title:'گزارش سود محصولات',
+      params:'از '+jStr(jFromG(rngFrom()))+' تا '+jStr(jFromG(rngTo())),
+      snap:{sums:[{l:'فروش بازه',v:fmtM(totRev)},{l:'بهای فروخته‌ها',v:fmtM(totBuy)},{l:'دستمزد فروش‌ها',v:fmtM(totWage)},{l:'سود ناخالص',v:fmtM(totProfit)}],
+        tables:[{t:'سود به تفکیک محصول',cols:['محصول','تعداد','فروش','بهای فروخته‌ها','دستمزد فروش‌ها','سود','حاشیه ٪'],
+          rows:rs.map(function(r){return[r.p.name,fmtN(r.qty),fmtM(r.rev),fmtM(r.buy),fmtM(r.wage),fmtM(r.profit),toFa(Math.round(r.margin))+'٪']})}]}})}
+  function rngFrom(){var r=rangeFromInputs(fFrom,fTo);return r.from}
+  function rngTo(){var r=rangeFromInputs(fFrom,fTo);return r.to}
+  window._profitPrint=function(){var rs=compute();var rng=rangeFromInputs(fFrom,fTo);
+    if(!rs.length){toast('گزارشی برای چاپ نیست','err');return}
+    var totRev=0,totBuy=0,totWage=0,totProfit=0;
+    rs.forEach(function(r){totRev+=r.rev;totBuy+=r.buy;totWage+=r.wage;totProfit+=r.profit});
+    printDoc({title:'گزارش سود محصولات',sub:'از '+jStr(jFromG(rng.from))+' تا '+jStr(jFromG(rng.to))+(cBuy.checked?' — با کسر بهای خرید':'')+(cWage.checked?' — با کسر دستمزد نقاشی':''),
+      body:'<div class="psum"><div><b>'+fmtM(totRev)+'</b>فروش بازه</div><div><b>'+fmtM(totBuy)+'</b>بهای فروخته‌ها</div><div><b>'+fmtM(totWage)+'</b>دستمزد فروش‌ها</div><div><b>'+fmtM(totProfit)+'</b>سود ناخالص</div></div>'+
+      printTable([{t:'محصول',k:'n'},{t:'تعداد',k:'q'},{t:'فروش',k:'r'},{t:'بهای فروخته‌ها',k:'b'},{t:'دستمزد فروش‌ها',k:'w'},{t:'سود ناخالص',k:'p'},{t:'حاشیه ٪',k:'m'}],
+        rs.map(function(r){return{n:r.p.name,q:fmtN(r.qty),r:fmtM(r.rev),b:fmtM(r.buy),w:fmtM(r.wage),p:fmtM(r.profit),m:toFa(Math.round(r.margin))+'٪'}}))})};
+  run()}};
+
+/* ---------- 📅 صفحهٔ تقویم موعدها ---------- */
+function calDayEvents(j){var out=[];
+  DB.orders.forEach(function(o){
+    if(!o.deliveryDate||o.deliveryDate.g!==j.g)return;
+    if(o.status==='done'||o.status==='canceled')return;
+    out.push({ic:'🧾',cls:'',t:'تحویل سفارش — '+o.customer,sub:toFa(o.code)+' — '+fmtM(orderCalc(o).net),page:'orders'})});
+  DB.cheques.forEach(function(c){
+    if(!c.dueDate||c.dueDate.g!==j.g||c.status==='cashed')return;
+    out.push({ic:'📑',cls:'chq',t:(c.type==='out'?'سررسید چک پرداختنی':'سررسید چک دریافتنی')+' — '+fmtM(c.amount),
+      sub:(c.party||'')+(c.bank?(' — '+c.bank):''),page:'cheques'})});
+  DB.neseh.forEach(function(r){
+    if(!r.due||r.due.g!==j.g||nesehRemain(r)<=0)return;
+    out.push({ic:'🧾',cls:'neseh',t:'موعد تسویهٔ نسیه — '+(r.person||''),sub:r.code+' — مانده '+fmtM(nesehRemain(r)),page:'neseh'})});
+  return out}
+function calMonthEvents(y,m){var evs=[];
+  function scan(list,dateKey,fn){(list||[]).forEach(function(r){var d=r[dateKey];if(d&&d.jy===y&&d.jm===m)evs.push(fn(r,d))})}
+  scan(DB.orders,'deliveryDate',function(o,d){
+    if(o.status==='done'||o.status==='canceled')return null;
+    return{d:d,ic:'🧾',cls:'',t:'تحویل سفارش '+o.customer,sub:toFa(o.code)+' — '+stInfo(o.status).t,page:'orders'}});
+  scan(DB.cheques,'dueDate',function(c,d){
+    if(c.status==='cashed')return null;
+    return{d:d,ic:'📑',cls:'chq',t:(c.type==='out'?'چک پرداختنی':'چک دریافتنی')+' '+fmtM(c.amount),sub:(c.party||'')+(c.bank?(' — '+c.bank):''),page:'cheques'}});
+  scan(DB.neseh,'due',function(r,d){
+    if(nesehRemain(r)<=0)return null;
+    return{d:d,ic:'🧾',cls:'neseh',t:'تسویهٔ نسیهٔ '+(r.person||''),sub:r.code+' — مانده '+fmtM(nesehRemain(r)),page:'neseh'}});
+  return evs.filter(Boolean)}
+PAGES.dueCal={render:function(pg){
+  pg.appendChild(pageHead('تقویم موعدها','همهٔ مهلت‌ها روی یک تقویم شمسی: تحویل سفارش‌ها، سررسید چک‌ها و موعد تسویهٔ نسیه‌ها'));
+  var st={y:todayJ().jy,m:todayJ().jm};
+  var headBar=h('div',{class:'row gap6 wrap mb8'});
+  var overdueBox=h('div',{class:'mb8'});
+  var calBox=h('div',{class:'card mb8'});
+  var listBox=h('div',{});
+  pg.appendChild(headBar);pg.appendChild(overdueBox);pg.appendChild(calBox);pg.appendChild(listBox);
+  function title(){return JMONTHS[st.m-1]+' '+toFa(st.y)}
+  function draw(){headBar.innerHTML='';
+    headBar.appendChild(h('div',{style:'font-size:17px;font-weight:800;min-width:150px'},title()));
+    headBar.appendChild(h('button',{class:'btn sm',type:'button',onclick:function(){st.m--;if(st.m<1){st.m=12;st.y--}draw()}},'❯ ماه قبل'));
+    headBar.appendChild(h('button',{class:'btn sm',type:'button',onclick:function(){st.y=todayJ().jy;st.m=todayJ().jm;draw()}},'📍 امروز'));
+    headBar.appendChild(h('button',{class:'btn sm',type:'button',onclick:function(){st.m++;if(st.m>12){st.m=1;st.y++}draw()}},'ماه بعد ❮'));
+    var evs=calMonthEvents(st.y,st.m);
+    var cnt={ord:evs.filter(function(e){return e.ic==='🧾'&&e.page==='orders'}).length,
+      chq:evs.filter(function(e){return e.page==='cheques'}).length,
+      nes:evs.filter(function(e){return e.page==='neseh'}).length};
+    headBar.appendChild(h('span',{class:'row gap6 wrap'},
+      h('span',{class:'badge bg-blue',style:'font-size:12px;padding:5px 10px'},'🧾 تحویل سفارش: '+fmtN(cnt.ord)),
+      h('span',{class:'badge bg-red',style:'font-size:12px;padding:5px 10px'},'📑 چک: '+fmtN(cnt.chq)),
+      h('span',{class:'badge bg-teal',style:'font-size:12px;padding:5px 10px'},'🧾 نسیه: '+fmtN(cnt.nes))));
+    /* نوار موارد گذشته و باز */
+    overdueBox.innerHTML='';
+    var od=[];
+    var tj=todayJ();
+    DB.orders.forEach(function(o){if(o.deliveryDate&&o.status!=='done'&&o.status!=='canceled'&&jCmp(o.deliveryDate,tj)<0)
+      od.push({t:'⏰ تحویل سفارش '+o.customer+' ('+toFa(o.code)+') — موعدش '+jStr(o.deliveryDate)+' گذشته',page:'orders'})});
+    DB.cheques.forEach(function(c){if(c.dueDate&&c.status!=='cashed'&&jCmp(c.dueDate,tj)<0)
+      od.push({t:'📑 چک '+(c.type==='out'?'پرداختنی':'دریافتنی')+' '+(c.party||'')+' — سررسیدش '+jStr(c.dueDate)+' گذشته',page:'cheques'})});
+    DB.neseh.forEach(function(r){if(r.due&&nesehRemain(r)>0&&jCmp(r.due,tj)<0)
+      od.push({t:'🧾 نسیهٔ '+(r.person||'')+' ('+r.code+') — موعد تسویه‌اش '+jStr(r.due)+' گذشته و '+fmtM(nesehRemain(r))+' مانده',page:'neseh'})});
+    if(od.length){var c=h('div',{class:'warnCard gold'},
+      h('div',{class:'spread wrap mb8'},h('div',{class:'b'},'⚠️ '+fmtN(od.length)+' موعد گذشته و باز — پیگیری شود'),
+        h('span',{class:'mut small'},'این موارد در تقویم ماه‌های گذشته‌اند')));
+      od.slice(0,8).forEach(function(x){c.appendChild(h('div',{class:'wRow',onclick:function(){navTo(x.page)}},h('span',{},x.t)))});
+      if(od.length>8)c.appendChild(h('div',{class:'mut small',style:'padding:4px 12px'},'… و '+fmtN(od.length-8)+' مورد دیگر'));
+      overdueBox.appendChild(c)}
+    /* شبکهٔ تقویم */
+    calBox.innerHTML='';
+    calBox.appendChild(h('div',{class:'b mb8'},'🗓 تقویم '+title()));
+    var grid=h('div',{class:'calGrid7'});
+    JWD.forEach(function(w){grid.appendChild(h('div',{class:'calWd',style:'text-align:center;font-weight:700;font-size:11.5px;color:var(--mut2, #97a0c3)'},w))});
+    jMonthGrid(st.y,st.m).forEach(function(j){
+      if(!j){grid.appendChild(h('div',{class:'calCw off'}));return}
+      var evs=calDayEvents(j);
+      var cell=h('div',{class:'calCw'+(j.g===todayJ().g?' today':''),
+        onclick:function(){dayModal(j,evs)}},
+        h('div',{class:'dnum num'},toFa(j.jd)));
+      var evRow=h('div',{class:'evs'});
+      evs.slice(0,2).forEach(function(e){evRow.appendChild(h('span',{class:'calEv '+e.cls},e.ic+' '+e.t))});
+      if(evs.length>2)evRow.appendChild(h('span',{class:'calEv'},'+'+toFa(evs.length-2)+' مورد'));
+      if(evs.length)cell.appendChild(evRow);
+      grid.appendChild(cell)});
+    calBox.appendChild(grid);
+    calBox.appendChild(h('div',{class:'calFoot2'},
+      h('span',{class:'mut small'},' روی هر روز کلیک کنید تا موارد همان روز باز شود — المان‌های رنگی:'),
+      h('span',{class:'badge bg-blue',style:'font-size:11.5px'},'🧾 تحویل سفارش'),
+      h('span',{class:'badge bg-red',style:'font-size:11.5px'},'📑 سررسید چک'),
+      h('span',{class:'badge bg-teal',style:'font-size:11.5px'},'🧾 موعد نسیه')));
+    /* جدول همهٔ موعدهای ماه */
+    listBox.innerHTML='';
+    listBox.appendChild(h('div',{class:'card'},h('div',{class:'b mb8'},'📋 موعدهای '+title()+' — '+fmtN(evs.length)+' مورد')));
+    if(!evs.length)listBox.appendChild(emptyBox('در این ماه موعدی ثبت نشده است','📅'));
+    else listBox.appendChild(table([
+      {t:'تاریخ',g:function(e){return jStr(e.d)}},
+      {t:'روز',g:function(e){return JWD[jWeekDay(e.d)]}},
+      {t:'نوع',g:function(e){return e.ic+' '+(e.page==='orders'?'تحویل سفارش':(e.page==='cheques'?'چک':'نسیه'))}},
+      {t:'عنوان',g:function(e){return h('b',{},e.t)}},
+      {t:'جزئیات',g:function(e){return h('span',{class:'mut small'},e.sub)}},
+      {t:'رفتن',g:function(e){return h('button',{class:'btn sm',type:'button',onclick:function(){navTo(e.page)}},'📂')}}],
+      evs.sort(function(a,b){return jCmp(a.d,b.d)}),
+      {pager:'dueCalList',emoji:'📅'}))}
+  function dayModal(j,evs){var box=h('div',{});
+    box.appendChild(h('div',{class:'fhint mb8'},jStr(j)+' — '+JWD[jWeekDay(j)]));
+    if(!evs.length)box.appendChild(emptyBox('موعدی برای این روز نیست','🌱'));
+    else evs.forEach(function(e){box.appendChild(h('div',{class:'rhItem',
+      onclick:function(){md.close();navTo(e.page)}},
+      h('div',{style:'flex:1'},h('div',{class:'rht'},e.ic+' '+e.t),h('div',{class:'rhp'},e.sub)),
+      h('span',{class:'badge bg-blue'},'📂 باز کردن')))});
+    var md=modal({title:'🗓 موارد روز '+jStr(j),body:box})}
+  draw()}};
+
+/* ---------- 🏷️ صفحهٔ برچسب بارکد محصولات ---------- */
+PAGES.labels={render:function(pg){
+  pg.appendChild(pageHead('برچسب بارکد محصولات','چاپ برگهٔ برچسب‌های QR برای محصولات — محتوای QR: «AVG1|کد|نام»؛ با اسکنر بارکد USB در تب انبار، کد خوانده و محصول پیدا می‌شود'));
+  var picker=checkPicker({ph:'🔍 محصولات را جستجو و تیک بزنید…',
+    onToggle:function(){drawPrev()},
+    source:function(){return uniqByName(DB.products).map(function(p){
+      return{id:p.id,label:p.name+(p.code?' ('+p.code+')':''),
+        sub:(p.code?p.code:'بدون کد')+(p.price?(' — '+fmtM(p.price)):'')}})}});
+  var fCols=selEl([{value:3,label:'۳ برچسب در هر ردیف'},{value:4,label:'۴ برچسب در هر ردیف'},{value:5,label:'۵ برچسب در هر ردیف'}],'4');
+  var fCopies=inp({type:'number',value:1,ph:'۱ تا ۸'});
+  var cPrice=h('input',{type:'checkbox'});
+  var prev=h('div',{class:'mt14'});
+  pg.appendChild(h('div',{class:'card mb8'},
+    h('div',{class:'b mb8'},'۱) انتخاب محصولات'),
+    picker.el));
+  pg.appendChild(h('div',{class:'card mb8'},h('div',{class:'b mb8'},'۲) تنظیمات برگه'),
+    h('div',{class:'row gap6 wrap',style:'align-items:flex-end'},
+      h('div',{style:'min-width:180px'},fld('اندازهٔ برگه',fCols)),
+      h('div',{style:'min-width:130px'},fld('کپی هر محصول',fCopies)),
+      h('div',{style:'align-self:flex-end;margin-bottom:13px'},h('label',{class:'chkRow'},cPrice,h('span',{},'نمایش قیمت روی برچسب'))))));
+  pg.appendChild(h('div',{class:'spread wrap mb8'},
+    h('div',{class:'b'},'۳) پیش‌نمایش'),
+    h('div',{class:'row gap6'},
+      h('button',{class:'btn gold',type:'button',onclick:function(){
+        var items=picked();if(!items.length){toast('اول محصولاتی را تیک بزنید','err');return}
+        labelSheetPrint(items,{cols:toNum(fCols.value)||4,price:cPrice.checked,qrCell:3})}},'🖨️ چاپ برچسب‌ها'),
+      csvBtn('خروجی CSV کد محصولات',
+        [{t:'کد',k:'code'},{t:'نام',k:'name'},{t:'قیمت',k:'price'}],
+        function(){return picked().map(function(it){return it.p})}))));
+  pg.appendChild(prev);
+  function picked(){var copies=Math.max(1,Math.min(8,toNum(fCopies.value)||1));
+    return picker.getChecked().map(function(it){
+      var p=DB.products.find(function(x){return x.id===it.id});
+      return p?{p:p,copies:copies}:null}).filter(Boolean)}
+  function drawPrev(){prev.innerHTML='';
+    var items=picked();
+    if(!items.length){prev.appendChild(emptyBox('محصولی انتخاب نشده — از کمبوباکس بالا تیک بزنید تا پیش‌نمایش برچسب‌ها این‌جا دیده شود','🏷️'));return}
+    var card=h('div',{class:'card'},h('div',{class:'b mb8'},'پیش‌نمایش — '+fmtN(items.reduce(function(s,i){return s+i.copies},0))+' برچسب'));
+    var grid=h('div',{class:'lblPreview'});
+    items.forEach(function(it){for(var i=0;i<it.copies;i++){
+      var qr=qrDataUrl('AVG1|'+(it.p.code||'')+'|'+(it.p.name||''),3,1);
+      grid.appendChild(h('div',{class:'lblCard'},
+        h('div',{class:'lblTxt'},
+          h('b',{},it.p.name||''),
+          h('span',{class:'num mut small'},it.p.code||'—'),
+          cPrice.checked&&it.p.price?h('span',{class:'goldTx small'},fmtM(it.p.price)):null),
+        qr?h('img',{src:qr,style:'width:74px;height:74px'}):h('span',{class:'mut small'},'QR')))}});
+    card.appendChild(grid);prev.appendChild(card)}
+  picker.refresh&&picker.refresh();
+  cPrice.addEventListener('change',drawPrev);
+  fCols.addEventListener('change',drawPrev);
+  fCopies.addEventListener('input',debounce(drawPrev,300));
+  drawPrev()}};
+
+/* ---------- 📜 صفحهٔ سابقهٔ فعالیت ---------- */
+PAGES.actLog={render:function(pg){
+  pg.appendChild(pageHead('سابقهٔ فعالیت','چه کسی، چه زمانی چه رکوردی ثبت، ویرایش یا حذف کرده است — لاگ داخلی برنامه (تا ۸۰۰ رویداد آخر)'));
+  var sumCard=h('div',{class:'grid4 mb8'}),box=h('div',{});
+  var fT=selEl([{value:'',label:'— همهٔ عملیات —'},
+    {value:'new',label:'➕ ثبت'},{value:'edit',label:'✏️ ویرایش'},{value:'delete',label:'🗑️ حذف'},
+    {value:'pay',label:'💵 پرداخت'},{value:'settle',label:'🧮 تسویه'},{value:'login',label:'🔓 ورود'},
+    {value:'backup',label:'💾 پشتیبان'},{value:'restore',label:'♻️ بازیابی'},{value:'approve',label:'✅ تایید'}],'');
+  fT.addEventListener('change',draw);
+  var q=inp({ph:'🔍 جستجو در جزئیات و نام کاربر…'});q.style.maxWidth='230px';
+  q.addEventListener('input',debounce(draw,200));
+  pg.appendChild(sumCard);
+  pg.appendChild(h('div',{class:'spread wrap mb8'},
+    h('div',{class:'row gap6 wrap'},h('div',{style:'min-width:180px'},fld('نوع عملیات',fT)),q),
+    h('div',{class:'row gap6'},
+      csvBtn('خروجی CSV سابقهٔ فعالیت',
+        [{t:'زمان',f:function(r){return new Date(r.at).toLocaleString('fa-IR')}},
+         {t:'کاربر',k:'who'},{t:'عملیات',f:function(r){return actLogLabel(r.act)}},{t:'جزئیات',k:'detail'}],
+        function(){return rows()}),
+      h('button',{class:'btn danger',type:'button',onclick:function(){
+        confirmBox('کل سابقهٔ فعالیت پاک شود؟ رکوردهای اصلی برنامه دست‌نخورده می‌مانند.',{danger:true,ok:'پاک کن'})
+          .then(function(ok){if(!ok)return;DB.actLog=[];actLog('edit','سابقهٔ فعالیت پاک شد');saveDB();draw();toast('سابقه پاک شد','info')})}},'🗑️ پاک کردن سابقه'))));
+  pg.appendChild(box);
+  function rows(){var qv=norm(q.value);
+    return (DB.actLog||[]).filter(function(r){
+      if(fT.value&&r.act!==fT.value)return false;
+      return !qv||matchWild(qv,r.detail||'')||matchWild(qv,r.who||'')})}
+  function draw(){var rs=rows().slice().sort(function(a,b){return b.at-a.at});
+    var cnt={};(DB.actLog||[]).forEach(function(r){cnt[r.act]=(cnt[r.act]||0)+1});
+    sumCard.innerHTML='';
+    sumCard.appendChild(statCard('📜',(DB.actLog||[]).length,'کل رویدادها','var(--blue)'));
+    sumCard.appendChild(statCard('➕',cnt.new||0,'ثبت‌های جدید','var(--green)'));
+    sumCard.appendChild(statCard('✏️',cnt.edit||0,'ویرایش‌ها','var(--gold)'));
+    sumCard.appendChild(statCard('🗑️',cnt.delete||0,'حذف‌ها','var(--rose)'));
+    box.innerHTML='';
+    if(!rs.length){box.appendChild(emptyBox('هنوز رویدادی ثبت نشده — از همین لحظه عملیات‌ها این‌جا ثبت می‌شوند','📜'));return}
+    box.appendChild(table([
+      {t:'زمان',g:function(r){return h('span',{class:'num small'},new Date(r.at).toLocaleString('fa-IR'))}},
+      {t:'کاربر',g:function(r){return h('b',{},r.who||'—')}},
+      {t:'عملیات',g:function(r){return h('span',{class:'badge '+(r.act==='delete'?'bg-red':(r.act==='new'?'bg-green':'bg-blue'))},actLogLabel(r.act))}},
+      {t:'جزئیات',g:function(r){return r.detail||'—'}}],
+      rs,{pager:'actLogList',emoji:'📜',
+      sorts:[{label:'زمان',cmp:function(a,b){return a.at-b.at}}]}))}
+  draw()}};
+
 /* ---------- page: expenses ---------- */
 var EXP_CATS=['هزینه شخصی','هزینه کارگاه','دستمزد کارگران','مواد اولیه','اجاره محل','قبوض (آب/برق/گاز/تلفن)','حمل و نقل','تعمیر و نگهداری','بازاریابی و تبلیغات','سایر'];
 PAGES.expenses={render:function(pg){
@@ -3800,7 +4908,7 @@ PAGES.expenses={render:function(pg){
   var fFrom=jDateInp(jFromGOffset(-30),draw),fTo=jDateInp(todayJ(),draw);
   pg.appendChild(h('div',{class:'card mb8'},h('div',{class:'row gap6 wrap'},
     h('div',{style:'min-width:180px'},fld('دسته هزینه',fCat)),h('div',{style:'min-width:150px'},fld('از',fFrom)),h('div',{style:'min-width:150px'},fld('تا',fTo)),
-    h('div',{style:'align-self:flex-end;margin-bottom:11px'},h('button',{class:'btn gold',onclick:function(){openE(null)}},'+ ثبت هزینه جدید')))));
+    h('div',{style:'align-self:flex-end;margin-bottom:11px'},h('div',{class:'row gap6'},csvBtn('خروجی CSV هزینه‌ها',[{t:'کد',k:'code'},{t:'تاریخ',f:function(e){return jStrLatin(e.date)}},{t:'دسته',k:'cat'},{t:'عنوان',k:'title'},{t:'مبلغ',f:function(e){return toNum(e.amount)}},{t:'روش',f:function(e){return payMethodLabel(e.payMethod)}},{t:'توضیح',k:'note'}],function(){return DB.expenses.slice()}),h('button',{class:'btn gold',onclick:function(){openE(null)}},'+ ثبت هزینه جدید'))))));
   pg.appendChild(sumCard);pg.appendChild(box);
   function draw(){var rng=rangeFromInputs(fFrom,fTo);
     var rows=DB.expenses.filter(function(e){return inRange(e.date.g,rng.from,rng.to)&&(!fCat.value||e.cat===fCat.value)})
@@ -3817,11 +4925,13 @@ PAGES.expenses={render:function(pg){
       {t:'مبلغ',g:function(r){return h('b',{class:'redTx'},fmtM(r.amount))}},
       {t:'پرداخت',g:function(r){if(r.payMethod==='cheque')return h('span',{class:'badge bg-violet'},'🧾 چک'+(r.chequeDue?' — سررسید '+jStr(r.chequeDue):''));
         return payMethodLabel(r.payMethod)+(r.payMethod==='card'&&r.accountId?(' — '+nameOfById(DB.accounts,r.accountId)):'')}},
+      {t:'پیوست',g:function(r){return phThumb(r,'photo',r.title)}},
       {t:'توضیح',g:function(r){return r.note||'—'}}],rows,
       {pager:'expList',
       sorts:[{label:'تاریخ',cmp:function(a,b){return jCmp(a.date,b.date)}},{label:'مبلغ',cmp:function(a,b){return a.amount-b.amount}},{label:'عنوان',cmp:function(a,b){var x=norm(a.title),y=norm(b.title);return x<y?-1:x>y?1:0}}],
       actions:function(r){return delBtn('این هزینه حذف شود؟ (چکِ ثبت‌شدهٔ همین هزینه هم حذف می‌شود)',function(){
         DB.expenses=DB.expenses.filter(function(x){return x.id!==r.id});
+        actLog('delete','حذف هزینه — '+r.title);
         DB.cheques=DB.cheques.filter(function(c){return c.expenseId!==r.id});
         saveDB();draw();refreshStats()})},
         emoji:'💸',emptyMsg:'در این بازه هزینه‌ای ثبت نشده است'}))}
@@ -3844,12 +4954,13 @@ PAGES.expenses={render:function(pg){
     fM.addEventListener('change',function(){accWrap.style.display=fM.value==='card'?'':'none';
       chWrap.style.display=fM.value==='cheque'?'':'none'});
     var fN=inp({value:r?r.note||'':'',ph:'توضیح (اختیاری)'});
+    var fPhoto=photoField(r?r.photo||null:null);
     var foot=h('div',{},h('button',{class:'btn gold',onclick:save},'💾 ذخیره هزینه'));
     var md=modal({title:r?'ویرایش هزینه':'ثبت هزینه جدید',body:h('div',{},
       h('div',{class:'f2'},fld('دسته هزینه',fC,null,1),fld('مبلغ (تومان)',fA,null,1)),
       fld('عنوان هزینه',fT,null,1),
       h('div',{class:'f2'},fld('تاریخ',fD,null,1),fld('روش پرداخت',fM)),
-      accWrap,chWrap,fld('توضیحات',fN)),footer:foot,size:'wide',onSave:save});
+      accWrap,chWrap,fld('توضیحات',fN),fld('عکس رسید / سند هزینه (اختیاری)',fPhoto)),footer:foot,size:'wide',onSave:save});
     function save(){var amount=toNum(fA.value);if(!norm(fT.value)){toast('عنوان هزینه را وارد کنید','err');return false}
       if(amount<=0){toast('مبلغ باید مثبت باشد','err');return false}
       if(fM.value==='card'&&!fAcc.value){toast('کارت / حساب بانکی را انتخاب کنید (یا روش پرداخت را نقدی بگذارید)','err');return false}
@@ -3857,7 +4968,7 @@ PAGES.expenses={render:function(pg){
         if(!norm(fChNo.value)){toast('شماره چک را وارد کنید','err');return false}
         if(!getJVal(fChDue)){toast('تاریخ سررسید چک را انتخاب کنید','err');return false}}
       var o={cat:fC.value,title:norm(fT.value),amount:amount,date:getJVal(fD)||todayJ(),payMethod:fM.value,
-        accountId:fM.value==='card'?fAcc.value:null,note:norm(fN.value)};
+        accountId:fM.value==='card'?fAcc.value:null,photo:fPhoto.dataset.v||'',note:norm(fN.value)};
       if(fM.value==='cheque'){o.chequeBank=norm(fChBank.value);o.chequeNo=norm(fChNo.value);
         o.chequeDue=getJVal(fChDue);o.chequeParty=norm(fChParty.value)}
       if(r){var oldChq=DB.cheques.find(function(c){return c.expenseId===r.id});
@@ -3871,6 +4982,7 @@ PAGES.expenses={render:function(pg){
         chq.type='out';chq.party=o.chequeParty||o.title;chq.bank=o.chequeBank;chq.chequeNo=o.chequeNo;
         chq.amount=o.amount;chq.issueDate=o.date;chq.dueDate=o.chequeDue;
         chq.status=chq.status||'pending';chq.note='ثبت‌شده از «هزینه‌های متفرقه» — '+o.title;chq.expenseId=o.id}
+      actLog(r?'edit':'new','هزینه — '+o.title+' ('+fmtM(o.amount)+')');
       saveDB();md.close();draw();refreshStats();
       /* v6.5.1: اگر سررسید چکِ هزینه تا ۳ روز آینده است، کاربر باخبر شود */
       try{var _cd=jDayDiff(o.chequeDue,todayJ());
@@ -3910,7 +5022,7 @@ PAGES.cheques={render:function(pg){
     var fFilter=selEl([{value:'',label:'— همه —'},{value:'pending',label:'در جریان'},{value:'soon',label:'سررسید نزدیک (۳ روز)'},{value:'out',label:'فقط پرداختنی'},{value:'in',label:'فقط دریافتنی'},{value:'cashed',label:'وصول‌شده'}],'');
     fFilter.addEventListener('change',draw);
     box.appendChild(h('div',{class:'spread wrap mb8'},h('div',{class:'row gap6 wrap'},
-      h('div',{style:'min-width:190px'},fld('فیلتر',fFilter)),q),add));
+      h('div',{style:'min-width:190px'},fld('فیلتر',fFilter)),q),h('div',{class:'row gap6'},csvBtn('خروجی CSV چک‌ها',[{t:'کد',k:'code'},{t:'نوع',f:function(c){return c.type==='out'?'پرداختنی':'دریافتنی'}},{t:'طرف حساب',k:'party'},{t:'بانک',k:'bank'},{t:'شماره چک',k:'chequeNo'},{t:'مبلغ',f:function(c){return toNum(c.amount)}},{t:'سررسید',f:function(c){return jStrLatin(c.dueDate)}},{t:'وضعیت',k:'status'}],function(){return DB.cheques.slice()}),add)));
     var qq=norm(q.value);
     var rows=DB.cheques.filter(function(c){
       if(fFilter.value==='pending'&&c.status==='cashed')return false;
@@ -3937,7 +5049,7 @@ PAGES.cheques={render:function(pg){
         {label:'طرف حساب',cmp:function(a,b){var x=norm(a.party||''),y=norm(b.party||'');return x<y?-1:x>y?1:0}}],
       actions:function(r){return h('div',{},
         h('button',{class:r.status==='cashed'?'btn ghost sm':'btn green sm',title:r.status==='cashed'?'بازگرداندن به جریان':'وصول شد',onclick:function(){
-          r.status=r.status==='cashed'?'pending':'cashed';saveDB();draw();toast(r.status==='cashed'?'چک وصول شد ✅':'چک به جریان برگشت','info')}},
+          r.status=r.status==='cashed'?'pending':'cashed';actLog('edit','تغییر وضعیت چک '+r.code+' به '+(r.status==='cashed'?'وصول‌شده':'در جریان'));saveDB();draw();toast(r.status==='cashed'?'چک وصول شد ✅':'چک به جریان برگشت','info')}},
           r.status==='cashed'?'↩️':'✅'),
         h('button',{class:'btn ghost sm',title:'ویرایش',onclick:function(){openC(r)}},'✏️'),
         r.expenseId?null:delBtn('این چک حذف شود؟',function(){DB.cheques=DB.cheques.filter(function(x){return x.id!==r.id});saveDB();draw()}))}}));
@@ -3963,6 +5075,7 @@ PAGES.cheques={render:function(pg){
         amount:amount,issueDate:getJVal(fIss)||todayJ(),dueDate:due,note:norm(fN.value)};
       if(r)Object.assign(r,o);
       else{o.id=uid('chq');o.code=nextCode('CHQ');o.status='pending';DB.cheques.push(o)}
+      actLog(r?'edit':'new','چک '+o.code+' — '+(o.type==='out'?'پرداختنی':'دریافتنی')+' — '+(o.party||'')+' ('+fmtM(o.amount)+')');
       saveDB();md.close();draw();refreshStats();
       /* v6.5.1: اگر سررسید تا ۳ روز آینده است، همان لحظه کاربر باخبر شود که هشدار ثبت شد */
       var dd2=jDayDiff(due,todayJ());
@@ -4667,7 +5780,7 @@ PAGES.admin={render:function(pg){
       readFileAs(f,'txt').then(function(t){var data=JSON.parse(t);
         if(!data||data.v!==1||!Array.isArray(data.users))throw new Error('bad');
         confirmBox('بازیابی، همهٔ داده‌های فعلی را با فایل پشتیبان جایگزین می‌کند. مطمئن هستید؟',{danger:true,ok:'بازیابی کن'})
-          .then(function(ok){if(!ok)return;window.__allowExit=true;abortPendingSave();localStorage.setItem(DBKEY,JSON.stringify(data));location.reload()})})
+          .then(function(ok){if(!ok)return;window.__allowExit=true;abortPendingSave();actLog('restore','بازیابی از فایل پشتیبان');localStorage.setItem(DBKEY,JSON.stringify(data));location.reload()})})
         .catch(function(){toast('فایل پشتیبان معتبر نیست','err')});fr.value=''});
     body.appendChild(h('div',{class:'card'},h('div',{class:'b mb8'},'⚠️ ناحیه خطر'),
       h('div',{class:'row gap6 wrap'},
@@ -4771,6 +5884,8 @@ function loadDemo(){confirmBox('دادهٔ نمونه (نقاشان، محصول
     var pr3={id:uid('prd'),code:nextCode('PRD'),name:'گلدان لعابی فیروزه‌ای',type:'گلدان',price:1450000};
     var pr4={id:uid('prd'),code:nextCode('PRD'),name:'سرویس خورشتی ۶ نفره لعاب',type:'سرویس',price:3900000};
     DB.products.push(pr1,pr2,pr3,pr4);
+    /* v7.0: حد هشدار موجودی نمونه — pr3 و pr4 عمداً کمتر از حد تعریف شده‌اند تا هشدار دیده شود */
+    pr3.minStock=6;pr4.minStock=10;
     var md1={id:uid('mld'),code:nextCode('MLD'),name:'قالب بشقاب اسلیمی ۲۷',type:'گچی'};
     var sc1={id:uid('scp'),code:nextCode('SCP'),name:'مجسمه سنجاب لعابی',type:'حیوانی'};
     DB.molds.push(md1);DB.sculptures.push(sc1);
@@ -4796,9 +5911,15 @@ function loadDemo(){confirmBox('دادهٔ نمونه (نقاشان، محصول
     DB.expenses.push({id:uid('ex'),code:nextCode('EX'),cat:'مواد اولیه',title:'خرید رنگ لعاب و سرب',amount:2400000,date:J(-26),payMethod:'card',accountId:DB.accounts[0].id});
     DB.expenses.push({id:uid('ex'),code:nextCode('EX'),cat:'دستمزد کارگران',title:'دستمزد هفتگی کارگاه',amount:5200000,date:J(-12),payMethod:'cash'});
     DB.expenses.push({id:uid('ex'),code:nextCode('EX'),cat:'قبوض (آب/برق/گاز/تلفن)',title:'قبض برق کارگاه',amount:680000,date:J(-4),payMethod:'cash'});
-    DB.orders.push({id:uid('ord'),code:nextCode('INV'),created:Date.now(),customer:'خانم دکتر نوری',phone:'09121110000',address:'تهران، زعفرانیه',
+    var or1=DB.orders[DB.orders.push({id:uid('ord'),code:nextCode('INV'),created:Date.now(),customer:'خانم دکتر نوری',phone:'09121110000',address:'تهران، زعفرانیه',
       orderDate:J(-6),orderTime:'11:20',deliveryDate:J(4),deliveryTime:'17:00',discount:300000,status:'making',
-      items:[{productId:pr4.id,qty:1,price:3900000},{productId:pr3.id,qty:2,price:1450000}],note:'هدیه برای مناسبت خاص'});
+      items:[{productId:pr4.id,qty:1,price:3900000},{productId:pr3.id,qty:2,price:1450000}],note:'هدیه برای مناسبت خاص'})-1];
+    /* v7.0: پیش‌پرداخت و قسط دوم نمونه — مانده در جدول سفارش‌ها و فاکتور دیده می‌شود */
+    DB.orderPay.push({id:uid('op'),code:nextCode('OP'),orderId:or1.id,amount:2000000,date:J(-6),note:'پیش‌پرداخت سفارش'});
+    DB.orderPay.push({id:uid('op'),code:nextCode('OP'),orderId:or1.id,amount:1000000,date:J(-2),note:'قسط دوم'});
+    /* v7.0: پرداخت به نیروها — نمونهٔ تسویهٔ نیروها */
+    DB.staffPay.push({id:uid('sp'),code:nextCode('SP'),pType:'painter',personId:p1.id,amount:5000000,date:J(-14),method:'نقدی',note:'دستمزد نیمهٔ ماه'});
+    DB.staffPay.push({id:uid('sp'),code:nextCode('SP'),pType:'moldmaker',personId:m1.id,amount:600000,date:J(-10),method:'کارت/حساب',note:''});
     /* v6.4: نمونه‌های هشدار — سفارشِ ۲ روز مانده به تحویل + چک‌های نزدیک سررسید */
     DB.orders.push({id:uid('ord'),code:nextCode('INV'),created:Date.now(),customer:'آقای مهندس شریفی',phone:'09122220000',address:'تهران، ونک',
       orderDate:J(-10),orderTime:'09:40',deliveryDate:J(2),deliveryTime:'16:00',discount:0,status:'approved',
@@ -4810,20 +5931,20 @@ function loadDemo(){confirmBox('دادهٔ نمونه (نقاشان، محصول
     DB.cheques.push({id:uid('chq'),code:nextCode('CHQ'),type:'out',party:'اجارهٔ محل کارگاه',bank:'بانک ملت',chequeNo:'778899',amount:12000000,
       issueDate:J(-40),dueDate:J(-6),status:'cashed',note:'وصول‌شده — نمونه'});
     /* v6.9.2: نمونه‌های «نسیه کارگاه» — یک نسیهٔ باز با پرداخت قسطی + یک نسیهٔ تسویه‌شده */
-    var ns1={id:uid('ns'),code:nextCode('NE'),person:'فروشگاه صنایع دستی مینا',date:J(-9),
+    var ns1={id:uid('ns'),code:nextCode('NE'),person:'فروشگاه صنایع دستی مینا',date:J(-9),due:J(2),
       items:[{desc:'بشقاب نقاشی‌شده سایز بزرگ',qty:6,price:450000},{desc:'گلدان لعاب‌کاری فیروزه‌ای',qty:2,price:800000}],
       total:6*450000+2*800000,note:'قرار بر تسویه تا پایان ماه'};
     DB.neseh.push(ns1);
-    DB.neseh.push({id:uid('ns'),code:nextCode('NE'),person:'آقای کریمی (مشتری ثابت)',date:J(-21),
-      items:[{desc:'سرویس خورشتی ۶ نفره لعاب',qty:1,price:3900000}],total:3900000,note:''});
+    var ns2=DB.neseh[DB.neseh.push({id:uid('ns'),code:nextCode('NE'),person:'آقای کریمی (مشتری ثابت)',date:J(-21),due:J(-4),
+      items:[{desc:'سرویس خورشتی ۶ نفره لعاب',qty:1,price:3900000}],total:3900000,note:''})-1];
     DB.nesehPay.push({id:uid('np'),code:nextCode('NP'),nesehId:ns1.id,date:J(-3),amount:1500000,note:'قسط اول'});
-    DB.nesehPay.push({id:uid('np'),code:nextCode('NP'),nesehId:ns1.id,date:J(-30),amount:3900000,note:'تسویه کامل'});
+    DB.nesehPay.push({id:uid('np'),code:nextCode('NP'),nesehId:ns2.id,date:J(-30),amount:3900000,note:'تسویه کامل'});
     saveDB();refreshStats();toast('دادهٔ نمونه بارگذاری شد — داشبورد و گزارش‌ها را ببینید')})}
 
 /* ---------- backup + topbar + boot ---------- */
 function doBackup(){var data=JSON.stringify(DB,null,1);
   var name='AvaGallery-Backup-'+jStrLatin(todayJ()).replace(/\//g,'-')+'.json';
-  download(name,data,'application/json');DB.meta.lastBackup=Date.now();saveDB();toast('فایل پشتیبان دانلود شد 💾')}
+  download(name,data,'application/json');actLog('backup','دریافت فایل پشتیبان');DB.meta.lastBackup=Date.now();saveDB();toast('فایل پشتیبان دانلود شد 💾')}
 function boot(){loadDB(function(){
   var lgU=$('#lgUser'),lgP=$('#lgPass');
   function tryLogin(){var u=login(lgU.value,lgP.value);
@@ -4956,7 +6077,7 @@ function chequesDueSoon(){var t=todayJ(),out=[];
       sub:(c.party||'')+(c.bank?(' — '+c.bank):'')+' — سررسید: '+jStr(c.dueDate),
       days:d})});
   return out}
-function allAlertItems(){return deliverySoonItems().concat(chequesDueSoon())}
+function allAlertItems(){return deliverySoonItems().concat(chequesDueSoon(),nesehDueItems(),stockLowItems())}
 function daysLeftLabel(d){return d===0?'⏳ امروز است':(d===1?'فردا — ۱ روز مانده':'⏳ '+toFa(d)+' روز مانده')}
 
 /* ---------- «مطلع شدم» — هشدارِ هر مورد فقط برای همین روز قطع می‌شود؛
@@ -4998,12 +6119,12 @@ function showAlarmPopup(items,silent){if(!items||!items.length)return;
   var byKey={};items.forEach(function(x){(byKey[x.key]||(byKey[x.key]=[])).push(x)});
   Object.keys(byKey).forEach(function(k){var arr=byKey[k];
     box.appendChild(h('div',{class:'apSec '+(k==='cheque'?'gold':'')},
-      k==='delivery'?'⏰ موعد تحویل نزدیک است':'📑 سررسید چک نزدیک است'));
+      (ALERT_TITLES[k]||'هشدار')));
     arr.forEach(function(x){var row=h('div',{class:'apRow',onclick:function(){box.classList.remove('on');
         setTimeout(function(){box.remove()},450);navTo(x.page)}},
       h('div',{class:'col',style:'flex:1'},
         h('b',{},x.ic+' '+x.title),h('span',{class:'mut small'},x.sub)),
-      h('span',{class:'daysBadge'+(x.days===0?' today':'')},daysLeftLabel(x.days)),
+      h('span',{class:'daysBadge'+(x.days===0&&!x.dayLabel?' today':'')},alertLabelOf(x)),
       h('a',{class:'apAck',title:'مطلع شدم — هشدار امروز این مورد قطع شود',onclick:function(ev){ev.stopPropagation();
         ackToday(x.key,[x.id]);row.remove();if(!box.querySelector('.apRow')){box.classList.remove('on');setTimeout(function(){box.remove()},450)}
         try{refreshStats()}catch(e){}}},'✔'));
@@ -5034,19 +6155,23 @@ function alertsDashboardCard(){var items=activeAlertItems();
         h('div',{class:'b'},title,
           h('span',{class:'badge bg-red',style:'margin-inline-start:8px'},fmtN(arr.length)+' مورد')),
         h('div',{class:'row gap6'},
-          h('button',{class:'btn sm',type:'button',onclick:function(){navTo(k==='cheque'?'cheques':'orders')}},'📂 باز کردن بخش'),
+          h('button',{class:'btn sm',type:'button',onclick:function(){navTo(arr[0]?arr[0].page:'dashboard')}},'📂 باز کردن بخش'),
           h('button',{class:'btn ghost sm',type:'button',onclick:function(){
             ackToday(k,arr.map(function(x){return x.id}));refreshStats();toast('مطلع شدید — هشدار امروز قطع شد و فردا دوباره بررسی می‌شود','info');
             c.style.display='none'}},'✔ مطلع شدم'))));
     arr.forEach(function(x){c.appendChild(h('div',{class:'wRow',onclick:function(){navTo(x.page)}},
       h('div',{class:'col',style:'flex:1;min-width:180px'},
         h('b',{},x.title),h('span',{class:'mut small'},x.sub)),
-      h('span',{class:'daysBadge'+(x.days===0?' today':'')},daysLeftLabel(x.days))))});
+      h('span',{class:'daysBadge'+(x.days===0&&!x.dayLabel?' today':'')},alertLabelOf(x))))});
     return c}
   var d1=card('delivery','','⏰ موعد تحویل نزدیک است — سفارش‌های خاص');
   if(d1)wrap.appendChild(d1);
   var d2=card('cheque','gold','📑 سررسید چک نزدیک است — چک‌ها و بدهی‌ها');
   if(d2)wrap.appendChild(d2);
+  var d3=card('neseh','gold','🧾 موعد تسویهٔ نسیه — نسیه کارگاه');
+  if(d3)wrap.appendChild(d3);
+  var d4=card('stock','','📦 کمبود موجودی انبار — رسیدن به حد هشدار');
+  if(d4)wrap.appendChild(d4);
   return wrap}
 
 /* ---------- اجرای خودکار: بعد از ورود و هر ۱۵ دقیقه ---------- */
@@ -5196,7 +6321,7 @@ function pdfBtn(title,fn){return h('button',{class:'btn',type:'button',title:'ذ
    ریست رمز کاربران (از جمله مدیر اصلی)، تغییر ظاهر و برند، پشتیبان‌گیری.
    همه‌ی تنظیمات داخل DB.console ذخیره می‌شود و با پشتیبان‌گیری جابجا می‌شود. */
 
-var APP_VERSION='6.9.2 — بخش جدید «نسیه کارگاه»: ثبت خروج نسیهٔ محصولات از کارگاه برای اشخاص و فروشگاه‌ها با اقلام و جمع خودکار، ثبت پرداخت‌های بعدی (کامل یا قسطی) با رسید چاپی، و گزارش «بدهکاران» که نشان می‌دهد چند نفر بدهکار هستند و ماندهٔ بدهی هر نفر چقدر است — با صورت‌حساب هر شخص، چاپ و ذخیره PDF و ذخیره در گزارش‌های ذخیره‌شده؛ همچنین رفع مشکل تاریخ گزارش‌ها: در گزارش روزانهٔ عملکرد و در «بازه»ٔ گزارش‌ها و گزارش‌های ذخیره‌شده، تاریخ میلادی به‌جای شمسی نمایش داده می‌شد (سال‌هایی مثل ۲۰۲۵) که اصلاح شد | قابلیت‌های 6.9.1 — استحکام مسیر نصب به‌روزرسانی: اگر حافظهٔ مرورگر برای ذخیرهٔ نسخهٔ جدید پر باشد، نسخه به‌جای حافظهٔ عادی در IndexedDB ذخیره می‌شود و نصب دیگر به‌دلیل کمبود حافظه ناتمام نمی‌ماند؛ دریافت فایل نسخهٔ جدید زمان‌بندی ۳۰ ثانیه‌ای دارد؛ پس از نوشتن فایل روی دیسک (Edge/Chrome)، نسخه در حافظهٔ برنامه هم ثبت و برنامه بازآوری می‌شود تا حتی اگر پنجرهٔ ذخیره در مسیر دیگری ذخیره کرده باشد، نسخهٔ جدید با باز شدن بعدی اجرا شود؛ اعمال نسخهٔ ذخیره‌شده فقط وقتی واقعاً جدیدتر از نسخهٔ دیسک است انجام می‌شود و دادهٔ خراب یا قدیمی خودبه‌خود پاک می‌شود | قابلیت‌های 6.9.0 — قابلیت جدید «اطلاع‌رسانی خودکار به‌روزرسانی»: برنامه هر ۶ ساعت یک‌بار بی‌صدا آدرس به‌روزرسانی (پیش‌فرض: مخزن گیت‌هاب) را بررسی می‌کند و اگر نسخهٔ جدیدی منتشر شده باشد، بنر «🔄 نسخهٔ جدید منتشر شده است» بالای برنامه برای همهٔ کاربران نشان می‌دهد — مدیر با دکمهٔ «📥 دریافت و نصب» روی بنر، مستقیم به بخش به‌روزرسانی می‌رود؛ بنر با ✕ بسته می‌شود و ۳ روز بعد دوباره یادآوری می‌شود؛ در نبود اینترنت بی‌صدا رد می‌شود و هیچ خطایی نشان داده نمی‌شود | نسخهٔ قبلی 6.8.9 — بهبود بخش «⬆️ به‌روزرسانی برنامه»: آدرس پیش‌فرضِ مخزن گیت‌هاب پروژه حالا خودکار در کادر آدرس درج می‌شود (خالی گذاشتن کادر هم به آدرس پیش‌فرض برمی‌گردد) و دکمهٔ جدید «🔗 آدرس پیش‌فرض (گیت‌هاب)» کنار «بررسی نسخهٔ جدید» آن را یکجا برمی‌گرداند — آدرس سفارشی (سایت خودتان یا فایل update.json) مثل قبل کار می‌کند | نسخهٔ قبلی 6.8.8 — سه بهبود: (۱) رفع باگ «ویرایش گروهی تعرفه‌های مصوب»: اگر برای یک محصول/قالب/مجسمه در یک روز چند نرخ مصوب شود (اصلاح نرخ با «اختصاص گروهی»)، قبلاً همیشه اولین ثبتِ همان روز ملاک بود و نرخ جدید در ثبت عملکرد و انبار نادیده گرفته می‌شد — حالا آخرین نرخِ ثبت‌شده ملاک است؛ (۲) فیلدهای «ساعت ثبت» و «ساعت تحویل» سفارش‌ها دکمهٔ «🕐 ساعت جاری» دارند که با یک کلیک ساعت جاری سیستم را درج می‌کند (تایپ دستی مثل قبل)؛ (۳) بخش جدید «⬆️ به‌روزرسانی برنامه» در پیشخوان مدیریت: آدرس فایل نسخهٔ جدید یا فایل update.json را روی سایت خودتان ثبت می‌کنید، برنامه نسخه را بررسی و مقایسه می‌کند، تازه‌ها را نشان می‌دهد و با «دریافت و نصب» (پس از گرفتن پشتیبان خودکار) یا نسخه را روی خود فایل AvaGallery.html می‌نویسد (Edge/Chrome) یا در حافظهٔ برنامه اعمال می‌کند که با هر باز شدن اجرا می‌شود — با دکمهٔ بازگشت به نسخهٔ دیسک | نسخهٔ قبلی 6.8.7 — دو بهبود: (۱) پنجره‌های «📋 رکوردها» و «📋 ریز همهٔ رکوردها» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان دکمهٔ «⛶ تمام‌صفحه» در سرصفحه دارند — با یک کلیک کل صفحه را می‌گیرند تا جدول رکوردها بدون اسکرولِ پنجره‌های کوچک دیده شود و با کلیک دوباره به حالت عادی برمی‌گردد؛ (۲) رفع کامل پشتیبان‌گیری خودکار: از این نسخه حتی بدون انتخاب پوشه یا وقتی مرورگر اجازهٔ نوشتن ندهد (یا مرورگر File System Access نداشته باشد)، ۵ نسخهٔ آخر به‌صورت «پشتیبان داخلی» داخل خود برنامه ذخیره می‌شود و از بخش پشتیبان‌گیری با دکمهٔ «♻️ بازیابی» برمی‌گردد؛ دکمهٔ «🔑 اجازهٔ دسترسی» برای اجازهٔ دوبارهٔ پوشه اضافه شد، فعال‌کردن تیک پشتیبان‌گیری خودکار بدون پوشه همان لحظه پنجرهٔ انتخاب پوشه را باز می‌کند، پشتیبان هنگام خروج حالا واقعاً نوشته می‌شود، و وضعیت پشتیبان‌گیری با زمان آخرین نسخه در خود کارت نمایش داده می‌شود | نسخهٔ قبلی 6.8.6 — کادر «🔍 جستجوی محصول» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان: در هر دو پنجرهٔ «📋 رکوردهای هر نقاش» و «📋 ریز همهٔ رکوردها» می‌توانید بر اساس نام محصول (و کد رکورد، نام نقاش یا توضیح) جستجو کنید؛ پس از جستجو دکمهٔ «✔ انتخاب نتایج جستجو» همهٔ نتایج را یکجا تیک می‌زند و با «✏️ ویرایش گروهی انتخاب‌شده‌ها» تغییرات (نفر، قلم، تعداد، نرخ، تاریخ، توضیح) یکجا روی همهٔ نتایج اعمال می‌شود — فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود | نسخهٔ قبلی 6.8.5 — دو رفع اشکال: (۱) عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان حالا قابل ویرایش است — دکمهٔ ✏️ ویرایش هر رکورد (نفر، قلم، تعداد، نرخ، تاریخ، توضیح، شریک‌کاری) + ویرایش گروهی: تیک زدن چند رکورد در «ریز همهٔ رکوردها» و اعمال یکجای تغییرات، فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود؛ (۲) منوهای منتقل‌شده به پیشخوان حالا داخل خود پیشخوان مدیریت باز می‌شوند — فهرست «📌 منوهای منتقل‌شده» در ستون پیشخوان + کلیک روی کاشی «نمای کلی» همان صفحه را داخل پیشخوان باز می‌کند تا از طریق پیشخوان کار شود (با دکمهٔ ↗ بازشدن در برنامهٔ اصلی هم هست) | نسخهٔ قبلی 6.8.4 — رفع مشکل انتقال منو: حالا «انتقال به پیشخوان» واقعاً منو را از منوی صفحهٔ اصلی حذف می‌کند و فقط از «نمای کلی» پیشخوان مدیریت باز می‌شود؛ با «↩️ لغو انتقال» منو به منوی صفحهٔ اصلی برمی‌گردد + برچسب «منتقل به پیشخوان» در بخش منو و ماژول‌ها + بازنشانی پیش‌فرض، منوهای منتقل‌شده را هم به منوی اصلی برمی‌گرداند | 6.8.3 — انتقال «🎮 سرگرمی» و «📞 تماس با طراح» به داخل پیشخوان مدیریت + بخش «📌 انتقال منو به پیشخوان» + جستجوی عمیق منوها و فیلدها + رفع قفل پنجرهٔ تأیید + pin تب داشبورد + ضربدر پاک‌کردن متن + تماس ۰۹۱۲ ۷۴۱ ۹۸۰۸ + بازی فیبوناچی';
+var APP_VERSION='6.10.0 — بستهٔ بزرگ قابلیت‌های مدیریتی: (۱) بخش جدید «🧮 تسویهٔ نیروها» — قرینهٔ نسیه برای بدهی ما به نیروها: جمع عملکرد هر نقاش/قالب‌ریز/مجسمه‌ساز منهای پرداخت‌شده‌ها، ثبت پرداخت نقدی/کارت/چک، تسویهٔ کامل ماهانه با یک کلیک، برگهٔ تسویهٔ چاپی و نمودار بزرگ‌ترین مانده‌ها؛ (۲) بخش جدید «👥 دفتر مشتریان» — بانک مشتری‌ها خودکار از سفارش‌های خاص + رکورد دستی، تاریخچهٔ خرید هر مشتری و پیام آماده‌شدن سفارش با واتساپ/پیامک/کپی؛ (۳) بخش جدید «📈 سود محصولات» — فروش منهای بهای تمام‌شدهٔ انبار و دستمزد نقاشی، به تفکیک محصول و ماه با نمودار روند، چاپ و PDF؛ (۴) بخش جدید «📅 تقویم موعدها» — تحویل سفارش‌ها، سررسید چک‌ها و موعد تسویهٔ نسیه‌ها روی یک تقویم شمسی با نوار موعدهای گذشته؛ (۵) بخش جدید «🏷️ برچسب بارکد» — چاپ برگهٔ برچسب‌های QR محصولات و کادر اسکن با اسکنر USB در انبار برای پیدا کردن فوری محصول؛ (۶) پیش‌پرداخت و پرداخت‌های بعدی سفارش‌های خاص با ستون پرداخت‌شده/مانده در جدول و فاکتور؛ (۷) پیوست عکس برای هزینه‌ها، سفارش‌ها و نسیه + فیلد «موعد تسویه» در نسیه؛ (۸) هشدار کمبود موجودی با «حد هشدار» هر محصول و یادآوری خودکار موعد نسیه در داشبورد و پاپ‌آپ هشدارها؛ (۹) چاپ رسید ورود کالا و حوالهٔ خروج به فروشگاه؛ (۱۰) دکمهٔ خروجی CSV در همهٔ لیست‌های مهم؛ (۱۱) بخش جدید «📜 سابقهٔ فعالیت» — لاگ داخلی ثبت/ویرایش/حذف/پرداخت/پشتیبان با نام کاربر | قابلیت‌های 6.9.2 — بخش جدید «نسیه کارگاه»: بخش جدید «نسیه کارگاه»: ثبت خروج نسیهٔ محصولات از کارگاه برای اشخاص و فروشگاه‌ها با اقلام و جمع خودکار، ثبت پرداخت‌های بعدی (کامل یا قسطی) با رسید چاپی، و گزارش «بدهکاران» که نشان می‌دهد چند نفر بدهکار هستند و ماندهٔ بدهی هر نفر چقدر است — با صورت‌حساب هر شخص، چاپ و ذخیره PDF و ذخیره در گزارش‌های ذخیره‌شده؛ همچنین رفع مشکل تاریخ گزارش‌ها: در گزارش روزانهٔ عملکرد و در «بازه»ٔ گزارش‌ها و گزارش‌های ذخیره‌شده، تاریخ میلادی به‌جای شمسی نمایش داده می‌شد (سال‌هایی مثل ۲۰۲۵) که اصلاح شد | قابلیت‌های 6.9.1 — استحکام مسیر نصب به‌روزرسانی: اگر حافظهٔ مرورگر برای ذخیرهٔ نسخهٔ جدید پر باشد، نسخه به‌جای حافظهٔ عادی در IndexedDB ذخیره می‌شود و نصب دیگر به‌دلیل کمبود حافظه ناتمام نمی‌ماند؛ دریافت فایل نسخهٔ جدید زمان‌بندی ۳۰ ثانیه‌ای دارد؛ پس از نوشتن فایل روی دیسک (Edge/Chrome)، نسخه در حافظهٔ برنامه هم ثبت و برنامه بازآوری می‌شود تا حتی اگر پنجرهٔ ذخیره در مسیر دیگری ذخیره کرده باشد، نسخهٔ جدید با باز شدن بعدی اجرا شود؛ اعمال نسخهٔ ذخیره‌شده فقط وقتی واقعاً جدیدتر از نسخهٔ دیسک است انجام می‌شود و دادهٔ خراب یا قدیمی خودبه‌خود پاک می‌شود | قابلیت‌های 6.9.0 — قابلیت جدید «اطلاع‌رسانی خودکار به‌روزرسانی»: برنامه هر ۶ ساعت یک‌بار بی‌صدا آدرس به‌روزرسانی (پیش‌فرض: مخزن گیت‌هاب) را بررسی می‌کند و اگر نسخهٔ جدیدی منتشر شده باشد، بنر «🔄 نسخهٔ جدید منتشر شده است» بالای برنامه برای همهٔ کاربران نشان می‌دهد — مدیر با دکمهٔ «📥 دریافت و نصب» روی بنر، مستقیم به بخش به‌روزرسانی می‌رود؛ بنر با ✕ بسته می‌شود و ۳ روز بعد دوباره یادآوری می‌شود؛ در نبود اینترنت بی‌صدا رد می‌شود و هیچ خطایی نشان داده نمی‌شود | نسخهٔ قبلی 6.8.9 — بهبود بخش «⬆️ به‌روزرسانی برنامه»: آدرس پیش‌فرضِ مخزن گیت‌هاب پروژه حالا خودکار در کادر آدرس درج می‌شود (خالی گذاشتن کادر هم به آدرس پیش‌فرض برمی‌گردد) و دکمهٔ جدید «🔗 آدرس پیش‌فرض (گیت‌هاب)» کنار «بررسی نسخهٔ جدید» آن را یکجا برمی‌گرداند — آدرس سفارشی (سایت خودتان یا فایل update.json) مثل قبل کار می‌کند | نسخهٔ قبلی 6.8.8 — سه بهبود: (۱) رفع باگ «ویرایش گروهی تعرفه‌های مصوب»: اگر برای یک محصول/قالب/مجسمه در یک روز چند نرخ مصوب شود (اصلاح نرخ با «اختصاص گروهی»)، قبلاً همیشه اولین ثبتِ همان روز ملاک بود و نرخ جدید در ثبت عملکرد و انبار نادیده گرفته می‌شد — حالا آخرین نرخِ ثبت‌شده ملاک است؛ (۲) فیلدهای «ساعت ثبت» و «ساعت تحویل» سفارش‌ها دکمهٔ «🕐 ساعت جاری» دارند که با یک کلیک ساعت جاری سیستم را درج می‌کند (تایپ دستی مثل قبل)؛ (۳) بخش جدید «⬆️ به‌روزرسانی برنامه» در پیشخوان مدیریت: آدرس فایل نسخهٔ جدید یا فایل update.json را روی سایت خودتان ثبت می‌کنید، برنامه نسخه را بررسی و مقایسه می‌کند، تازه‌ها را نشان می‌دهد و با «دریافت و نصب» (پس از گرفتن پشتیبان خودکار) یا نسخه را روی خود فایل AvaGallery.html می‌نویسد (Edge/Chrome) یا در حافظهٔ برنامه اعمال می‌کند که با هر باز شدن اجرا می‌شود — با دکمهٔ بازگشت به نسخهٔ دیسک | نسخهٔ قبلی 6.8.7 — دو بهبود: (۱) پنجره‌های «📋 رکوردها» و «📋 ریز همهٔ رکوردها» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان دکمهٔ «⛶ تمام‌صفحه» در سرصفحه دارند — با یک کلیک کل صفحه را می‌گیرند تا جدول رکوردها بدون اسکرولِ پنجره‌های کوچک دیده شود و با کلیک دوباره به حالت عادی برمی‌گردد؛ (۲) رفع کامل پشتیبان‌گیری خودکار: از این نسخه حتی بدون انتخاب پوشه یا وقتی مرورگر اجازهٔ نوشتن ندهد (یا مرورگر File System Access نداشته باشد)، ۵ نسخهٔ آخر به‌صورت «پشتیبان داخلی» داخل خود برنامه ذخیره می‌شود و از بخش پشتیبان‌گیری با دکمهٔ «♻️ بازیابی» برمی‌گردد؛ دکمهٔ «🔑 اجازهٔ دسترسی» برای اجازهٔ دوبارهٔ پوشه اضافه شد، فعال‌کردن تیک پشتیبان‌گیری خودکار بدون پوشه همان لحظه پنجرهٔ انتخاب پوشه را باز می‌کند، پشتیبان هنگام خروج حالا واقعاً نوشته می‌شود، و وضعیت پشتیبان‌گیری با زمان آخرین نسخه در خود کارت نمایش داده می‌شود | نسخهٔ قبلی 6.8.6 — کادر «🔍 جستجوی محصول» در عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان: در هر دو پنجرهٔ «📋 رکوردهای هر نقاش» و «📋 ریز همهٔ رکوردها» می‌توانید بر اساس نام محصول (و کد رکورد، نام نقاش یا توضیح) جستجو کنید؛ پس از جستجو دکمهٔ «✔ انتخاب نتایج جستجو» همهٔ نتایج را یکجا تیک می‌زند و با «✏️ ویرایش گروهی انتخاب‌شده‌ها» تغییرات (نفر، قلم، تعداد، نرخ، تاریخ، توضیح) یکجا روی همهٔ نتایج اعمال می‌شود — فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود | نسخهٔ قبلی 6.8.5 — دو رفع اشکال: (۱) عملکرد نقاشان/قالب‌ریزان/مجسمه‌سازان حالا قابل ویرایش است — دکمهٔ ✏️ ویرایش هر رکورد (نفر، قلم، تعداد، نرخ، تاریخ، توضیح، شریک‌کاری) + ویرایش گروهی: تیک زدن چند رکورد در «ریز همهٔ رکوردها» و اعمال یکجای تغییرات، فقط فیلدهای پرشده تغییر می‌کنند و «جمع» خودکار بازمحاسبه می‌شود؛ (۲) منوهای منتقل‌شده به پیشخوان حالا داخل خود پیشخوان مدیریت باز می‌شوند — فهرست «📌 منوهای منتقل‌شده» در ستون پیشخوان + کلیک روی کاشی «نمای کلی» همان صفحه را داخل پیشخوان باز می‌کند تا از طریق پیشخوان کار شود (با دکمهٔ ↗ بازشدن در برنامهٔ اصلی هم هست) | نسخهٔ قبلی 6.8.4 — رفع مشکل انتقال منو: حالا «انتقال به پیشخوان» واقعاً منو را از منوی صفحهٔ اصلی حذف می‌کند و فقط از «نمای کلی» پیشخوان مدیریت باز می‌شود؛ با «↩️ لغو انتقال» منو به منوی صفحهٔ اصلی برمی‌گردد + برچسب «منتقل به پیشخوان» در بخش منو و ماژول‌ها + بازنشانی پیش‌فرض، منوهای منتقل‌شده را هم به منوی اصلی برمی‌گرداند | 6.8.3 — انتقال «🎮 سرگرمی» و «📞 تماس با طراح» به داخل پیشخوان مدیریت + بخش «📌 انتقال منو به پیشخوان» + جستجوی عمیق منوها و فیلدها + رفع قفل پنجرهٔ تأیید + pin تب داشبورد + ضربدر پاک‌کردن متن + تماس ۰۹۱۲ ۷۴۱ ۹۸۰۸ + بازی فیبوناچی';
 
 /* ---------- استایل مخصوص پیشخوان (تزریق در صفحه) ---------- */
 (function(){
@@ -6269,7 +7394,7 @@ function openConsole(){
       readFileAs(f,'txt').then(function(t){var data=JSON.parse(t);
         if(!data||data.v!==1||!Array.isArray(data.users))throw new Error('bad');
         confirmBox('بازیابی، همهٔ داده‌های فعلی را با فایل پشتیبان جایگزین می‌کند. مطمئن هستید؟',{danger:true,ok:'بازیابی کن'})
-          .then(function(ok){if(!ok)return;window.__allowExit=true;abortPendingSave();localStorage.setItem(DBKEY,JSON.stringify(data));location.reload()})})
+          .then(function(ok){if(!ok)return;window.__allowExit=true;abortPendingSave();actLog('restore','بازیابی از فایل پشتیبان');localStorage.setItem(DBKEY,JSON.stringify(data));location.reload()})})
         .catch(function(){toast('فایل پشتیبان معتبر نیست','err')});fr.value=''});
     main.appendChild(h('div',{class:'card'},h('div',{class:'b mb8'},'⚠️ ناحیه خطر'),
       h('button',{class:'btn danger',onclick:function(){confirmBox('تمام داده‌ها و تنظیمات برای همیشه پاک می‌شوند! قبل از انجام، پشتیبان بگیرید. ادامه می‌دهید؟',{danger:true,ok:'بله، همه‌چیز پاک شود'})
